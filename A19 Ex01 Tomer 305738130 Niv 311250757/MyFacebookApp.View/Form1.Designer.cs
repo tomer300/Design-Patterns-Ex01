@@ -36,12 +36,16 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button6);
+            this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button2);
@@ -86,7 +90,7 @@
             // 
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(0, 98);
+            this.button1.Location = new System.Drawing.Point(0, 145);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(216, 92);
             this.button1.TabIndex = 1;
@@ -97,7 +101,7 @@
             // 
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(0, 196);
+            this.button2.Location = new System.Drawing.Point(0, 243);
             this.button2.Name = "button2";
             this.button2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.button2.Size = new System.Drawing.Size(216, 92);
@@ -109,7 +113,7 @@
             // 
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(0, 294);
+            this.button3.Location = new System.Drawing.Point(0, 341);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(216, 92);
             this.button3.TabIndex = 3;
@@ -120,12 +124,35 @@
             // 
             this.button4.FlatAppearance.BorderSize = 0;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Location = new System.Drawing.Point(0, 392);
+            this.button4.Location = new System.Drawing.Point(0, 439);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(216, 92);
             this.button4.TabIndex = 4;
             this.button4.Text = "Tasks";
             this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Location = new System.Drawing.Point(0, 95);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(216, 32);
+            this.button5.TabIndex = 5;
+            this.button5.Text = "Login With Facebook";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Location = new System.Drawing.Point(0, 125);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(216, 32);
+            this.button6.TabIndex = 6;
+            this.button6.Text = "Load App Details";
+            this.button6.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -157,6 +184,8 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }
 
