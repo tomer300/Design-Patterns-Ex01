@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+
+//App ID: 2246590548924227
+
 namespace MyFacebookApp.Model
 {
     public class AppEngine
@@ -13,7 +16,6 @@ namespace MyFacebookApp.Model
             //m_User= guy dll user;
             /* throw new NotImplementedException();*/
             m_User = new User();
-
         }
 
         public string GetUserName()
