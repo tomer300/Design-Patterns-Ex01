@@ -39,17 +39,24 @@ namespace MyFacebookApp.View
 
         private void loginButton_Click(object sender, EventArgs e)
         {
+            //Check if Exception nesseccery
             try
             {
                 r_AppEngine.PerformLogin();
+                fetchInitialDetails();
                 //saving the access token to a file using the engine within the perform login.
-                loginButton.Text = string.Format("Hi, {0}",r_AppEngine.GetUserName());
             }
             catch(Exception e1)
             {
                 string stam = e1.Message;
                 //couldnt login
             }
+        }
+
+        private void fetchInitialDetails()
+        {
+            PictureBoxUserProfile.LoadAsync(r_AppEngine.GetProfilePicture());
+            LabelUserName.Text = string.Format("Hi, {0}", r_AppEngine.GetFirstName());
         }
     }
 }

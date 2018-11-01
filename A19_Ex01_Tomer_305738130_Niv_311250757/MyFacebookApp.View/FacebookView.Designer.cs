@@ -34,11 +34,15 @@
             this.findDateButton = new System.Windows.Forms.Button();
             this.findJobButton = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.LabelAppName = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.PictureBoxUserProfile = new System.Windows.Forms.PictureBox();
+            this.LabelUserName = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxUserProfile)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -119,25 +123,25 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(158)))), ((int)(((byte)(166)))));
-            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.LabelAppName);
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(216, 95);
             this.panel3.TabIndex = 0;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
-            // label1
+            // LabelAppName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.label1.Location = new System.Drawing.Point(-1, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(174, 26);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Facebook App";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.LabelAppName.AutoSize = true;
+            this.LabelAppName.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelAppName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+            this.LabelAppName.Location = new System.Drawing.Point(-1, 33);
+            this.LabelAppName.Name = "LabelAppName";
+            this.LabelAppName.Size = new System.Drawing.Size(174, 26);
+            this.LabelAppName.TabIndex = 0;
+            this.LabelAppName.Text = "Facebook App";
+            this.LabelAppName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelAppName.Click += new System.EventHandler(this.label1_Click);
             // 
             // panel2
             // 
@@ -149,11 +153,28 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.LabelUserName);
+            this.panel4.Controls.Add(this.PictureBoxUserProfile);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(216, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(574, 151);
             this.panel4.TabIndex = 2;
+            // 
+            // PictureBoxUserProfile
+            // 
+            this.PictureBoxUserProfile.Location = new System.Drawing.Point(438, 0);
+            this.PictureBoxUserProfile.Name = "PictureBoxUserProfile";
+            this.PictureBoxUserProfile.Size = new System.Drawing.Size(136, 95);
+            this.PictureBoxUserProfile.TabIndex = 0;
+            this.PictureBoxUserProfile.TabStop = false;
+            // 
+            // LabelUserName
+            // 
+            this.LabelUserName.Location = new System.Drawing.Point(434, 98);
+            this.LabelUserName.Name = "LabelUserName";
+            this.LabelUserName.Size = new System.Drawing.Size(136, 21);
+            this.LabelUserName.TabIndex = 1;
             // 
             // FacebookView
             // 
@@ -172,6 +193,8 @@
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxUserProfile)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -181,12 +204,14 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button findDateButton;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LabelAppName;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button loginButton;
         private System.Windows.Forms.Button loadDetailsButton;
         private System.Windows.Forms.Button findJobButton;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label LabelUserName;
+        private System.Windows.Forms.PictureBox PictureBoxUserProfile;
     }
 }
 
