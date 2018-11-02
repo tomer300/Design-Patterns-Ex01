@@ -7,5 +7,6 @@ namespace MyFacebookApp.Model
 {
     public class Photos
     {
+		//blabla
     }
 }
