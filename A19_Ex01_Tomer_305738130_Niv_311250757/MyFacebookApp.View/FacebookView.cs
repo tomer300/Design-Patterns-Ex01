@@ -174,15 +174,23 @@ namespace MyFacebookApp.View
 			{
 				if (currPost.Message != null)
 				{
-					listBoxPosts.Items.Add(currPost.Message);
+					//listViewPosts.Items.Add(currPost.Message);
+					/*listViewPosts.Items.Add("--------");*/
 				}
-				else if (currPost.Caption != null)
+				/*else if (currPost.Caption != null)
 				{
 					listBoxPosts.Items.Add(currPost.Caption);
-				}
+				}*/
 				else
 				{
-					listBoxPosts.Items.Add(string.Format("[{0}]", currPost.Type));
+					/*if(currPost.Type==Post.eType.photo)
+					{ 
+						PictureBox postPic = new PictureBox();
+						postPic.Load(currPost.PictureURL);
+						ImageList newPic = new ImageList();
+						newPic.Images.Add(postPic.Image);
+						listViewPosts.SmallImageList = newPic;
+					}*/
 				}
 			}
 
@@ -194,7 +202,7 @@ namespace MyFacebookApp.View
 
 		private void postsButton_Click(object sender, EventArgs e)
 		{
-			listBoxPosts.Controls.Clear();
+			listViewPosts.Controls.Clear();
 			try
 			{
 				fetchPosts();

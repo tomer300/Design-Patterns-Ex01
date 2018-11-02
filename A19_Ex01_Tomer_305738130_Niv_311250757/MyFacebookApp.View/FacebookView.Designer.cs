@@ -43,7 +43,7 @@
 			this.eventsButton = new System.Windows.Forms.Button();
 			this.listBoxEvents = new System.Windows.Forms.ListBox();
 			this.postsButton = new System.Windows.Forms.Button();
-			this.listBoxPosts = new System.Windows.Forms.ListBox();
+			this.listViewPosts = new System.Windows.Forms.ListView();
 			this.panel1.SuspendLayout();
 			this.panel3.SuspendLayout();
 			this.panel4.SuspendLayout();
@@ -229,22 +229,21 @@
 			this.postsButton.UseVisualStyleBackColor = true;
 			this.postsButton.Click += new System.EventHandler(this.postsButton_Click);
 			// 
-			// listBoxPosts
+			// listViewPosts
 			// 
-			this.listBoxPosts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-			this.listBoxPosts.FormattingEnabled = true;
-			this.listBoxPosts.ItemHeight = 23;
-			this.listBoxPosts.Location = new System.Drawing.Point(216, 196);
-			this.listBoxPosts.Name = "listBoxPosts";
-			this.listBoxPosts.Size = new System.Drawing.Size(473, 142);
-			this.listBoxPosts.TabIndex = 8;
+			this.listViewPosts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+			this.listViewPosts.Location = new System.Drawing.Point(216, 196);
+			this.listViewPosts.Name = "listViewPosts";
+			this.listViewPosts.Size = new System.Drawing.Size(473, 132);
+			this.listViewPosts.TabIndex = 8;
+			this.listViewPosts.UseCompatibleStateImageBehavior = false;
 			// 
 			// FacebookView
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
 			this.ClientSize = new System.Drawing.Size(1158, 536);
-			this.Controls.Add(this.listBoxPosts);
+			this.Controls.Add(this.listViewPosts);
 			this.Controls.Add(this.postsButton);
 			this.Controls.Add(this.listBoxEvents);
 			this.Controls.Add(this.eventsButton);
@@ -285,7 +284,7 @@
 		private System.Windows.Forms.Button eventsButton;
 		private System.Windows.Forms.ListBox listBoxEvents;
 		private System.Windows.Forms.Button postsButton;
-		private System.Windows.Forms.ListBox listBoxPosts;
+		private System.Windows.Forms.ListView listViewPosts;
 	}
 }
 
