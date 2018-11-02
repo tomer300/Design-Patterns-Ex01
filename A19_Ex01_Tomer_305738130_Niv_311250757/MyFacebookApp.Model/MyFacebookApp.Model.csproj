@@ -40,14 +40,8 @@
     <Compile Include="AppEngine.cs" />
     <Compile Include="AppSettings.cs" />
     <Compile Include="AppUser.cs" />
-    <Compile Include="CheckIn.cs" />
-    <Compile Include="Events.cs" />
-    <Compile Include="Friends.cs" />
     <Compile Include="Job.cs" />
     <Compile Include="Match.cs" />
-    <Compile Include="Pages.cs" />
-    <Compile Include="Photos.cs" />
-    <Compile Include="Posts.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
@@ -59,6 +53,8 @@
       <HintPath>..\Resources\DLL\FbGraphApiWrapper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

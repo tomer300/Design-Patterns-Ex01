@@ -23,5 +23,17 @@ namespace MyFacebookApp.Model
         {
             return m_LoggedInUser.FirstName;
         }
-    }
+		public FacebookObjectCollection<Album> GetAllAlbums()
+		{
+			return m_LoggedInUser.Albums;
+		}
+		public FacebookObjectCollection<Event> GetAllEvents()
+		{
+			return m_LoggedInUser.Events;
+		}
+		public FacebookObjectCollection<Post> GetAllPosts()
+		{
+			return m_LoggedInUser.Posts;
+		}
+	}
 }
