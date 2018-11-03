@@ -33,9 +33,9 @@
 			this.loginButton = new System.Windows.Forms.Button();
 			this.findDateButton = new System.Windows.Forms.Button();
 			this.findJobButton = new System.Windows.Forms.Button();
-			this.panel3 = new System.Windows.Forms.Panel();
-			this.LabelAppName = new System.Windows.Forms.Label();
+			this.panelFaceBookTitle = new System.Windows.Forms.Panel();
 			this.panelHomePage = new System.Windows.Forms.Panel();
+			this.LabelAppName = new System.Windows.Forms.Label();
 			this.LabelUserName = new System.Windows.Forms.Label();
 			this.PictureBoxUserProfile = new System.Windows.Forms.PictureBox();
 			this.listViewPosts = new System.Windows.Forms.ListView();
@@ -44,11 +44,11 @@
 			this.eventsButton = new System.Windows.Forms.Button();
 			this.albumsButton = new System.Windows.Forms.Button();
 			this.flowLayoutPanelAlbums = new System.Windows.Forms.FlowLayoutPanel();
-			this.panel4 = new System.Windows.Forms.Panel();
+			this.panelHomePAgeTop = new System.Windows.Forms.Panel();
 			this.panelMainButtons.SuspendLayout();
-			this.panel3.SuspendLayout();
+			this.panelFaceBookTitle.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PictureBoxUserProfile)).BeginInit();
-			this.panel4.SuspendLayout();
+			this.panelHomePAgeTop.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panelMainButtons
@@ -57,7 +57,7 @@
 			this.panelMainButtons.Controls.Add(this.loginButton);
 			this.panelMainButtons.Controls.Add(this.findDateButton);
 			this.panelMainButtons.Controls.Add(this.findJobButton);
-			this.panelMainButtons.Controls.Add(this.panel3);
+			this.panelMainButtons.Controls.Add(this.panelFaceBookTitle);
 			this.panelMainButtons.Dock = System.Windows.Forms.DockStyle.Left;
 			this.panelMainButtons.Location = new System.Drawing.Point(0, 0);
 			this.panelMainButtons.Name = "panelMainButtons";
@@ -127,15 +127,22 @@
 			this.findJobButton.UseVisualStyleBackColor = true;
 			this.findJobButton.Click += new System.EventHandler(this.findJobButton_Click);
 			// 
-			// panel3
+			// panelFaceBookTitle
 			// 
-			this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(158)))), ((int)(((byte)(166)))));
-			this.panel3.Controls.Add(this.panelHomePage);
-			this.panel3.Controls.Add(this.LabelAppName);
-			this.panel3.Location = new System.Drawing.Point(0, 0);
-			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(216, 95);
-			this.panel3.TabIndex = 0;
+			this.panelFaceBookTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(158)))), ((int)(((byte)(166)))));
+			this.panelFaceBookTitle.Controls.Add(this.panelHomePage);
+			this.panelFaceBookTitle.Controls.Add(this.LabelAppName);
+			this.panelFaceBookTitle.Location = new System.Drawing.Point(0, 0);
+			this.panelFaceBookTitle.Name = "panelFaceBookTitle";
+			this.panelFaceBookTitle.Size = new System.Drawing.Size(216, 95);
+			this.panelFaceBookTitle.TabIndex = 0;
+			// 
+			// panelHomePage
+			// 
+			this.panelHomePage.Location = new System.Drawing.Point(215, 0);
+			this.panelHomePage.Name = "panelHomePage";
+			this.panelHomePage.Size = new System.Drawing.Size(942, 536);
+			this.panelHomePage.TabIndex = 1;
 			// 
 			// LabelAppName
 			// 
@@ -148,13 +155,6 @@
 			this.LabelAppName.TabIndex = 0;
 			this.LabelAppName.Text = "Facebook App";
 			this.LabelAppName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// panelHomePage
-			// 
-			this.panelHomePage.Location = new System.Drawing.Point(215, 0);
-			this.panelHomePage.Name = "panelHomePage";
-			this.panelHomePage.Size = new System.Drawing.Size(942, 536);
-			this.panelHomePage.TabIndex = 1;
 			// 
 			// LabelUserName
 			// 
@@ -233,15 +233,15 @@
 			this.flowLayoutPanelAlbums.Size = new System.Drawing.Size(467, 142);
 			this.flowLayoutPanelAlbums.TabIndex = 10;
 			// 
-			// panel4
+			// panelHomePAgeTop
 			// 
-			this.panel4.Controls.Add(this.LabelUserName);
-			this.panel4.Controls.Add(this.PictureBoxUserProfile);
-			this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel4.Location = new System.Drawing.Point(216, 0);
-			this.panel4.Name = "panel4";
-			this.panel4.Size = new System.Drawing.Size(942, 151);
-			this.panel4.TabIndex = 9;
+			this.panelHomePAgeTop.Controls.Add(this.LabelUserName);
+			this.panelHomePAgeTop.Controls.Add(this.PictureBoxUserProfile);
+			this.panelHomePAgeTop.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panelHomePAgeTop.Location = new System.Drawing.Point(216, 0);
+			this.panelHomePAgeTop.Name = "panelHomePAgeTop";
+			this.panelHomePAgeTop.Size = new System.Drawing.Size(942, 151);
+			this.panelHomePAgeTop.TabIndex = 9;
 			// 
 			// FacebookView
 			// 
@@ -254,7 +254,7 @@
 			this.Controls.Add(this.eventsButton);
 			this.Controls.Add(this.albumsButton);
 			this.Controls.Add(this.flowLayoutPanelAlbums);
-			this.Controls.Add(this.panel4);
+			this.Controls.Add(this.panelHomePAgeTop);
 			this.Controls.Add(this.panelMainButtons);
 			this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
@@ -263,10 +263,10 @@
 			this.Name = "FacebookView";
 			this.Text = "Facebook App";
 			this.panelMainButtons.ResumeLayout(false);
-			this.panel3.ResumeLayout(false);
-			this.panel3.PerformLayout();
+			this.panelFaceBookTitle.ResumeLayout(false);
+			this.panelFaceBookTitle.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.PictureBoxUserProfile)).EndInit();
-			this.panel4.ResumeLayout(false);
+			this.panelHomePAgeTop.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -276,7 +276,7 @@
 
         private System.Windows.Forms.Panel panelMainButtons;
         private System.Windows.Forms.Button findDateButton;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panelFaceBookTitle;
         private System.Windows.Forms.Label LabelAppName;
         private System.Windows.Forms.Button loginButton;
         private System.Windows.Forms.Button loadDetailsButton;
@@ -290,7 +290,7 @@
 		private System.Windows.Forms.Button eventsButton;
 		private System.Windows.Forms.Button albumsButton;
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelAlbums;
-		private System.Windows.Forms.Panel panel4;
+		private System.Windows.Forms.Panel panelHomePAgeTop;
 	}
 }
 
