@@ -223,29 +223,41 @@ namespace MyFacebookApp.View
 		private void fetchPosts()
 		{
 			FacebookObjectCollection<Post> allPosts = r_AppEngine.GetAllPosts();
-
+			tableLayoutPanelPosts.Controls.Clear();
+			
 			foreach (Post currPost in allPosts)
 			{
+				Label postDetails = new Label();
+				/*postDetails.Text = string.Format("Posted at: {0}{1}Post Type: {2}{3}" 
+					,currPost.CreatedTime.ToString(), Environment.NewLine, currPost.Type, Environment.NewLine);*/
+				postDetails.Text = "niv";
+				postDetails.AutoSize = true;
+
+				
+				tableLayoutPanelPosts.Controls.Add(postDetails);
+				
 				if (currPost.Message != null)
 				{
-					//listViewPosts.Items.Add(currPost.Message);
-					/*listViewPosts.Items.Add("--------");*/
+					Label postMessage = new Label();
+					postMessage.Text = currPost.Message;
+					postMessage.AutoSize = true;
+					tableLayoutPanelPosts.Controls.Add(postMessage);
+					postMessage.TextAlign = ContentAlignment.MiddleCenter;					
 				}
-				/*else if (currPost.Caption != null)
+
+				if (currPost.Type == Post.eType.photo)
 				{
-					listBoxPosts.Items.Add(currPost.Caption);
-				}*/
-				else
-				{
-					/*if(currPost.Type==Post.eType.photo)
-					{ 
-						PictureBox postPic = new PictureBox();
-						postPic.Load(currPost.PictureURL);
-						ImageList newPic = new ImageList();
-						newPic.Images.Add(postPic.Image);
-						listViewPosts.SmallImageList = newPic;
-					}*/
+					PictureBox postPicture = new PictureBox();
+					postPicture.LoadAsync(currPost.PictureURL);
+					tableLayoutPanelPosts.Controls.Add(postPicture);
 				}
+				
+
+				Label seperator = new Label();
+				//seperator.Text = Environment.NewLine + Environment.NewLine + Environment.NewLine;
+				seperator.Text = "\n\n\n";
+				seperator.AutoSize = true;
+				tableLayoutPanelPosts.Controls.Add(seperator);
 			}
 
 			if (allPosts.Count == 0)
@@ -254,9 +266,10 @@ namespace MyFacebookApp.View
 			}
 		}
 
+
 		private void postsButton_Click(object sender, EventArgs e)
 		{
-			listViewPosts.Controls.Clear();
+			tableLayoutPanelPosts.Controls.Clear();
 			try
 			{
 				fetchPosts();
@@ -375,6 +388,11 @@ namespace MyFacebookApp.View
 			this.checkBoxGirls.TabIndex = 0;
 			this.checkBoxGirls.Text = "Girls";
 			this.checkBoxGirls.UseVisualStyleBackColor = true;
+		}
+
+		private void tableLayoutPanelPosts_Paint(object sender, PaintEventArgs e)
+		{
+
 		}
 		/*	private enum ePanelTypes
 {

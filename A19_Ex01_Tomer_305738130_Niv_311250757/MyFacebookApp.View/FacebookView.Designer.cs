@@ -37,7 +37,6 @@
 			this.LabelAppName = new System.Windows.Forms.Label();
 			this.panelMain = new System.Windows.Forms.Panel();
 			this.panelHomePage = new System.Windows.Forms.Panel();
-			this.listViewPosts = new System.Windows.Forms.ListView();
 			this.postsButton = new System.Windows.Forms.Button();
 			this.listBoxEvents = new System.Windows.Forms.ListBox();
 			this.eventsButton = new System.Windows.Forms.Button();
@@ -46,6 +45,8 @@
 			this.panelHomePAgeTop = new System.Windows.Forms.Panel();
 			this.LabelUserName = new System.Windows.Forms.Label();
 			this.PictureBoxUserProfile = new System.Windows.Forms.PictureBox();
+			this.backToHomePageFromJobPanelButton = new System.Windows.Forms.Button();
+			this.tableLayoutPanelPosts = new System.Windows.Forms.TableLayoutPanel();
 			this.panelMainButtons.SuspendLayout();
 			this.panelFaceBookTitle.SuspendLayout();
 			this.panelMain.SuspendLayout();
@@ -165,7 +166,7 @@
 			// 
 			// panelHomePage
 			// 
-			this.panelHomePage.Controls.Add(this.listViewPosts);
+			this.panelHomePage.Controls.Add(this.tableLayoutPanelPosts);
 			this.panelHomePage.Controls.Add(this.postsButton);
 			this.panelHomePage.Controls.Add(this.listBoxEvents);
 			this.panelHomePage.Controls.Add(this.eventsButton);
@@ -177,20 +178,11 @@
 			this.panelHomePage.Size = new System.Drawing.Size(935, 536);
 			this.panelHomePage.TabIndex = 2;
 			// 
-			// listViewPosts
-			// 
-			this.listViewPosts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-			this.listViewPosts.Location = new System.Drawing.Point(0, 204);
-			this.listViewPosts.Name = "listViewPosts";
-			this.listViewPosts.Size = new System.Drawing.Size(473, 132);
-			this.listViewPosts.TabIndex = 22;
-			this.listViewPosts.UseCompatibleStateImageBehavior = false;
-			// 
 			// postsButton
 			// 
 			this.postsButton.AutoSize = true;
 			this.postsButton.Enabled = false;
-			this.postsButton.Location = new System.Drawing.Point(0, 165);
+			this.postsButton.Location = new System.Drawing.Point(6, 157);
 			this.postsButton.Name = "postsButton";
 			this.postsButton.Size = new System.Drawing.Size(122, 33);
 			this.postsButton.TabIndex = 21;
@@ -205,7 +197,7 @@
 			this.listBoxEvents.ItemHeight = 23;
 			this.listBoxEvents.Location = new System.Drawing.Point(475, 380);
 			this.listBoxEvents.Name = "listBoxEvents";
-			this.listBoxEvents.Size = new System.Drawing.Size(463, 142);
+			this.listBoxEvents.Size = new System.Drawing.Size(448, 142);
 			this.listBoxEvents.TabIndex = 20;
 			// 
 			// eventsButton
@@ -237,7 +229,7 @@
 			this.flowLayoutPanelAlbums.AutoScroll = true;
 			this.flowLayoutPanelAlbums.Location = new System.Drawing.Point(6, 380);
 			this.flowLayoutPanelAlbums.Name = "flowLayoutPanelAlbums";
-			this.flowLayoutPanelAlbums.Size = new System.Drawing.Size(467, 142);
+			this.flowLayoutPanelAlbums.Size = new System.Drawing.Size(463, 142);
 			this.flowLayoutPanelAlbums.TabIndex = 17;
 			// 
 			// panelHomePAgeTop
@@ -268,15 +260,26 @@
 			this.PictureBoxUserProfile.TabStop = false;
 			// 
 			// backToHomePageFromJobPanelButton
-			//
-			this.backToHomePageFromJobPanelButton = new System.Windows.Forms.Button();
+			// 
 			this.backToHomePageFromJobPanelButton.Location = new System.Drawing.Point(-1, 0);
 			this.backToHomePageFromJobPanelButton.Name = "backToHomePageFromJobPanelButton";
 			this.backToHomePageFromJobPanelButton.Size = new System.Drawing.Size(160, 55);
 			this.backToHomePageFromJobPanelButton.TabIndex = 2;
 			this.backToHomePageFromJobPanelButton.Text = "Back To Home";
 			this.backToHomePageFromJobPanelButton.UseVisualStyleBackColor = true;
-			this.backToHomePageFromJobPanelButton.Click += new System.EventHandler(backToHomePAge);
+			this.backToHomePageFromJobPanelButton.Click += new System.EventHandler(this.backToHomePAge);
+			// 
+			// tableLayoutPanelPosts
+			// 
+			this.tableLayoutPanelPosts.AutoScroll = true;
+			this.tableLayoutPanelPosts.ColumnCount = 1;
+			this.tableLayoutPanelPosts.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanelPosts.Location = new System.Drawing.Point(6, 196);
+			this.tableLayoutPanelPosts.Name = "tableLayoutPanelPosts";
+			this.tableLayoutPanelPosts.RowCount = 1;
+			this.tableLayoutPanelPosts.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanelPosts.Size = new System.Drawing.Size(463, 140);
+			this.tableLayoutPanelPosts.TabIndex = 22;
 			// 
 			// FacebookView
 			// 
@@ -314,7 +317,6 @@
         private System.Windows.Forms.Button findJobAppButton;
 		private System.Windows.Forms.Panel panelMain;
 		private System.Windows.Forms.Panel panelHomePage;
-		private System.Windows.Forms.ListView listViewPosts;
 		private System.Windows.Forms.Button postsButton;
 		private System.Windows.Forms.ListBox listBoxEvents;
 		private System.Windows.Forms.Button eventsButton;
@@ -335,7 +337,7 @@
 		private System.Windows.Forms.Label labelInterestedIn;
 		private System.Windows.Forms.CheckBox checkBoxBoys;
 		private System.Windows.Forms.CheckBox checkBoxGirls;
-
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanelPosts;
 	}
 }
 
