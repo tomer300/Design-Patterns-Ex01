@@ -34,10 +34,9 @@
 			this.findDateButton = new System.Windows.Forms.Button();
 			this.findJobButton = new System.Windows.Forms.Button();
 			this.panelFaceBookTitle = new System.Windows.Forms.Panel();
-			this.panelHomePage = new System.Windows.Forms.Panel();
 			this.LabelAppName = new System.Windows.Forms.Label();
-			this.LabelUserName = new System.Windows.Forms.Label();
-			this.PictureBoxUserProfile = new System.Windows.Forms.PictureBox();
+			this.panelMain = new System.Windows.Forms.Panel();
+			this.panelHomePage = new System.Windows.Forms.Panel();
 			this.listViewPosts = new System.Windows.Forms.ListView();
 			this.postsButton = new System.Windows.Forms.Button();
 			this.listBoxEvents = new System.Windows.Forms.ListBox();
@@ -45,10 +44,14 @@
 			this.albumsButton = new System.Windows.Forms.Button();
 			this.flowLayoutPanelAlbums = new System.Windows.Forms.FlowLayoutPanel();
 			this.panelHomePAgeTop = new System.Windows.Forms.Panel();
+			this.LabelUserName = new System.Windows.Forms.Label();
+			this.PictureBoxUserProfile = new System.Windows.Forms.PictureBox();
 			this.panelMainButtons.SuspendLayout();
 			this.panelFaceBookTitle.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.PictureBoxUserProfile)).BeginInit();
+			this.panelMain.SuspendLayout();
+			this.panelHomePage.SuspendLayout();
 			this.panelHomePAgeTop.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.PictureBoxUserProfile)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panelMainButtons
@@ -130,19 +133,11 @@
 			// panelFaceBookTitle
 			// 
 			this.panelFaceBookTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(158)))), ((int)(((byte)(166)))));
-			this.panelFaceBookTitle.Controls.Add(this.panelHomePage);
 			this.panelFaceBookTitle.Controls.Add(this.LabelAppName);
 			this.panelFaceBookTitle.Location = new System.Drawing.Point(0, 0);
 			this.panelFaceBookTitle.Name = "panelFaceBookTitle";
 			this.panelFaceBookTitle.Size = new System.Drawing.Size(216, 95);
 			this.panelFaceBookTitle.TabIndex = 0;
-			// 
-			// panelHomePage
-			// 
-			this.panelHomePage.Location = new System.Drawing.Point(215, 0);
-			this.panelHomePage.Name = "panelHomePage";
-			this.panelHomePage.Size = new System.Drawing.Size(942, 536);
-			this.panelHomePage.TabIndex = 1;
 			// 
 			// LabelAppName
 			// 
@@ -156,40 +151,45 @@
 			this.LabelAppName.Text = "Facebook App";
 			this.LabelAppName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
-			// LabelUserName
+			// panelMain
 			// 
-			this.LabelUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.LabelUserName.Location = new System.Drawing.Point(806, 95);
-			this.LabelUserName.Name = "LabelUserName";
-			this.LabelUserName.Size = new System.Drawing.Size(136, 21);
-			this.LabelUserName.TabIndex = 1;
+			this.panelMain.Controls.Add(this.panelHomePage);
+			this.panelMain.Location = new System.Drawing.Point(222, 3);
+			this.panelMain.Name = "panelMain";
+			this.panelMain.Size = new System.Drawing.Size(936, 533);
+			this.panelMain.TabIndex = 1;
 			// 
-			// PictureBoxUserProfile
+			// panelHomePage
 			// 
-			this.PictureBoxUserProfile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.PictureBoxUserProfile.Location = new System.Drawing.Point(806, 3);
-			this.PictureBoxUserProfile.Name = "PictureBoxUserProfile";
-			this.PictureBoxUserProfile.Size = new System.Drawing.Size(136, 95);
-			this.PictureBoxUserProfile.TabIndex = 0;
-			this.PictureBoxUserProfile.TabStop = false;
+			this.panelHomePage.Controls.Add(this.listViewPosts);
+			this.panelHomePage.Controls.Add(this.postsButton);
+			this.panelHomePage.Controls.Add(this.listBoxEvents);
+			this.panelHomePage.Controls.Add(this.eventsButton);
+			this.panelHomePage.Controls.Add(this.albumsButton);
+			this.panelHomePage.Controls.Add(this.flowLayoutPanelAlbums);
+			this.panelHomePage.Controls.Add(this.panelHomePAgeTop);
+			this.panelHomePage.Location = new System.Drawing.Point(1, -2);
+			this.panelHomePage.Name = "panelHomePage";
+			this.panelHomePage.Size = new System.Drawing.Size(935, 536);
+			this.panelHomePage.TabIndex = 2;
 			// 
 			// listViewPosts
 			// 
 			this.listViewPosts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-			this.listViewPosts.Location = new System.Drawing.Point(216, 207);
+			this.listViewPosts.Location = new System.Drawing.Point(0, 204);
 			this.listViewPosts.Name = "listViewPosts";
 			this.listViewPosts.Size = new System.Drawing.Size(473, 132);
-			this.listViewPosts.TabIndex = 15;
+			this.listViewPosts.TabIndex = 22;
 			this.listViewPosts.UseCompatibleStateImageBehavior = false;
 			// 
 			// postsButton
 			// 
 			this.postsButton.AutoSize = true;
 			this.postsButton.Enabled = false;
-			this.postsButton.Location = new System.Drawing.Point(216, 168);
+			this.postsButton.Location = new System.Drawing.Point(0, 165);
 			this.postsButton.Name = "postsButton";
 			this.postsButton.Size = new System.Drawing.Size(122, 33);
-			this.postsButton.TabIndex = 14;
+			this.postsButton.TabIndex = 21;
 			this.postsButton.Text = "Posts";
 			this.postsButton.UseVisualStyleBackColor = true;
 			// 
@@ -198,19 +198,19 @@
 			this.listBoxEvents.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
 			this.listBoxEvents.FormattingEnabled = true;
 			this.listBoxEvents.ItemHeight = 23;
-			this.listBoxEvents.Location = new System.Drawing.Point(691, 383);
+			this.listBoxEvents.Location = new System.Drawing.Point(475, 380);
 			this.listBoxEvents.Name = "listBoxEvents";
 			this.listBoxEvents.Size = new System.Drawing.Size(463, 142);
-			this.listBoxEvents.TabIndex = 13;
+			this.listBoxEvents.TabIndex = 20;
 			// 
 			// eventsButton
 			// 
 			this.eventsButton.AutoSize = true;
 			this.eventsButton.Enabled = false;
-			this.eventsButton.Location = new System.Drawing.Point(695, 344);
+			this.eventsButton.Location = new System.Drawing.Point(479, 341);
 			this.eventsButton.Name = "eventsButton";
 			this.eventsButton.Size = new System.Drawing.Size(122, 33);
-			this.eventsButton.TabIndex = 12;
+			this.eventsButton.TabIndex = 19;
 			this.eventsButton.Text = "Events";
 			this.eventsButton.UseVisualStyleBackColor = true;
 			// 
@@ -218,43 +218,54 @@
 			// 
 			this.albumsButton.AutoSize = true;
 			this.albumsButton.Enabled = false;
-			this.albumsButton.Location = new System.Drawing.Point(222, 345);
+			this.albumsButton.Location = new System.Drawing.Point(6, 342);
 			this.albumsButton.Name = "albumsButton";
 			this.albumsButton.Size = new System.Drawing.Size(122, 33);
-			this.albumsButton.TabIndex = 11;
+			this.albumsButton.TabIndex = 18;
 			this.albumsButton.Text = "Albums";
 			this.albumsButton.UseVisualStyleBackColor = true;
 			// 
 			// flowLayoutPanelAlbums
 			// 
 			this.flowLayoutPanelAlbums.AutoScroll = true;
-			this.flowLayoutPanelAlbums.Location = new System.Drawing.Point(222, 383);
+			this.flowLayoutPanelAlbums.Location = new System.Drawing.Point(6, 380);
 			this.flowLayoutPanelAlbums.Name = "flowLayoutPanelAlbums";
 			this.flowLayoutPanelAlbums.Size = new System.Drawing.Size(467, 142);
-			this.flowLayoutPanelAlbums.TabIndex = 10;
+			this.flowLayoutPanelAlbums.TabIndex = 17;
 			// 
 			// panelHomePAgeTop
 			// 
 			this.panelHomePAgeTop.Controls.Add(this.LabelUserName);
 			this.panelHomePAgeTop.Controls.Add(this.PictureBoxUserProfile);
 			this.panelHomePAgeTop.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panelHomePAgeTop.Location = new System.Drawing.Point(216, 0);
+			this.panelHomePAgeTop.Location = new System.Drawing.Point(0, 0);
 			this.panelHomePAgeTop.Name = "panelHomePAgeTop";
-			this.panelHomePAgeTop.Size = new System.Drawing.Size(942, 151);
-			this.panelHomePAgeTop.TabIndex = 9;
+			this.panelHomePAgeTop.Size = new System.Drawing.Size(935, 151);
+			this.panelHomePAgeTop.TabIndex = 16;
+			// 
+			// LabelUserName
+			// 
+			this.LabelUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.LabelUserName.Location = new System.Drawing.Point(796, 95);
+			this.LabelUserName.Name = "LabelUserName";
+			this.LabelUserName.Size = new System.Drawing.Size(136, 21);
+			this.LabelUserName.TabIndex = 1;
+			// 
+			// PictureBoxUserProfile
+			// 
+			this.PictureBoxUserProfile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.PictureBoxUserProfile.Location = new System.Drawing.Point(796, 3);
+			this.PictureBoxUserProfile.Name = "PictureBoxUserProfile";
+			this.PictureBoxUserProfile.Size = new System.Drawing.Size(136, 95);
+			this.PictureBoxUserProfile.TabIndex = 0;
+			this.PictureBoxUserProfile.TabStop = false;
 			// 
 			// FacebookView
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
 			this.ClientSize = new System.Drawing.Size(1158, 536);
-			this.Controls.Add(this.listViewPosts);
-			this.Controls.Add(this.postsButton);
-			this.Controls.Add(this.listBoxEvents);
-			this.Controls.Add(this.eventsButton);
-			this.Controls.Add(this.albumsButton);
-			this.Controls.Add(this.flowLayoutPanelAlbums);
-			this.Controls.Add(this.panelHomePAgeTop);
+			this.Controls.Add(this.panelMain);
 			this.Controls.Add(this.panelMainButtons);
 			this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
@@ -265,10 +276,12 @@
 			this.panelMainButtons.ResumeLayout(false);
 			this.panelFaceBookTitle.ResumeLayout(false);
 			this.panelFaceBookTitle.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.PictureBoxUserProfile)).EndInit();
+			this.panelMain.ResumeLayout(false);
+			this.panelHomePage.ResumeLayout(false);
+			this.panelHomePage.PerformLayout();
 			this.panelHomePAgeTop.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.PictureBoxUserProfile)).EndInit();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
@@ -281,9 +294,8 @@
         private System.Windows.Forms.Button loginButton;
         private System.Windows.Forms.Button loadDetailsButton;
         private System.Windows.Forms.Button findJobButton;
+		private System.Windows.Forms.Panel panelMain;
 		private System.Windows.Forms.Panel panelHomePage;
-		private System.Windows.Forms.Label LabelUserName;
-		private System.Windows.Forms.PictureBox PictureBoxUserProfile;
 		private System.Windows.Forms.ListView listViewPosts;
 		private System.Windows.Forms.Button postsButton;
 		private System.Windows.Forms.ListBox listBoxEvents;
@@ -291,6 +303,8 @@
 		private System.Windows.Forms.Button albumsButton;
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelAlbums;
 		private System.Windows.Forms.Panel panelHomePAgeTop;
+		private System.Windows.Forms.Label LabelUserName;
+		private System.Windows.Forms.PictureBox PictureBoxUserProfile;
 	}
 }
 
