@@ -21,8 +21,67 @@ namespace MyFacebookApp.View
 		private void findJobButton_Click(object sender, EventArgs e)
 		{
 
+			if(panelFindJob == null)
+			{
+				createJobPanel();
+			}
+			panelMain.Controls.Clear();
+			panelMain.Controls.Add(panelFindJob);
+
 		}
 
+		private void createJobPanel()
+		{
+			this.panelFindJob = new Panel();
+			this.backToHomePageFromJobPanelButton = new Button();
+			this.findAJobButton = new Button();
+			this.listBoxJobs = new ListBox();
+			// 
+			// panelFindJob
+			//
+			this.panelFindJob.Controls.Add(this.backToHomePageFromJobPanelButton);
+			this.panelFindJob.Controls.Add(this.listBoxJobs);
+			this.panelFindJob.Controls.Add(this.findAJobButton);
+			this.panelFindJob.Location = new System.Drawing.Point(1, -2);
+			this.panelFindJob.Name = "panelFindJob";
+			this.panelFindJob.Size = new System.Drawing.Size(935, 536);
+			this.panelFindJob.TabIndex = 2;
+			// 
+			// findAJobButton
+			//
+			this.findAJobButton.Location = new System.Drawing.Point(376, 66);
+			this.findAJobButton.Name = "findAJobButton";
+			this.findAJobButton.Size = new System.Drawing.Size(163, 55);
+			this.findAJobButton.TabIndex = 0;
+			this.findAJobButton.Text = "Find me a job!";
+			this.findAJobButton.UseVisualStyleBackColor = true;
+			// 
+			// listBoxJobs
+			// 
+			this.listBoxJobs.FormattingEnabled = true;
+			this.listBoxJobs.ItemHeight = 23;
+			this.listBoxJobs.Location = new System.Drawing.Point(206, 162);
+			this.listBoxJobs.Name = "listBoxJobs";
+			this.listBoxJobs.Size = new System.Drawing.Size(529, 211);
+			this.listBoxJobs.TabIndex = 1;
+			// 
+			// backToHomePageFromJobPanelButton
+			// 
+			this.backToHomePageFromJobPanelButton.Location = new System.Drawing.Point(-1, 0);
+			this.backToHomePageFromJobPanelButton.Name = "backToHomePageFromJobPanelButton";
+			this.backToHomePageFromJobPanelButton.Size = new System.Drawing.Size(160, 55);
+			this.backToHomePageFromJobPanelButton.TabIndex = 2;
+			this.backToHomePageFromJobPanelButton.Text = "Back To Home";
+			this.backToHomePageFromJobPanelButton.UseVisualStyleBackColor = true;
+			this.backToHomePageFromJobPanelButton.Click += new EventHandler(backToHomePAge);
+
+		}
+
+		private void backToHomePAge(object sender, EventArgs e)
+		{
+			panelMain.Controls.Clear();
+			panelMain.Controls.Add(panelHomePage);
+		}
 
 		private void loginButton_Click(object sender, EventArgs e)
 		{
@@ -42,9 +101,13 @@ namespace MyFacebookApp.View
 
 		private void setAppButtonsStatus(bool i_Status)
 		{
+			loadDetailsAppButton.Enabled = i_Status;
+			findJobAppButton.Enabled = i_Status;
+			findDateAppButton.Enabled = i_Status;
 			albumsButton.Enabled = i_Status;
 			eventsButton.Enabled = i_Status;
 			postsButton.Enabled = i_Status;
+
 		}
 
 		private void fetchAlbums()
@@ -78,8 +141,8 @@ namespace MyFacebookApp.View
 						pic.SetPixel(w, h, newC);
 					}
 				}*/
-			}
 		}
+	}
 
 		private void album_Clicked(Album i_ClickedAlbum)
 		{
@@ -212,5 +275,11 @@ namespace MyFacebookApp.View
 				MessageBox.Show(string.Format("Error! could'nt fetch posts - {0}.", exPosts.Message));
 			}
 		}
+		/*	private enum ePanelTypes
+	{
+		HomePage,
+		FindAJobPage,
+		FindADatePage,
+	}*/
 	}
 }

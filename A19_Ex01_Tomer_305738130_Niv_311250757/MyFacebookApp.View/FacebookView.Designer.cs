@@ -29,10 +29,10 @@
 		private void InitializeComponent()
 		{
 			this.panelMainButtons = new System.Windows.Forms.Panel();
-			this.loadDetailsButton = new System.Windows.Forms.Button();
-			this.loginButton = new System.Windows.Forms.Button();
-			this.findDateButton = new System.Windows.Forms.Button();
-			this.findJobButton = new System.Windows.Forms.Button();
+			this.loadDetailsAppButton = new System.Windows.Forms.Button();
+			this.loginAppButton = new System.Windows.Forms.Button();
+			this.findDateAppButton = new System.Windows.Forms.Button();
+			this.findJobAppButton = new System.Windows.Forms.Button();
 			this.panelFaceBookTitle = new System.Windows.Forms.Panel();
 			this.LabelAppName = new System.Windows.Forms.Label();
 			this.panelMain = new System.Windows.Forms.Panel();
@@ -56,10 +56,10 @@
 			// 
 			// panelMainButtons
 			// 
-			this.panelMainButtons.Controls.Add(this.loadDetailsButton);
-			this.panelMainButtons.Controls.Add(this.loginButton);
-			this.panelMainButtons.Controls.Add(this.findDateButton);
-			this.panelMainButtons.Controls.Add(this.findJobButton);
+			this.panelMainButtons.Controls.Add(this.loadDetailsAppButton);
+			this.panelMainButtons.Controls.Add(this.loginAppButton);
+			this.panelMainButtons.Controls.Add(this.findDateAppButton);
+			this.panelMainButtons.Controls.Add(this.findJobAppButton);
 			this.panelMainButtons.Controls.Add(this.panelFaceBookTitle);
 			this.panelMainButtons.Dock = System.Windows.Forms.DockStyle.Left;
 			this.panelMainButtons.Location = new System.Drawing.Point(0, 0);
@@ -67,68 +67,71 @@
 			this.panelMainButtons.Size = new System.Drawing.Size(216, 536);
 			this.panelMainButtons.TabIndex = 0;
 			// 
-			// loadDetailsButton
+			// loadDetailsAppButton
 			// 
-			this.loadDetailsButton.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.loadDetailsButton.FlatAppearance.BorderSize = 0;
-			this.loadDetailsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.loadDetailsButton.Image = global::MyFacebookApp.View.Properties.Resources.loadButtonIcon;
-			this.loadDetailsButton.Location = new System.Drawing.Point(0, 204);
-			this.loadDetailsButton.Name = "loadDetailsButton";
-			this.loadDetailsButton.Size = new System.Drawing.Size(216, 103);
-			this.loadDetailsButton.TabIndex = 6;
-			this.loadDetailsButton.Text = "Load Details";
-			this.loadDetailsButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-			this.loadDetailsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-			this.loadDetailsButton.UseVisualStyleBackColor = true;
-			this.loadDetailsButton.Click += new System.EventHandler(this.loadDetailsButton_Click);
+			this.loadDetailsAppButton.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.loadDetailsAppButton.Enabled = false;
+			this.loadDetailsAppButton.FlatAppearance.BorderSize = 0;
+			this.loadDetailsAppButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.loadDetailsAppButton.Image = global::MyFacebookApp.View.Properties.Resources.loadButtonIcon;
+			this.loadDetailsAppButton.Location = new System.Drawing.Point(0, 204);
+			this.loadDetailsAppButton.Name = "loadDetailsAppButton";
+			this.loadDetailsAppButton.Size = new System.Drawing.Size(216, 103);
+			this.loadDetailsAppButton.TabIndex = 6;
+			this.loadDetailsAppButton.Text = "Load Details";
+			this.loadDetailsAppButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+			this.loadDetailsAppButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+			this.loadDetailsAppButton.UseVisualStyleBackColor = true;
+			this.loadDetailsAppButton.Click += new System.EventHandler(this.loadDetailsButton_Click);
 			// 
-			// loginButton
+			// loginAppButton
 			// 
-			this.loginButton.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.loginButton.FlatAppearance.BorderSize = 0;
-			this.loginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.loginButton.Image = global::MyFacebookApp.View.Properties.Resources.loginButtonIcon;
-			this.loginButton.Location = new System.Drawing.Point(0, 95);
-			this.loginButton.Name = "loginButton";
-			this.loginButton.Size = new System.Drawing.Size(216, 103);
-			this.loginButton.TabIndex = 5;
-			this.loginButton.Text = "Login With Facebook";
-			this.loginButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-			this.loginButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-			this.loginButton.UseVisualStyleBackColor = true;
-			this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
+			this.loginAppButton.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.loginAppButton.FlatAppearance.BorderSize = 0;
+			this.loginAppButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.loginAppButton.Image = global::MyFacebookApp.View.Properties.Resources.loginButtonIcon;
+			this.loginAppButton.Location = new System.Drawing.Point(0, 95);
+			this.loginAppButton.Name = "loginAppButton";
+			this.loginAppButton.Size = new System.Drawing.Size(216, 103);
+			this.loginAppButton.TabIndex = 5;
+			this.loginAppButton.Text = "Login With Facebook";
+			this.loginAppButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+			this.loginAppButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+			this.loginAppButton.UseVisualStyleBackColor = true;
+			this.loginAppButton.Click += new System.EventHandler(this.loginButton_Click);
 			// 
-			// findDateButton
+			// findDateAppButton
 			// 
-			this.findDateButton.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.findDateButton.FlatAppearance.BorderSize = 0;
-			this.findDateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.findDateButton.Image = global::MyFacebookApp.View.Properties.Resources.dateButtonIcon;
-			this.findDateButton.Location = new System.Drawing.Point(0, 422);
-			this.findDateButton.Name = "findDateButton";
-			this.findDateButton.Size = new System.Drawing.Size(216, 103);
-			this.findDateButton.TabIndex = 4;
-			this.findDateButton.Text = "Find A Date";
-			this.findDateButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-			this.findDateButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-			this.findDateButton.UseVisualStyleBackColor = true;
+			this.findDateAppButton.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.findDateAppButton.Enabled = false;
+			this.findDateAppButton.FlatAppearance.BorderSize = 0;
+			this.findDateAppButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.findDateAppButton.Image = global::MyFacebookApp.View.Properties.Resources.dateButtonIcon;
+			this.findDateAppButton.Location = new System.Drawing.Point(0, 422);
+			this.findDateAppButton.Name = "findDateAppButton";
+			this.findDateAppButton.Size = new System.Drawing.Size(216, 103);
+			this.findDateAppButton.TabIndex = 4;
+			this.findDateAppButton.Text = "Find A Date";
+			this.findDateAppButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+			this.findDateAppButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+			this.findDateAppButton.UseVisualStyleBackColor = true;
 			// 
-			// findJobButton
+			// findJobAppButton
 			// 
-			this.findJobButton.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.findJobButton.FlatAppearance.BorderSize = 0;
-			this.findJobButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.findJobButton.Image = global::MyFacebookApp.View.Properties.Resources.jobButtonIcon;
-			this.findJobButton.Location = new System.Drawing.Point(0, 313);
-			this.findJobButton.Name = "findJobButton";
-			this.findJobButton.Size = new System.Drawing.Size(216, 103);
-			this.findJobButton.TabIndex = 3;
-			this.findJobButton.Text = "Find A Job";
-			this.findJobButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-			this.findJobButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-			this.findJobButton.UseVisualStyleBackColor = true;
-			this.findJobButton.Click += new System.EventHandler(this.findJobButton_Click);
+			this.findJobAppButton.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.findJobAppButton.Enabled = false;
+			this.findJobAppButton.FlatAppearance.BorderSize = 0;
+			this.findJobAppButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.findJobAppButton.Image = global::MyFacebookApp.View.Properties.Resources.jobButtonIcon;
+			this.findJobAppButton.Location = new System.Drawing.Point(0, 313);
+			this.findJobAppButton.Name = "findJobAppButton";
+			this.findJobAppButton.Size = new System.Drawing.Size(216, 103);
+			this.findJobAppButton.TabIndex = 3;
+			this.findJobAppButton.Text = "Find A Job";
+			this.findJobAppButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+			this.findJobAppButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+			this.findJobAppButton.UseVisualStyleBackColor = true;
+			this.findJobAppButton.Click += new System.EventHandler(this.findJobButton_Click);
 			// 
 			// panelFaceBookTitle
 			// 
@@ -192,6 +195,7 @@
 			this.postsButton.TabIndex = 21;
 			this.postsButton.Text = "Posts";
 			this.postsButton.UseVisualStyleBackColor = true;
+			this.postsButton.Click += new System.EventHandler(this.postsButton_Click);
 			// 
 			// listBoxEvents
 			// 
@@ -213,6 +217,7 @@
 			this.eventsButton.TabIndex = 19;
 			this.eventsButton.Text = "Events";
 			this.eventsButton.UseVisualStyleBackColor = true;
+			this.eventsButton.Click += new System.EventHandler(this.eventsButton_Click);
 			// 
 			// albumsButton
 			// 
@@ -224,6 +229,7 @@
 			this.albumsButton.TabIndex = 18;
 			this.albumsButton.Text = "Albums";
 			this.albumsButton.UseVisualStyleBackColor = true;
+			this.albumsButton.Click += new System.EventHandler(this.albumsButton_Click);
 			// 
 			// flowLayoutPanelAlbums
 			// 
@@ -288,12 +294,12 @@
         #endregion
 
         private System.Windows.Forms.Panel panelMainButtons;
-        private System.Windows.Forms.Button findDateButton;
+        private System.Windows.Forms.Button findDateAppButton;
         private System.Windows.Forms.Panel panelFaceBookTitle;
         private System.Windows.Forms.Label LabelAppName;
-        private System.Windows.Forms.Button loginButton;
-        private System.Windows.Forms.Button loadDetailsButton;
-        private System.Windows.Forms.Button findJobButton;
+        private System.Windows.Forms.Button loginAppButton;
+        private System.Windows.Forms.Button loadDetailsAppButton;
+        private System.Windows.Forms.Button findJobAppButton;
 		private System.Windows.Forms.Panel panelMain;
 		private System.Windows.Forms.Panel panelHomePage;
 		private System.Windows.Forms.ListView listViewPosts;
@@ -305,6 +311,11 @@
 		private System.Windows.Forms.Panel panelHomePAgeTop;
 		private System.Windows.Forms.Label LabelUserName;
 		private System.Windows.Forms.PictureBox PictureBoxUserProfile;
+		private System.Windows.Forms.Panel panelFindJob;
+		private System.Windows.Forms.ListBox listBoxJobs;
+		private System.Windows.Forms.Button findAJobButton;
+		private System.Windows.Forms.Button backToHomePageFromJobPanelButton;
+
 	}
 }
 
