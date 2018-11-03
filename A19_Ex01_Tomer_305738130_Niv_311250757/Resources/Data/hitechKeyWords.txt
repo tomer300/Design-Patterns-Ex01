@@ -1,0 +1,11 @@
+﻿app
+communications
+computer
+cyber
+develop
+developer
+electronic
+hardware
+operating system
+software
+technology

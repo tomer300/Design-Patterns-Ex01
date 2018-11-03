@@ -31,7 +31,7 @@
 			this.panelMainButtons = new System.Windows.Forms.Panel();
 			this.loadDetailsAppButton = new System.Windows.Forms.Button();
 			this.loginAppButton = new System.Windows.Forms.Button();
-			this.findDateAppButton = new System.Windows.Forms.Button();
+			this.findAMatchAppButton = new System.Windows.Forms.Button();
 			this.findJobAppButton = new System.Windows.Forms.Button();
 			this.panelFaceBookTitle = new System.Windows.Forms.Panel();
 			this.LabelAppName = new System.Windows.Forms.Label();
@@ -58,7 +58,7 @@
 			// 
 			this.panelMainButtons.Controls.Add(this.loadDetailsAppButton);
 			this.panelMainButtons.Controls.Add(this.loginAppButton);
-			this.panelMainButtons.Controls.Add(this.findDateAppButton);
+			this.panelMainButtons.Controls.Add(this.findAMatchAppButton);
 			this.panelMainButtons.Controls.Add(this.findJobAppButton);
 			this.panelMainButtons.Controls.Add(this.panelFaceBookTitle);
 			this.panelMainButtons.Dock = System.Windows.Forms.DockStyle.Left;
@@ -100,21 +100,22 @@
 			this.loginAppButton.UseVisualStyleBackColor = true;
 			this.loginAppButton.Click += new System.EventHandler(this.loginButton_Click);
 			// 
-			// findDateAppButton
+			// findAMatchAppButton
 			// 
-			this.findDateAppButton.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.findDateAppButton.Enabled = false;
-			this.findDateAppButton.FlatAppearance.BorderSize = 0;
-			this.findDateAppButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.findDateAppButton.Image = global::MyFacebookApp.View.Properties.Resources.dateButtonIcon;
-			this.findDateAppButton.Location = new System.Drawing.Point(0, 422);
-			this.findDateAppButton.Name = "findDateAppButton";
-			this.findDateAppButton.Size = new System.Drawing.Size(216, 103);
-			this.findDateAppButton.TabIndex = 4;
-			this.findDateAppButton.Text = "Find A Date";
-			this.findDateAppButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-			this.findDateAppButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-			this.findDateAppButton.UseVisualStyleBackColor = true;
+			this.findAMatchAppButton.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.findAMatchAppButton.Enabled = false;
+			this.findAMatchAppButton.FlatAppearance.BorderSize = 0;
+			this.findAMatchAppButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.findAMatchAppButton.Image = global::MyFacebookApp.View.Properties.Resources.dateButtonIcon;
+			this.findAMatchAppButton.Location = new System.Drawing.Point(0, 422);
+			this.findAMatchAppButton.Name = "findAMatchAppButton";
+			this.findAMatchAppButton.Size = new System.Drawing.Size(216, 103);
+			this.findAMatchAppButton.TabIndex = 4;
+			this.findAMatchAppButton.Text = "Find A Match";
+			this.findAMatchAppButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+			this.findAMatchAppButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+			this.findAMatchAppButton.UseVisualStyleBackColor = true;
+			this.findAMatchAppButton.Click += new System.EventHandler(this.findAMatchAppButton_Click);
 			// 
 			// findJobAppButton
 			// 
@@ -266,6 +267,17 @@
 			this.PictureBoxUserProfile.TabIndex = 0;
 			this.PictureBoxUserProfile.TabStop = false;
 			// 
+			// backToHomePageFromJobPanelButton
+			//
+			this.backToHomePageFromJobPanelButton = new System.Windows.Forms.Button();
+			this.backToHomePageFromJobPanelButton.Location = new System.Drawing.Point(-1, 0);
+			this.backToHomePageFromJobPanelButton.Name = "backToHomePageFromJobPanelButton";
+			this.backToHomePageFromJobPanelButton.Size = new System.Drawing.Size(160, 55);
+			this.backToHomePageFromJobPanelButton.TabIndex = 2;
+			this.backToHomePageFromJobPanelButton.Text = "Back To Home";
+			this.backToHomePageFromJobPanelButton.UseVisualStyleBackColor = true;
+			this.backToHomePageFromJobPanelButton.Click += new System.EventHandler(backToHomePAge);
+			// 
 			// FacebookView
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -294,7 +306,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panelMainButtons;
-        private System.Windows.Forms.Button findDateAppButton;
+        private System.Windows.Forms.Button findAMatchAppButton;
         private System.Windows.Forms.Panel panelFaceBookTitle;
         private System.Windows.Forms.Label LabelAppName;
         private System.Windows.Forms.Button loginAppButton;
@@ -312,9 +324,17 @@
 		private System.Windows.Forms.Label LabelUserName;
 		private System.Windows.Forms.PictureBox PictureBoxUserProfile;
 		private System.Windows.Forms.Panel panelFindJob;
+		private System.Windows.Forms.Panel panelFindAMatch;
 		private System.Windows.Forms.ListBox listBoxJobs;
 		private System.Windows.Forms.Button findAJobButton;
 		private System.Windows.Forms.Button backToHomePageFromJobPanelButton;
+		private System.Windows.Forms.Button findMeAMatchButton;
+		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelMatchPictures;
+		private System.Windows.Forms.Label labelBetweenAges;
+		private System.Windows.Forms.ComboBox comboBoxAgeRanges;
+		private System.Windows.Forms.Label labelInterestedIn;
+		private System.Windows.Forms.CheckBox checkBoxBoys;
+		private System.Windows.Forms.CheckBox checkBoxGirls;
 
 	}
 }
