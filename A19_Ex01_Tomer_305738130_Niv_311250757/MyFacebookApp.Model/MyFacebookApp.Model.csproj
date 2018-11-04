@@ -36,11 +36,11 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AppDetails.cs" />
     <Compile Include="AppEngine.cs" />
     <Compile Include="AppSettings.cs" />
     <Compile Include="AppUser.cs" />
     <Compile Include="Job.cs" />
+    <Compile Include="Login.cs" />
     <Compile Include="Match.cs" />
   </ItemGroup>
   <ItemGroup>
