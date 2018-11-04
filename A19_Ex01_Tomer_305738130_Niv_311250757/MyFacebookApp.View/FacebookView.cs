@@ -110,9 +110,11 @@ namespace MyFacebookApp.View
 			foreach (Album currAlbum in allAlbums)
 			{
 				PictureBox currAlbumPictureBox = new PictureBox();
+				currAlbumPictureBox.Height = 100;
+				currAlbumPictureBox.Width = 100;
 				currAlbumPictureBox.Cursor = Cursors.Hand;
-				currAlbumPictureBox.MouseHover += new EventHandler(album_Hovered);
-				currAlbumPictureBox.MouseLeave += new EventHandler(album_DeHovered);
+				currAlbumPictureBox.MouseEnter += new EventHandler(album_Enter);
+				currAlbumPictureBox.MouseLeave += new EventHandler(album_Leave);
 				currAlbumPictureBox.LoadAsync(currAlbum.CoverPhoto.PictureNormalURL);
 				currAlbumPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 				currAlbumPictureBox.Click += (sender, e) => album_Clicked(currAlbum);
@@ -120,30 +122,21 @@ namespace MyFacebookApp.View
 			}
 		}
 
-		private void album_DeHovered(object sender, EventArgs e)
+		private void album_Leave(object sender, EventArgs e)
 		{
-			PictureBox albumHovered = sender as PictureBox;
-			if (albumHovered != null)
+			PictureBox albumLeft = sender as PictureBox;
+			if (albumLeft != null)
 			{
-				albumHovered.BorderStyle = BorderStyle.None;
+				albumLeft.BorderStyle = BorderStyle.None;
 			}
 		}
 
-		private void album_Hovered(object sender, EventArgs e)
+		private void album_Enter(object sender, EventArgs e)
 		{
 			PictureBox albumHovered = sender as PictureBox;
 			if (albumHovered != null)
 			{
 				albumHovered.BorderStyle = BorderStyle.Fixed3D;
-				/*Bitmap pic = new Bitmap(albumHovered.Image);
-				for (int w = 0; w < pic.Width; w++)
-				{
-					for (int h = 0; h < pic.Height; h++)
-					{
-						Color c = pic.GetPixel(w, h);
-						Color newC = Color.FromArgb(50, c);
-						pic.SetPixel(w, h, newC);
-					}				}*/
 		}
 	}
 
@@ -154,6 +147,8 @@ namespace MyFacebookApp.View
 			foreach (Photo currPhoto in i_ClickedAlbum.Photos)
 			{
 				PictureBox currPhotoPictureBox = new PictureBox();
+				currPhotoPictureBox.Width = 100;
+				currPhotoPictureBox.Height = 100;
 				currPhotoPictureBox.LoadAsync(currPhoto.PictureNormalURL);
 				currPhotoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 				flowLayoutPanelAlbums.Controls.Add(currPhotoPictureBox);
@@ -231,17 +226,15 @@ namespace MyFacebookApp.View
 		{
 			FacebookObjectCollection<Post> allPosts = m_AppEngine.GetAllPosts();
 			tableLayoutPanelPosts.Controls.Clear();
-			Label postMessage1 = new Label();
-			postMessage1.Text = "POSTS";
-			postMessage1.AutoSize = true;
-			tableLayoutPanelPosts.Controls.Add(postMessage1);
-			int counter = 0;			
+			tableLayoutPanelPosts.RowStyles.Clear();
+					
 			foreach (Post currPost in allPosts)
 			{
 
-				/*Label postDetails = new Label();
-				postDetails.Text = string.Format("Posted at: {0}{1}Post Type: {2}{3}" 
-					,currPost.CreatedTime.ToString(), Environment.NewLine, currPost.Type, Environment.NewLine);*/
+				Label postDetails = new Label();
+				postDetails.Text = string.Format("Posted at: {0}{1}Post Type: {2}{3}"
+					, currPost.CreatedTime.ToString(), Environment.NewLine, currPost.Type, Environment.NewLine);
+				postDetails.AutoSize = true;
 			
 				bool isLegalPost = false;
 				if (currPost.Message != null && currPost.Message.Length>0)
@@ -252,32 +245,33 @@ namespace MyFacebookApp.View
 					tableLayoutPanelPosts.Controls.Add(postMessage);
 					isLegalPost = true;
 				}
+				if (currPost.Caption != null && currPost.Caption.Length > 0)
+				{
+					Label postCaption = new Label();
+					postCaption.Text = currPost.Caption;
+					postCaption.AutoSize = true;
+					tableLayoutPanelPosts.Controls.Add(postCaption);
+					isLegalPost = true;
+				}
 
 				if (currPost.Type == Post.eType.photo)
 				{
 					PictureBox postPicture = new PictureBox();
-					postPicture.Load(currPost.PictureURL);
+					postPicture.Height = 100;
+					postPicture.Width = 100;
+					postPicture.LoadAsync(currPost.PictureURL);
+					postPicture.SizeMode = PictureBoxSizeMode.StretchImage;
 					tableLayoutPanelPosts.Controls.Add(postPicture);
 					isLegalPost = true;
 				}
 
 				if (isLegalPost == true)
 				{
-					Label postDetails = new Label();
-					postDetails.Text = "posted at";
-					postDetails.AutoSize = true;
 					tableLayoutPanelPosts.Controls.Add(postDetails);
 					Label seperator = new Label();
-					//seperator.Text = Environment.NewLine + Environment.NewLine + Environment.NewLine;
 					seperator.Text = " ";
 					seperator.AutoSize = true;
 					tableLayoutPanelPosts.Controls.Add(seperator);
-					counter++;
-				}
-				if(counter==1)
-				{
-					tableLayoutPanelPosts.Controls.Clear();
-
 				}
 
 			}
