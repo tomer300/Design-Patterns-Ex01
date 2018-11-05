@@ -48,6 +48,7 @@
 			this.PictureBoxUserProfile = new System.Windows.Forms.PictureBox();
 			this.backToHomePageFromJobPanelButton = new System.Windows.Forms.Button();
 			this.friendsButton = new System.Windows.Forms.Button();
+			this.flowLayoutPanelFriends = new System.Windows.Forms.FlowLayoutPanel();
 			this.panelMainButtons.SuspendLayout();
 			this.panelFaceBookTitle.SuspendLayout();
 			this.panelMain.SuspendLayout();
@@ -167,6 +168,7 @@
 			// 
 			// panelHomePage
 			// 
+			this.panelHomePage.Controls.Add(this.flowLayoutPanelFriends);
 			this.panelHomePage.Controls.Add(this.friendsButton);
 			this.panelHomePage.Controls.Add(this.tableLayoutPanelPosts);
 			this.panelHomePage.Controls.Add(this.postsButton);
@@ -294,6 +296,15 @@
 			this.friendsButton.TabIndex = 23;
 			this.friendsButton.Text = "Friends";
 			this.friendsButton.UseVisualStyleBackColor = true;
+			this.friendsButton.Click += new System.EventHandler(this.friendsButton_Click);
+			// 
+			// flowLayoutPanelFriends
+			// 
+			this.flowLayoutPanelFriends.AutoScroll = true;
+			this.flowLayoutPanelFriends.Location = new System.Drawing.Point(479, 196);
+			this.flowLayoutPanelFriends.Name = "flowLayoutPanelFriends";
+			this.flowLayoutPanelFriends.Size = new System.Drawing.Size(444, 142);
+			this.flowLayoutPanelFriends.TabIndex = 18;
 			// 
 			// FacebookView
 			// 
@@ -353,6 +364,7 @@
 		private System.Windows.Forms.CheckBox checkBoxGirls;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanelPosts;
 		private System.Windows.Forms.Button friendsButton;
+		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelFriends;
 	}
 }
 

@@ -41,7 +41,7 @@ namespace MyFacebookApp.Model
 		}
 		public FacebookObjectCollection<AppUser> GetFriends()
 		{
-			FacebookObjectCollection<AppUser> friends = new FacebookObjectCollection<AppUser>;
+			FacebookObjectCollection<AppUser> friends = new FacebookObjectCollection<AppUser>();
 			foreach (User currFriend in m_LoggedInUser.Friends)
 			{
 				friends.Add(new AppUser(currFriend));

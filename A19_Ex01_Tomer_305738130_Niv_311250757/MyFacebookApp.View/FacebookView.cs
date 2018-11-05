@@ -100,6 +100,7 @@ namespace MyFacebookApp.View
 			albumsButton.Enabled = i_Status;
 			eventsButton.Enabled = i_Status;
 			postsButton.Enabled = i_Status;
+			friendsButton.Enabled = i_Status;
 
 		}
 
@@ -411,10 +412,63 @@ namespace MyFacebookApp.View
 			this.checkBoxGirls.UseVisualStyleBackColor = true;
 		}
 
-		private void tableLayoutPanelPosts_Paint(object sender, PaintEventArgs e)
+		private void friendsButton_Click(object sender, EventArgs e)
 		{
+			flowLayoutPanelFriends.Controls.Clear();
+			try
+			{
+				FacebookObjectCollection<AppUser> myFriends = m_AppEngine.GetFriends();
+				foreach(AppUser friend in myFriends)
+				{
+					PictureBox pic = new PictureBox();
+					pic.Width = 100;
+					pic.Height = 100;
+					pic.Load(friend.GetProfilePicture());
+					pic.Paint += new PaintEventHandler((sender1, e1) =>
+					{
+						e1.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
 
+						//string text = string.Format("{0} {1}", friend.GetFirstName(), friend.GetLastName());
+						string firstName =  friend.GetFirstName();
+						string lastName = friend.GetLastName();
+						float fontSize = 12;
+						SizeF firstNameSize = e1.Graphics.MeasureString(firstName, new Font("Franklin Gothic Heavy", fontSize));
+						SizeF lastNameSize = e1.Graphics.MeasureString(lastName, new Font("Franklin Gothic Heavy", fontSize));
+						/*	if(textSize.Width>pic.Width)
+							{
+								fontSize /= (float)1.3;
+								textSize.Width /= (float)1.3;
+								textSize.Height /= (float)1.3;
+							}*/
+						PointF locationToDraw = new PointF();
+						locationToDraw.X = (pic.Width / 2) - (firstNameSize.Width / 2);
+						locationToDraw.Y = (pic.Height/(float)1.4) - (firstNameSize.Height / (float)2);
+						e1.Graphics.DrawString(firstName, new Font("Franklin Gothic Heavy", fontSize), Brushes.White, locationToDraw);
+						locationToDraw.X = (pic.Width / 2) - (lastNameSize.Width / 2);
+						locationToDraw.Y = (pic.Height / (float)1.1) - (lastNameSize.Height / (float)2);
+						e1.Graphics.DrawString(lastName, new Font("Franklin Gothic Heavy", fontSize), Brushes.White, locationToDraw);
+
+					}); ;
+					
+					flowLayoutPanelFriends.Controls.Add(pic);
+				}
+			}
+			catch (Exception exPosts)
+			{
+				MessageBox.Show(string.Format("Error! could'nt fetch posts - {0}.", exPosts.Message));
+			}
 		}
+
+	/*	private void pictureBox1_Paint(object sender, EventArgs e)
+		{
+			PictureBox friend = sender as PictureBox;
+			using (Font myFont = new Font("Arial", 14))
+			{
+				Bitmap myBitmap = new Bitmap(friend.Width,friend.Height);
+				Graphics g = Graphics.FromImage(myBitmap);
+				g.DrawString("Hello .NET Guide!", myFont, Brushes.Green, friend.Location);
+			}
+		}*/
 		/*	private enum ePanelTypes
 {
 HomePage,
