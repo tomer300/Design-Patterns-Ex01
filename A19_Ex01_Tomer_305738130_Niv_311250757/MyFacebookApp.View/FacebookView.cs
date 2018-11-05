@@ -105,7 +105,7 @@ namespace MyFacebookApp.View
 
 		private void fetchAlbums()
 		{
-			FacebookObjectCollection<Album> allAlbums = m_AppEngine.GetAllAlbums();
+			FacebookObjectCollection<Album> allAlbums = m_AppEngine.GetAlbums();
 
 			foreach (Album currAlbum in allAlbums)
 			{
@@ -193,7 +193,7 @@ namespace MyFacebookApp.View
 
 		private void fetchEvents()
 		{
-			FacebookObjectCollection<Event> allEvents = m_AppEngine.GetAllEvents();
+			FacebookObjectCollection<Event> allEvents = m_AppEngine.GetEvents();
 			listBoxEvents.Items.Clear();
 			listBoxEvents.DisplayMember = "Name";
 			foreach (Event fbEvent in allEvents)
@@ -229,7 +229,7 @@ namespace MyFacebookApp.View
 
 		private void fetchPosts()
 		{
-			FacebookObjectCollection<Post> allPosts = m_AppEngine.GetAllPosts();
+			FacebookObjectCollection<Post> allPosts = m_AppEngine.GetPosts();
 			tableLayoutPanelPosts.Controls.Clear();
 			tableLayoutPanelPosts.RowStyles.Clear();
 					

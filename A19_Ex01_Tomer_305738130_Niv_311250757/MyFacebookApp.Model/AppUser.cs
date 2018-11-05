@@ -23,17 +23,30 @@ namespace MyFacebookApp.Model
         {
             return m_LoggedInUser.FirstName;
         }
-		public FacebookObjectCollection<Album> GetAllAlbums()
+		public string GetLastName()
+		{
+			return m_LoggedInUser.LastName;
+		}
+		public FacebookObjectCollection<Album> GetAlbums()
 		{
 			return m_LoggedInUser.Albums;
 		}
-		public FacebookObjectCollection<Event> GetAllEvents()
+		public FacebookObjectCollection<Event> GetEvents()
 		{
 			return m_LoggedInUser.Events;
 		}
-		public FacebookObjectCollection<Post> GetAllPosts()
+		public FacebookObjectCollection<Post> GetPosts()
 		{
 			return m_LoggedInUser.Posts;
+		}
+		public FacebookObjectCollection<AppUser> GetFriends()
+		{
+			FacebookObjectCollection<AppUser> friends = new FacebookObjectCollection<AppUser>;
+			foreach (User currFriend in m_LoggedInUser.Friends)
+			{
+				friends.Add(new AppUser(currFriend));
+			}
+				return friends;
 		}
 	}
 }

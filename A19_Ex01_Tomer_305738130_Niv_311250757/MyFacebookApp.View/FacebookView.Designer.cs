@@ -47,6 +47,7 @@
 			this.LabelUserName = new System.Windows.Forms.Label();
 			this.PictureBoxUserProfile = new System.Windows.Forms.PictureBox();
 			this.backToHomePageFromJobPanelButton = new System.Windows.Forms.Button();
+			this.friendsButton = new System.Windows.Forms.Button();
 			this.panelMainButtons.SuspendLayout();
 			this.panelFaceBookTitle.SuspendLayout();
 			this.panelMain.SuspendLayout();
@@ -166,6 +167,7 @@
 			// 
 			// panelHomePage
 			// 
+			this.panelHomePage.Controls.Add(this.friendsButton);
 			this.panelHomePage.Controls.Add(this.tableLayoutPanelPosts);
 			this.panelHomePage.Controls.Add(this.postsButton);
 			this.panelHomePage.Controls.Add(this.listBoxEvents);
@@ -282,6 +284,17 @@
 			this.backToHomePageFromJobPanelButton.UseVisualStyleBackColor = true;
 			this.backToHomePageFromJobPanelButton.Click += new System.EventHandler(this.backToHomePAge);
 			// 
+			// friendsButton
+			// 
+			this.friendsButton.AutoSize = true;
+			this.friendsButton.Enabled = false;
+			this.friendsButton.Location = new System.Drawing.Point(479, 157);
+			this.friendsButton.Name = "friendsButton";
+			this.friendsButton.Size = new System.Drawing.Size(122, 33);
+			this.friendsButton.TabIndex = 23;
+			this.friendsButton.Text = "Friends";
+			this.friendsButton.UseVisualStyleBackColor = true;
+			// 
 			// FacebookView
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -339,6 +352,7 @@
 		private System.Windows.Forms.CheckBox checkBoxBoys;
 		private System.Windows.Forms.CheckBox checkBoxGirls;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanelPosts;
+		private System.Windows.Forms.Button friendsButton;
 	}
 }
 
