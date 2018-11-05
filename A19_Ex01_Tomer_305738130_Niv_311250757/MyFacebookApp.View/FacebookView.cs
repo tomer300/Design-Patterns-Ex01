@@ -215,10 +215,15 @@ namespace MyFacebookApp.View
 
 		private void loadDetailsButton_Click(object sender, EventArgs e)
 		{
-
+			try { 
 			fetchAlbums();
 			fetchEvents();
 			fetchPosts();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(string.Format("Error! could'nt fetch information - {0}.", ex.Message));
+			}
 
 		}
 

@@ -205,11 +205,12 @@
 			// listBoxEvents
 			// 
 			this.listBoxEvents.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+			this.listBoxEvents.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.listBoxEvents.FormattingEnabled = true;
 			this.listBoxEvents.ItemHeight = 23;
 			this.listBoxEvents.Location = new System.Drawing.Point(475, 380);
 			this.listBoxEvents.Name = "listBoxEvents";
-			this.listBoxEvents.Size = new System.Drawing.Size(448, 142);
+			this.listBoxEvents.Size = new System.Drawing.Size(448, 138);
 			this.listBoxEvents.TabIndex = 20;
 			// 
 			// eventsButton
