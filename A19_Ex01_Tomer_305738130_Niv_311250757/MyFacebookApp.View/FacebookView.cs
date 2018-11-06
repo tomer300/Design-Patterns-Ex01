@@ -85,6 +85,7 @@ namespace MyFacebookApp.View
 				fetchInitialDetails();
 				setAppButtonsEnabledStatus(true);
 				setUserInfoVisibilityStatus(true);
+				Job job = new Job();
 			}
 			catch (Exception exLogin)
 			{
