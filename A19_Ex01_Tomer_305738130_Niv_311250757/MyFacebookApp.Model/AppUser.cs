@@ -10,16 +10,16 @@ namespace MyFacebookApp.Model
     {
         User m_LoggedInUser;
 
-        public AppUser(User i_LoggedInUser)
+		internal AppUser(User i_LoggedInUser)
         {
             m_LoggedInUser = i_LoggedInUser;
         }
 
-        public string GetProfilePicture()
+		public string GetProfilePicture()
         {
             return m_LoggedInUser.PictureNormalURL;
         }
-        public string GetFirstName()
+		public string GetFirstName()
         {
             return m_LoggedInUser.FirstName;
         }
@@ -27,19 +27,19 @@ namespace MyFacebookApp.Model
 		{
 			return m_LoggedInUser.LastName;
 		}
-		public FacebookObjectCollection<Album> GetAlbums()
+		internal FacebookObjectCollection<Album> GetAlbums()
 		{
 			return m_LoggedInUser.Albums;
 		}
-		public FacebookObjectCollection<Event> GetEvents()
+		internal FacebookObjectCollection<Event> GetEvents()
 		{
 			return m_LoggedInUser.Events;
 		}
-		public FacebookObjectCollection<Post> GetPosts()
+		internal FacebookObjectCollection<Post> GetPosts()
 		{
 			return m_LoggedInUser.Posts;
 		}
-		public FacebookObjectCollection<AppUser> GetFriends()
+		internal FacebookObjectCollection<AppUser> GetFriends()
 		{
 			FacebookObjectCollection<AppUser> friends = new FacebookObjectCollection<AppUser>();
 			foreach (User currFriend in m_LoggedInUser.Friends)
@@ -47,6 +47,16 @@ namespace MyFacebookApp.Model
 				friends.Add(new AppUser(currFriend));
 			}
 				return friends;
+		}
+
+		internal string GetCity()
+		{
+			return m_LoggedInUser.Location.Name;
+		}
+
+		internal string GetBirthday()
+		{
+			return m_LoggedInUser.Birthday;
 		}
 	}
 }

@@ -83,8 +83,8 @@ namespace MyFacebookApp.View
 				Login loginToFacebook = new Login();
 				m_AppEngine = loginToFacebook.Engine;
 				fetchInitialDetails();
-				setAppButtonsStatus(true);
-				//saving the access token to a file using the engine within the perform login.
+				setAppButtonsEnabledStatus(true);
+				setUserInfoVisibilityStatus(true);
 			}
 			catch (Exception exLogin)
 			{
@@ -92,16 +92,27 @@ namespace MyFacebookApp.View
 			}
 		}
 
-		private void setAppButtonsStatus(bool i_Status)
+		private void setUserInfoVisibilityStatus(bool i_IsVisible)
 		{
-			loadDetailsAppButton.Enabled = i_Status;
-			findJobAppButton.Enabled = i_Status;
-			findAMatchAppButton.Enabled = i_Status;
-			albumsButton.Enabled = i_Status;
-			eventsButton.Enabled = i_Status;
-			postsButton.Enabled = i_Status;
-			friendsButton.Enabled = i_Status;
+			labelFirstName.Visible = i_IsVisible;
+			labelLastName.Visible = i_IsVisible;
+			labelCity.Visible = i_IsVisible;
+			labelBirthDay.Visible = i_IsVisible;
+			labelFirstNameInfo.Visible = i_IsVisible;
+			labelLastNameInfo.Visible = i_IsVisible;
+			labelCityInfo.Visible = i_IsVisible;
+			labelBirthdayInfo.Visible = i_IsVisible;
+		}
 
+		private void setAppButtonsEnabledStatus(bool i_IsEnabled)
+		{
+			loadDetailsAppButton.Enabled = i_IsEnabled;
+			findJobAppButton.Enabled = i_IsEnabled;
+			findAMatchAppButton.Enabled = i_IsEnabled;
+			albumsButton.Enabled = i_IsEnabled;
+			eventsButton.Enabled = i_IsEnabled;
+			postsButton.Enabled = i_IsEnabled;
+			friendsButton.Enabled = i_IsEnabled;
 		}
 
 		private void fetchAlbums()
@@ -160,9 +171,15 @@ namespace MyFacebookApp.View
 		private void fetchInitialDetails()
 		{
 			PictureBoxUserProfile.LoadAsync(m_AppEngine.GetProfilePicture());
-			LabelUserName.Text = string.Format("Hi, {0}", m_AppEngine.GetFirstName());
+			labelFirstNameInfo.Text = m_AppEngine.GetFirstName();
+			labelLastNameInfo.Text = m_AppEngine.GetLastName();
+			labelCityInfo.Text = m_AppEngine.GetCity();
+			labelBirthdayInfo.Text = m_AppEngine.GetBirthday();
+			labelFirstName.AutoSize = true;
+			labelLastNameInfo.AutoSize = true;
+			labelCityInfo.AutoSize = true;
+			labelBirthdayInfo.AutoSize = true;
 		}
-
 
 		private void albumsButton_Click(object sender, EventArgs e)
 		{
@@ -209,17 +226,13 @@ namespace MyFacebookApp.View
 
 		}
 
-		private void listBoxEvents_SelectedIndexChanged(object sender, EventArgs e)
-		{
-
-		}
 
 		private void loadDetailsButton_Click(object sender, EventArgs e)
 		{
 			try { 
-			fetchAlbums();
-			fetchEvents();
-			fetchPosts();
+				fetchAlbums();
+				fetchPosts();
+				fetchEvents();
 			}
 			catch (Exception ex)
 			{
@@ -459,16 +472,7 @@ namespace MyFacebookApp.View
 			}
 		}
 
-	/*	private void pictureBox1_Paint(object sender, EventArgs e)
-		{
-			PictureBox friend = sender as PictureBox;
-			using (Font myFont = new Font("Arial", 14))
-			{
-				Bitmap myBitmap = new Bitmap(friend.Width,friend.Height);
-				Graphics g = Graphics.FromImage(myBitmap);
-				g.DrawString("Hello .NET Guide!", myFont, Brushes.Green, friend.Location);
-			}
-		}*/
+
 		/*	private enum ePanelTypes
 {
 HomePage,

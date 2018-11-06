@@ -46,5 +46,15 @@ namespace MyFacebookApp.Model
 		{
 			return m_LoggedUser.GetFriends();
 		}
+
+		public string GetCity()
+		{
+			return m_LoggedUser.GetCity();
+		}
+
+		public string GetBirthday()
+		{
+			return m_LoggedUser.GetBirthday();
+		}
 	}
 }

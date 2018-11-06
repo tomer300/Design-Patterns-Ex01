@@ -33,8 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FbGraphApiWrapper">
-      <HintPath>..\..\..\tomer300\Design-Patterns-Ex01\A19_Ex01_Tomer_305738130_Niv_311250757\Resources\DLL\FbGraphApiWrapper.dll</HintPath>
+    <Reference Include="FbGraphApiWrapper, Version=6.8.0.17, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Resources\DLL\FbGraphApiWrapper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
