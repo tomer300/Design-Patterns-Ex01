@@ -13,20 +13,19 @@ namespace MyFacebookApp.Model
 		private readonly HashSet<string> r_HitechKeyWords;
 		public Job()
 		{
-			r_HitechWorkPlaces = buildSetFromXMLFile<WorkPlace>("MyFacebookApp.Model.israeliHitechList.xml");
+			r_HitechWorkPlaces = buildSetFromXMLFile<WorkPlace>(MyFacebookApp.Model.Properties.Resources.israeliHitechList);
 			//r_HitechKeyWords = buildSetFromFile;
 		}
-		private HashSet<string> buildSetFromXMLFile<T>(string i_FileName)
+		private HashSet<string> buildSetFromXMLFile<T>(string i_XMLFileContent)
 		{
-			HashSet<string> setFromFile = new HashSet<string>(); 
-
-			if (File.Exists(i_FileName) && new FileInfo(i_FileName).Length > 0)
+			HashSet<string> setFromFile = new HashSet<string>();
+			if (i_XMLFileContent.Length > 0)
 			{
-				using (Stream stream = new FileStream(i_FileName, FileMode.Open))
+				using (TextReader reader = new StringReader(i_XMLFileContent))
 				{
 					XmlSerializer serializer = new XmlSerializer(typeof(List<T>));
-					List < T > listFromFile = serializer.Deserialize(stream) as List<T>;
-					
+					List<T> listFromFile = serializer.Deserialize(reader) as List<T>;
+
 					foreach (T currMember in listFromFile)
 					{
 						setFromFile.Add(currMember.ToString());

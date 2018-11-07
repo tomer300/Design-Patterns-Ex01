@@ -6,16 +6,9 @@ using System.Text;
 
 namespace MyFacebookApp.Model
 {
-	public class Login
-	{
-		public AppEngine Engine { get; private set; }
-		
-		public Login()
-		{
-			performLogin();
-		}
-
-		private void performLogin()
+	public class FacebookManager
+	{		
+		public AppEngine Login()
 		{
 			LoginResult result = FacebookService.Login("2246590548924227",
 				"public_profile",
@@ -50,13 +43,16 @@ namespace MyFacebookApp.Model
 
 			if (!string.IsNullOrEmpty(result.AccessToken))
 			{
-				Engine = new AppEngine( new AppUser(result.LoggedInUser));
+				return new AppEngine( new AppUser(result.LoggedInUser));
 			}
 			else
 			{
 				throw new Exception(result.ErrorMessage);
 			}
-
+		}
+		public void Logout()
+		{
+			FacebookService.Logout(null);
 		}
 	}
 }

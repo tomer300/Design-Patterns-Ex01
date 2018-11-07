@@ -13,7 +13,7 @@ namespace MyFacebookApp.View
 	public partial class FacebookView : Form
 	{
 		private AppEngine m_AppEngine;
-
+		private FacebookManager m_FacebookManager;
 		public FacebookView()
 		{
 			InitializeComponent();
@@ -26,6 +26,7 @@ namespace MyFacebookApp.View
 			{
 				createJobPanel();
 			}
+			panelFindJob.Controls.Add(logoutButton);
 			panelFindJob.Controls.Add(this.backToHomePageFromJobPanelButton);
 			panelMain.Controls.Clear();
 			panelMain.Controls.Add(panelFindJob);
@@ -72,6 +73,7 @@ namespace MyFacebookApp.View
 		private void backToHomePAge(object sender, EventArgs e)
 		{
 			panelMain.Controls.Clear();
+			panelHomePageTop.Controls.Add(logoutButton);
 			panelMain.Controls.Add(panelHomePage);
 		}
 
@@ -80,12 +82,12 @@ namespace MyFacebookApp.View
 			//Check if Exception nesseccery
 			try
 			{
-				Login loginToFacebook = new Login();
-				m_AppEngine = loginToFacebook.Engine;
+				m_FacebookManager = new FacebookManager();
+				m_AppEngine = m_FacebookManager.Login();
 				fetchInitialDetails();
+				this.panelMain.Controls.Add(this.panelHomePage);
 				setAppButtonsEnabledStatus(true);
 				setUserInfoVisibilityStatus(true);
-				Job job = new Job();
 			}
 			catch (Exception exLogin)
 			{
@@ -114,6 +116,7 @@ namespace MyFacebookApp.View
 			eventsButton.Enabled = i_IsEnabled;
 			postsButton.Enabled = i_IsEnabled;
 			friendsButton.Enabled = i_IsEnabled;
+			logoutButton.Enabled = i_IsEnabled;
 		}
 
 		private void fetchAlbums()
@@ -323,7 +326,7 @@ namespace MyFacebookApp.View
 				createMatchPanel();
 			}
 			panelFindAMatch.Controls.Add(this.backToHomePageFromJobPanelButton);
-
+			panelFindAMatch.Controls.Add(logoutButton);
 			panelMain.Controls.Clear();
 				panelMain.Controls.Add(panelFindAMatch);
 		}
@@ -471,6 +474,12 @@ namespace MyFacebookApp.View
 			{
 				MessageBox.Show(string.Format("Error! could'nt fetch posts - {0}.", exPosts.Message));
 			}
+		}
+
+		private void logoutButton_Click(object sender, EventArgs e)
+		{
+			m_FacebookManager.Logout();
+			panelMain.Controls.Clear();
 		}
 
 

@@ -39,6 +39,7 @@
 			this.albumsButton = new System.Windows.Forms.Button();
 			this.flowLayoutPanelAlbums = new System.Windows.Forms.FlowLayoutPanel();
 			this.panelHomePageTop = new System.Windows.Forms.Panel();
+			this.logoutButton = new System.Windows.Forms.Button();
 			this.labelCityInfo = new System.Windows.Forms.Label();
 			this.labelBirthdayInfo = new System.Windows.Forms.Label();
 			this.labelLastNameInfo = new System.Windows.Forms.Label();
@@ -70,7 +71,6 @@
 			// 
 			// panelMain
 			// 
-			this.panelMain.Controls.Add(this.panelHomePage);
 			this.panelMain.Location = new System.Drawing.Point(222, 3);
 			this.panelMain.Name = "panelMain";
 			this.panelMain.Size = new System.Drawing.Size(936, 533);
@@ -181,6 +181,7 @@
 			// 
 			// panelHomePageTop
 			// 
+			this.panelHomePageTop.Controls.Add(this.logoutButton);
 			this.panelHomePageTop.Controls.Add(this.labelCityInfo);
 			this.panelHomePageTop.Controls.Add(this.labelBirthdayInfo);
 			this.panelHomePageTop.Controls.Add(this.labelLastNameInfo);
@@ -196,6 +197,17 @@
 			this.panelHomePageTop.Name = "panelHomePageTop";
 			this.panelHomePageTop.Size = new System.Drawing.Size(935, 151);
 			this.panelHomePageTop.TabIndex = 16;
+			// 
+			// logoutButton
+			// 
+			this.logoutButton.Enabled = false;
+			this.logoutButton.Location = new System.Drawing.Point(788, 10);
+			this.logoutButton.Name = "logoutButton";
+			this.logoutButton.Size = new System.Drawing.Size(135, 35);
+			this.logoutButton.TabIndex = 10;
+			this.logoutButton.Text = "Logout";
+			this.logoutButton.UseVisualStyleBackColor = true;
+			this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
 			// 
 			// labelCityInfo
 			// 
@@ -493,6 +505,7 @@
 		private System.Windows.Forms.Label labelAppName;
 		private System.Windows.Forms.Panel panelShadowColorLight;
 		private System.Windows.Forms.Panel panelShadowColorDark;
+		private System.Windows.Forms.Button logoutButton;
 	}
 }
 

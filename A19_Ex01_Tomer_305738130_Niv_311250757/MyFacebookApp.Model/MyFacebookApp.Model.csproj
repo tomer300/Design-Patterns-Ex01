@@ -40,8 +40,13 @@
     <Compile Include="AppSettings.cs" />
     <Compile Include="AppUser.cs" />
     <Compile Include="Job.cs" />
-    <Compile Include="Login.cs" />
+    <Compile Include="FacebookManager.cs" />
     <Compile Include="Match.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
@@ -59,8 +64,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\hitechKeyWords.xml" />
-    <EmbeddedResource Include="Resources\israeliHitechList.xml" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hitechKeyWords.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\israeliHitechList.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
