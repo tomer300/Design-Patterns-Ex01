@@ -220,15 +220,7 @@
 		private JobPanel panelJob;
 		private MatchPanel panelMatch;
 		private System.Windows.Forms.Panel panelMain;
-		private System.Windows.Forms.Panel panelFindAMatch;
 		private System.Windows.Forms.Button backToHomeButton;
-		private System.Windows.Forms.Button findMeAMatchButton;
-		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelMatchPictures;
-		private System.Windows.Forms.Label labelBetweenAges;
-		private System.Windows.Forms.ComboBox comboBoxAgeRanges;
-		private System.Windows.Forms.Label labelInterestedIn;
-		private System.Windows.Forms.CheckBox checkBoxBoys;
-		private System.Windows.Forms.CheckBox checkBoxGirls;
 		private System.Windows.Forms.Button findJobAppButton;
 		private System.Windows.Forms.Button findAMatchAppButton;
 		private System.Windows.Forms.Button loadDetailsAppButton;

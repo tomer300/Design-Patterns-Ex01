@@ -43,7 +43,7 @@ namespace MyFacebookApp.Model
 
 			if (!string.IsNullOrEmpty(result.AccessToken))
 			{
-				return new AppEngine( new AppUser(result.LoggedInUser));
+				return new AppEngine(new AppUser(result.LoggedInUser));
 			}
 			else
 			{

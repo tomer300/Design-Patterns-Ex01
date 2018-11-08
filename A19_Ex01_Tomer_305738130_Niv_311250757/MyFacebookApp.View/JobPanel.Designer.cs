@@ -57,6 +57,7 @@
 			this.findAJobButton.TabIndex = 0;
 			this.findAJobButton.Text = "Find me a job!";
 			this.findAJobButton.UseVisualStyleBackColor = true;
+			this.findAJobButton.Click += new System.EventHandler(this.findAJobButton_Click);
 			// 
 			// panelJob
 			// 

@@ -46,6 +46,7 @@ namespace MyFacebookApp.View
 				panelHomePage.AddLogoutButton(logoutButton);
 				this.panelMain.Controls.Add(this.panelHomePage);
 				setAppButtonsEnabledStatus(true);
+				//Job stam = new Job();
 			}
 			catch (Exception exLogin)
 			{

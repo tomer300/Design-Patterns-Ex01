@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FacebookWrapper.ObjectModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,10 +12,12 @@ namespace MyFacebookApp.Model
     {
 		private readonly HashSet<string> r_HitechWorkPlaces;
 		private readonly HashSet<string> r_HitechKeyWords;
-		public Job()
+		private readonly FacebookObjectCollection<AppUser> r_UserFriends;
+		public Job(FacebookObjectCollection<AppUser> i_UserFriends)
 		{
 			r_HitechWorkPlaces = buildSetFromXMLFile<WorkPlace>(MyFacebookApp.Model.Properties.Resources.israeliHitechList);
-			//r_HitechKeyWords = buildSetFromFile;
+			r_HitechKeyWords = buildSetFromXMLFile<HitechKeyWord>(MyFacebookApp.Model.Properties.Resources.hitechKeyWords);
+			r_UserFriends = i_UserFriends;
 		}
 		private HashSet<string> buildSetFromXMLFile<T>(string i_XMLFileContent)
 		{
@@ -33,6 +36,11 @@ namespace MyFacebookApp.Model
 				}
 			}
 			return setFromFile;
+		}
+
+		internal FacebookObjectCollection<AppUser> FindHitechWorkerContacts()
+		{
+			return null;
 		}
 		public class HitechKeyWord
 		{

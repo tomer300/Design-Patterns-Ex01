@@ -65,7 +65,7 @@ namespace MyFacebookApp.View
 		private void fetchAlbums()
 		{
 			FacebookObjectCollection<Album> allAlbums = m_AppEngine.GetAlbums();
-
+			int counter = 0;
 			foreach (Album currAlbum in allAlbums)
 			{
 				if (currAlbum.Count > 0)
@@ -79,8 +79,14 @@ namespace MyFacebookApp.View
 					currAlbumPictureBox.LoadAsync(currAlbum.CoverPhoto.PictureNormalURL);
 					currAlbumPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 					currAlbumPictureBox.Click += (sender, e) => album_Clicked(currAlbum);
+					if(counter == 0)
+					{
+						currAlbumPictureBox.Focus();
+						counter++;
+					}
 					flowLayoutPanelAlbums.Controls.Add(currAlbumPictureBox);
 				}
+
 			}
 		}
 

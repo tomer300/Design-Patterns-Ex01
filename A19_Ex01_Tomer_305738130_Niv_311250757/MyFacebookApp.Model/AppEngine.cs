@@ -17,6 +17,7 @@ namespace MyFacebookApp.Model
 	public class AppEngine
 	{
 		private AppUser m_LoggedUser;
+		private Job m_Job;
 		public AppEngine(AppUser i_AppUser)
 		{
 			m_LoggedUser = i_AppUser;
@@ -39,6 +40,12 @@ namespace MyFacebookApp.Model
 		{
 			return m_LoggedUser.GetAlbums();
 		}
+
+		public FacebookObjectCollection<AppUser> FindHitechWorkersContacts()
+		{
+			throw new NotImplementedException();
+		}
+
 		public FacebookObjectCollection<Event> GetEvents()
 		{
 			return m_LoggedUser.GetEvents();

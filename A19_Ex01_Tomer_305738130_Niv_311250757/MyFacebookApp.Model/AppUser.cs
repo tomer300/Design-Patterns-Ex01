@@ -19,6 +19,10 @@ namespace MyFacebookApp.Model
         {
             return m_LoggedInUser.PictureNormalURL;
         }
+
+		//TODO:
+		//Add (!= null || Exceptions When taking data form logged user).
+
 		public string GetFirstName()
         {
             return m_LoggedInUser.FirstName;
@@ -48,6 +52,21 @@ namespace MyFacebookApp.Model
 			}
 
 			return friends;
+		}
+
+		public string GetWorkPlace()
+		{
+			string workPlace = "";
+
+			if(m_LoggedInUser.WorkExperiences != null)
+			{
+				if(m_LoggedInUser.WorkExperiences[m_LoggedInUser.WorkExperiences.Length - 1] != null)
+				{
+					workPlace = m_LoggedInUser.WorkExperiences[m_LoggedInUser.WorkExperiences.Length - 1].Employer.Name;
+				}
+			}
+
+			return workPlace;
 		}
 
 		internal string GetCity()
