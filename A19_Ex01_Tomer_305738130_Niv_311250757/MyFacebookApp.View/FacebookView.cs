@@ -22,57 +22,17 @@ namespace MyFacebookApp.View
 
 		private void findJobButton_Click(object sender, EventArgs e)
 		{
-
-			if(panelFindJob == null)
-			{
-				createJobPanel();
-			}
-			panelFindJob.Controls.Add(logoutButton);
-			panelFindJob.Controls.Add(this.backToHomePageFromJobPanelButton);
+			panelJob = new JobPanel(m_AppEngine);
+			panelJob.AddLogoutButton(logoutButton);
+			panelJob.AddBackToHomeButton(backToHomeButton);
 			panelMain.Controls.Clear();
-			panelMain.Controls.Add(panelFindJob);
-
+			panelMain.Controls.Add(panelJob);
 		}
-
-		private void createJobPanel()
-		{
-			this.panelFindJob = new Panel();
-			this.findAJobButton = new Button();
-			this.listBoxJobs = new ListBox();
-			// 
-			// panelFindJob
-			//
-			this.panelFindJob.Controls.Add(this.backToHomePageFromJobPanelButton);
-			this.panelFindJob.Controls.Add(this.listBoxJobs);
-			this.panelFindJob.Controls.Add(this.findAJobButton);
-			this.panelFindJob.Location = new System.Drawing.Point(1, -2);
-			this.panelFindJob.Name = "panelFindJob";
-			this.panelFindJob.Size = new System.Drawing.Size(935, 536);
-			this.panelFindJob.TabIndex = 2;
-			// 
-			// findAJobButton
-			//
-			this.findAJobButton.Location = new System.Drawing.Point(376, 66);
-			this.findAJobButton.Name = "findAJobButton";
-			this.findAJobButton.Size = new System.Drawing.Size(163, 55);
-			this.findAJobButton.TabIndex = 0;
-			this.findAJobButton.Text = "Find me a job!";
-			this.findAJobButton.UseVisualStyleBackColor = true;
-			// 
-			// listBoxJobs
-			// 
-			this.listBoxJobs.FormattingEnabled = true;
-			this.listBoxJobs.ItemHeight = 23;
-			this.listBoxJobs.Location = new System.Drawing.Point(206, 162);
-			this.listBoxJobs.Name = "listBoxJobs";
-			this.listBoxJobs.Size = new System.Drawing.Size(529, 211);
-			this.listBoxJobs.TabIndex = 1;
-		}
-
+		
 		private void backToHomePage(object sender, EventArgs e)
 		{
 			panelMain.Controls.Clear();
-			panelHomePage.addLogoutButton(logoutButton);
+			panelHomePage.AddLogoutButton(logoutButton);
 			panelMain.Controls.Add(panelHomePage);
 		}
 
@@ -82,8 +42,8 @@ namespace MyFacebookApp.View
 			{
 				m_FacebookManager = new FacebookManager();
 				m_AppEngine = m_FacebookManager.Login();
-				panelHomePage = new JobPanel(m_AppEngine);
-				panelHomePage.addLogoutButton(logoutButton);
+				panelHomePage = new HomePanel(m_AppEngine);
+				panelHomePage.AddLogoutButton(logoutButton);
 				this.panelMain.Controls.Add(this.panelHomePage);
 				setAppButtonsEnabledStatus(true);
 			}
@@ -112,7 +72,7 @@ namespace MyFacebookApp.View
 			{
 				createMatchPanel();
 			}
-			panelFindAMatch.Controls.Add(this.backToHomePageFromJobPanelButton);
+			panelFindAMatch.Controls.Add(this.backToHomeButton);
 			panelFindAMatch.Controls.Add(logoutButton);
 			panelMain.Controls.Clear();
 				panelMain.Controls.Add(panelFindAMatch);
@@ -131,7 +91,7 @@ namespace MyFacebookApp.View
 			// 
 			// panelFindAMatch
 			// 
-			this.panelFindAMatch.Controls.Add(this.backToHomePageFromJobPanelButton);
+			this.panelFindAMatch.Controls.Add(this.backToHomeButton);
 			this.panelFindAMatch.Controls.Add(this.findMeAMatchButton);
 			this.panelFindAMatch.Controls.Add(this.flowLayoutPanelMatchPictures);
 			this.panelFindAMatch.Controls.Add(this.labelBetweenAges);

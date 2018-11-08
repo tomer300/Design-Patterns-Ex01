@@ -30,7 +30,7 @@
 		{
 			this.panelMain = new System.Windows.Forms.Panel();
 			this.logoutButton = new System.Windows.Forms.Button();
-			this.backToHomePageFromJobPanelButton = new System.Windows.Forms.Button();
+			this.backToHomeButton = new System.Windows.Forms.Button();
 			this.findJobAppButton = new System.Windows.Forms.Button();
 			this.findAMatchAppButton = new System.Windows.Forms.Button();
 			this.loadDetailsAppButton = new System.Windows.Forms.Button();
@@ -66,13 +66,13 @@
 			// 
 			// backToHomePageFromJobPanelButton
 			// 
-			this.backToHomePageFromJobPanelButton.Location = new System.Drawing.Point(-1, 0);
-			this.backToHomePageFromJobPanelButton.Name = "backToHomePageFromJobPanelButton";
-			this.backToHomePageFromJobPanelButton.Size = new System.Drawing.Size(160, 55);
-			this.backToHomePageFromJobPanelButton.TabIndex = 2;
-			this.backToHomePageFromJobPanelButton.Text = "Back To Home";
-			this.backToHomePageFromJobPanelButton.UseVisualStyleBackColor = true;
-			this.backToHomePageFromJobPanelButton.Click += new System.EventHandler(this.backToHomePage);
+			this.backToHomeButton.Location = new System.Drawing.Point(-1, 0);
+			this.backToHomeButton.Name = "backToHomePageFromJobPanelButton";
+			this.backToHomeButton.Size = new System.Drawing.Size(160, 55);
+			this.backToHomeButton.TabIndex = 2;
+			this.backToHomeButton.Text = "Back To Home";
+			this.backToHomeButton.UseVisualStyleBackColor = true;
+			this.backToHomeButton.Click += new System.EventHandler(this.backToHomePage);
 			// 
 			// findJobAppButton
 			// 
@@ -216,13 +216,11 @@
 		}
 
 		#endregion
-		private JobPanel panelHomePage;
+		private HomePanel panelHomePage;
+		private JobPanel panelJob;
 		private System.Windows.Forms.Panel panelMain;
-		private System.Windows.Forms.Panel panelFindJob;
 		private System.Windows.Forms.Panel panelFindAMatch;
-		private System.Windows.Forms.ListBox listBoxJobs;
-		private System.Windows.Forms.Button findAJobButton;
-		private System.Windows.Forms.Button backToHomePageFromJobPanelButton;
+		private System.Windows.Forms.Button backToHomeButton;
 		private System.Windows.Forms.Button findMeAMatchButton;
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelMatchPictures;
 		private System.Windows.Forms.Label labelBetweenAges;

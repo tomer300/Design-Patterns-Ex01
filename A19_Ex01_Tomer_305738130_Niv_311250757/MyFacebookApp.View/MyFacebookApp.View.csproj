@@ -51,6 +51,19 @@
     <Compile Include="FacebookView.Designer.cs">
       <DependentUpon>FacebookView.cs</DependentUpon>
     </Compile>
+    <Compile Include="IBackable.cs" />
+    <Compile Include="MatchPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MatchPanel.Designer.cs">
+      <DependentUpon>MatchPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JobPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JobPanel.Designer.cs">
+      <DependentUpon>JobPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="HomePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -62,6 +75,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FacebookView.resx">
       <DependentUpon>FacebookView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MatchPanel.resx">
+      <DependentUpon>MatchPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JobPanel.resx">
+      <DependentUpon>JobPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomePanel.resx">
       <DependentUpon>HomePanel.cs</DependentUpon>

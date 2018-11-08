@@ -11,11 +11,11 @@ using MyFacebookApp.Model;
 
 namespace MyFacebookApp.View
 {
-	public partial class HomePanel : UserControl, ILogoutable
+	public partial class MatchPanel : UserControl, ILogoutable
 	{
 		private AppEngine m_AppEngine;
 
-		public HomePanel(AppEngine i_AppEngine)
+		public MatchPanel(AppEngine i_AppEngine)
 		{
 			InitializeComponent();
 			m_AppEngine = i_AppEngine;

@@ -1,6 +1,6 @@
 ﻿namespace MyFacebookApp.View
 {
-	partial class HomePanel
+	partial class MatchPanel
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -282,12 +282,12 @@
 			this.panelHomePage.Size = new System.Drawing.Size(936, 533);
 			this.panelHomePage.TabIndex = 3;
 			// 
-			// HomePanel
+			// MatchPanel
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
 			this.Controls.Add(this.panelHomePage);
-			this.Name = "HomePanel";
+			this.Name = "MatchPanel";
 			this.Size = new System.Drawing.Size(936, 537);
 			this.panelHomePageTop.ResumeLayout(false);
 			this.panelHomePageTop.PerformLayout();

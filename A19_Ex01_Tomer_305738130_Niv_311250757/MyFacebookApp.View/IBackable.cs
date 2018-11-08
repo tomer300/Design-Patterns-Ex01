@@ -6,8 +6,8 @@ using System.Windows.Forms;
 
 namespace MyFacebookApp.View
 {
-	interface ILogoutable
+	interface IBackable
 	{
-		void AddLogoutButton(Button i_LogoutButton);
+		void AddBackToHomeButton(Button i_BackToHomeButton);
 	}
 }
