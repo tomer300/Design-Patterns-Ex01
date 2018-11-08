@@ -51,10 +51,20 @@
     <Compile Include="FacebookView.Designer.cs">
       <DependentUpon>FacebookView.cs</DependentUpon>
     </Compile>
+    <Compile Include="HomePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HomePanel.Designer.cs">
+      <DependentUpon>HomePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ILogoutable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FacebookView.resx">
       <DependentUpon>FacebookView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomePanel.resx">
+      <DependentUpon>HomePanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

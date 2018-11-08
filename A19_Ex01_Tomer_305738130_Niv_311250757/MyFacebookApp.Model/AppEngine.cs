@@ -5,6 +5,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 
+//TODO:
+//Check all exceptions messages.
+//Check that all possible exception throwing are being used in try and catch!
+//Check that refering facebook item with details (!= null).
+
 //App ID: 2246590548924227
 
 namespace MyFacebookApp.Model

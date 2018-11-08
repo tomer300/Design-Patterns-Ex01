@@ -46,7 +46,8 @@ namespace MyFacebookApp.Model
 			{
 				friends.Add(new AppUser(currFriend));
 			}
-				return friends;
+
+			return friends;
 		}
 
 		internal string GetCity()
