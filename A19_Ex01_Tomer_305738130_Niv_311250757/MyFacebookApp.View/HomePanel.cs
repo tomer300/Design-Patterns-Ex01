@@ -134,15 +134,11 @@ namespace MyFacebookApp.View
 
 		private void fetchInitialDetails()
 		{
-			PictureBoxUserProfile.LoadAsync(m_AppEngine.GetProfilePicture());
-			labelFirstNameInfo.Text = m_AppEngine.GetFirstName();
-			labelLastNameInfo.Text = m_AppEngine.GetLastName();
-			labelCityInfo.Text = m_AppEngine.GetCity();
-			labelBirthdayInfo.Text = m_AppEngine.GetBirthday();
-			labelFirstName.AutoSize = true;
-			labelLastNameInfo.AutoSize = true;
-			labelCityInfo.AutoSize = true;
-			labelBirthdayInfo.AutoSize = true;
+			panelUserDetails.SetProfilePicture(m_AppEngine.GetProfilePicture());
+			panelUserDetails.SetFirstName(m_AppEngine.GetFirstName());
+			panelUserDetails.SetLastName(m_AppEngine.GetLastName());
+			panelUserDetails.SetCity(m_AppEngine.GetCity());
+			panelUserDetails.SetBirthday(m_AppEngine.GetBirthday());
 		}
 
 		private void albumsButton_Click(object sender, EventArgs e)

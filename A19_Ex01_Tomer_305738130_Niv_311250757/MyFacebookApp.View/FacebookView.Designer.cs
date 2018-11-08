@@ -218,6 +218,7 @@
 		#endregion
 		private HomePanel panelHomePage;
 		private JobPanel panelJob;
+		private MatchPanel panelMatch;
 		private System.Windows.Forms.Panel panelMain;
 		private System.Windows.Forms.Panel panelFindAMatch;
 		private System.Windows.Forms.Button backToHomeButton;

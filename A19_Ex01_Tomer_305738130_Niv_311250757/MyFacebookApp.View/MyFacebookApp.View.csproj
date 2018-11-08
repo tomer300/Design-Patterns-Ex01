@@ -73,6 +73,12 @@
     <Compile Include="ILogoutable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserDetailsPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserDetailsPanel.Designer.cs">
+      <DependentUpon>UserDetailsPanel.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FacebookView.resx">
       <DependentUpon>FacebookView.cs</DependentUpon>
     </EmbeddedResource>
@@ -95,6 +101,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserDetailsPanel.resx">
+      <DependentUpon>UserDetailsPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
