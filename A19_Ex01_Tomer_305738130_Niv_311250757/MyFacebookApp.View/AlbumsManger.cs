@@ -40,16 +40,16 @@ namespace MyFacebookApp.View
 					catch(Facebook.FacebookApiException ex)
 					{
 						currAlbumPictureBox.BackColor = System.Drawing.Color.Gray;
-						currAlbumPictureBox.Paint += new PaintEventHandler((sender1, e1) =>
+						currAlbumPictureBox.Paint += new PaintEventHandler((sender, e) =>
 						{
-							e1.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+							e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
 							float fontSize = 12;
 							string noPictureMessage= "No Picture";
-							SizeF noPictureMessageSize = e1.Graphics.MeasureString(noPictureMessage, new Font("Franklin Gothic Heavy", fontSize));
+							SizeF noPictureMessageSize = e.Graphics.MeasureString(noPictureMessage, new Font("Franklin Gothic Heavy", fontSize));
 							PointF locationToDraw = new PointF();
 							locationToDraw.X = (currAlbumPictureBox.Width / 2) - (noPictureMessageSize.Width / 2);
 							locationToDraw.Y = (currAlbumPictureBox.Height / (float)1.4) - (noPictureMessageSize.Height / (float)2);
-							e1.Graphics.DrawString(noPictureMessage, new Font("Franklin Gothic Heavy", fontSize), Brushes.White, locationToDraw);
+							e.Graphics.DrawString(noPictureMessage, new Font("Franklin Gothic Heavy", fontSize), Brushes.White, locationToDraw);
 						}); ;
 
 					}
