@@ -2,6 +2,7 @@
 using MyFacebookApp.Model;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -32,7 +33,26 @@ namespace MyFacebookApp.View
 					currAlbumPictureBox.Cursor = Cursors.Hand;
 					currAlbumPictureBox.MouseEnter += new EventHandler(album_Enter);
 					currAlbumPictureBox.MouseLeave += new EventHandler(album_Leave);
-					currAlbumPictureBox.LoadAsync(currAlbum.CoverPhoto.PictureNormalURL);
+					try
+					{
+						currAlbumPictureBox.LoadAsync(currAlbum.CoverPhoto.PictureNormalURL);
+					}
+					catch(Facebook.FacebookApiException ex)
+					{
+						currAlbumPictureBox.BackColor = System.Drawing.Color.Gray;
+						currAlbumPictureBox.Paint += new PaintEventHandler((sender1, e1) =>
+						{
+							e1.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+							float fontSize = 12;
+							string noPictureMessage= "No Picture";
+							SizeF noPictureMessageSize = e1.Graphics.MeasureString(noPictureMessage, new Font("Franklin Gothic Heavy", fontSize));
+							PointF locationToDraw = new PointF();
+							locationToDraw.X = (currAlbumPictureBox.Width / 2) - (noPictureMessageSize.Width / 2);
+							locationToDraw.Y = (currAlbumPictureBox.Height / (float)1.4) - (noPictureMessageSize.Height / (float)2);
+							e1.Graphics.DrawString(noPictureMessage, new Font("Franklin Gothic Heavy", fontSize), Brushes.White, locationToDraw);
+						}); ;
+
+					}
 					currAlbumPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 					currAlbumPictureBox.Click += (sender, e) => album_Clicked(currAlbum);
 					m_PanelToDisplayIn.Controls.Add(currAlbumPictureBox);
