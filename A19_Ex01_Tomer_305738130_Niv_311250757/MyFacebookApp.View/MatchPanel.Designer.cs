@@ -30,7 +30,7 @@
 		{
 			this.panelMatch = new System.Windows.Forms.Panel();
 			this.findMeAMatchButton = new System.Windows.Forms.Button();
-			this.flowLayoutPanelGirlsPictures = new System.Windows.Forms.FlowLayoutPanel();
+			this.flowLayoutPanelMatchPictures = new System.Windows.Forms.FlowLayoutPanel();
 			this.labelBetweenAges = new System.Windows.Forms.Label();
 			this.comboBoxAgeRanges = new System.Windows.Forms.ComboBox();
 			this.labelInterestedIn = new System.Windows.Forms.Label();
@@ -44,7 +44,7 @@
 			// 
 			this.panelMatch.Controls.Add(this.panelUserDetails);
 			this.panelMatch.Controls.Add(this.findMeAMatchButton);
-			this.panelMatch.Controls.Add(this.flowLayoutPanelGirlsPictures);
+			this.panelMatch.Controls.Add(this.flowLayoutPanelMatchPictures);
 			this.panelMatch.Controls.Add(this.labelBetweenAges);
 			this.panelMatch.Controls.Add(this.comboBoxAgeRanges);
 			this.panelMatch.Controls.Add(this.labelInterestedIn);
@@ -67,15 +67,16 @@
 			this.findMeAMatchButton.TabIndex = 6;
 			this.findMeAMatchButton.Text = "Find me a match!";
 			this.findMeAMatchButton.UseVisualStyleBackColor = true;
+			this.findMeAMatchButton.Click += new System.EventHandler(this.findMeAMatchButton_Click);
 			// 
-			// flowLayoutPanelGirlsPictures
+			// flowLayoutPanelMatchPictures
 			// 
-			this.flowLayoutPanelGirlsPictures.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.flowLayoutPanelGirlsPictures.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
-			this.flowLayoutPanelGirlsPictures.Location = new System.Drawing.Point(15, 327);
-			this.flowLayoutPanelGirlsPictures.Name = "flowLayoutPanelGirlsPictures";
-			this.flowLayoutPanelGirlsPictures.Size = new System.Drawing.Size(908, 196);
-			this.flowLayoutPanelGirlsPictures.TabIndex = 5;
+			this.flowLayoutPanelMatchPictures.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.flowLayoutPanelMatchPictures.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
+			this.flowLayoutPanelMatchPictures.Location = new System.Drawing.Point(15, 327);
+			this.flowLayoutPanelMatchPictures.Name = "flowLayoutPanelMatchPictures";
+			this.flowLayoutPanelMatchPictures.Size = new System.Drawing.Size(908, 196);
+			this.flowLayoutPanelMatchPictures.TabIndex = 5;
 			// 
 			// labelBetweenAges
 			// 
@@ -96,7 +97,7 @@
 			this.comboBoxAgeRanges.Items.AddRange(new object[] {
             "18-20",
             "21-25",
-            "25-30",
+            "26-30",
             "31-35",
             "36-40",
             "41-45",
@@ -106,6 +107,7 @@
 			this.comboBoxAgeRanges.Name = "comboBoxAgeRanges";
 			this.comboBoxAgeRanges.Size = new System.Drawing.Size(208, 31);
 			this.comboBoxAgeRanges.TabIndex = 3;
+			this.comboBoxAgeRanges.Text = "18-20";
 			// 
 			// labelInterestedIn
 			// 
@@ -167,7 +169,7 @@
 
 		private System.Windows.Forms.Panel panelMatch;
 		private System.Windows.Forms.Button findMeAMatchButton;
-		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelGirlsPictures;
+		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelMatchPictures;
 		private System.Windows.Forms.Label labelBetweenAges;
 		private System.Windows.Forms.ComboBox comboBoxAgeRanges;
 		private System.Windows.Forms.Label labelInterestedIn;

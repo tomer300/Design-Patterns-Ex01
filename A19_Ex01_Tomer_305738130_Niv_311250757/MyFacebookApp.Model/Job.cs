@@ -8,13 +8,15 @@ using System.Xml.Serialization;
 
 namespace MyFacebookApp.Model
 {
-    public class Job
-    {
+	public class Job
+	{
 		private readonly HashSet<string> r_HitechWorkPlaces;
 		private readonly HashSet<string> r_HitechKeyWords;
 		private readonly FacebookObjectCollection<AppUser> r_UserFriends;
 		public Job(FacebookObjectCollection<AppUser> i_UserFriends)
 		{
+			User stam = new User();
+
 			r_HitechWorkPlaces = buildSetFromXMLFile<WorkPlace>(MyFacebookApp.Model.Properties.Resources.israeliHitechList);
 			r_HitechKeyWords = buildSetFromXMLFile<HitechKeyWord>(MyFacebookApp.Model.Properties.Resources.hitechKeyWords);
 			r_UserFriends = i_UserFriends;
@@ -40,14 +42,54 @@ namespace MyFacebookApp.Model
 
 		internal FacebookObjectCollection<AppUser> FindHitechWorkerContacts()
 		{
-			return null;
+			FacebookObjectCollection<AppUser> hitechWorkingContacts = new FacebookObjectCollection<AppUser>();
+
+			foreach (AppUser currFriend in r_UserFriends)
+			{
+				if (worksAtKnownHitechCompany(currFriend) || worksAtPotentiallyHitechRelatedCompany(currFriend))
+				{
+					hitechWorkingContacts.Add(currFriend);
+				}
+			}
+			return hitechWorkingContacts;
 		}
+
+		private bool worksAtPotentiallyHitechRelatedCompany(AppUser currFriend)
+		{
+			Page workPlace = currFriend.GetWorkPlace();
+			bool doesAtPotentiallyHitechRelatedCompany = false;
+
+			foreach (string wordInDescriptionOfWorkPlace in workPlace.Description.Split(' '))
+			{
+				if (r_HitechKeyWords.Contains(wordInDescriptionOfWorkPlace))
+				{
+					doesAtPotentiallyHitechRelatedCompany = true;
+				}
+			}
+
+			return doesAtPotentiallyHitechRelatedCompany;
+		}
+
+
+		private bool worksAtKnownHitechCompany(AppUser currFriend)
+		{
+			string workPlace = currFriend.GetWorkPlace().Name.ToLower();
+			bool doesWorksAtKnownHitechCompany = false;
+
+			if (r_HitechWorkPlaces.Contains(workPlace))
+			{
+				doesWorksAtKnownHitechCompany = true;
+			}
+
+			return doesWorksAtKnownHitechCompany;
+		}
+
 		public class HitechKeyWord
 		{
 			public string m_KeyWord { get; set; }
 			public override string ToString()
 			{
-				return m_KeyWord;
+				return m_KeyWord.ToLower();
 			}
 		}
 		public class WorkPlace
@@ -55,10 +97,11 @@ namespace MyFacebookApp.Model
 			public string m_Name { get; set; }
 			public override string ToString()
 			{
-				return m_Name;
+				return m_Name.ToLower();
 			}
 		}
 
 	}
-
 }
+
+

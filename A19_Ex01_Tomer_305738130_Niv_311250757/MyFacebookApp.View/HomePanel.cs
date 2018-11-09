@@ -14,6 +14,7 @@ namespace MyFacebookApp.View
 	public partial class HomePanel : UserControl, ILogoutable
 	{
 		private AppEngine m_AppEngine;
+		private AlbumsManger m_AlbumsManager;
 
 		public HomePanel(AppEngine i_AppEngine)
 		{
@@ -62,48 +63,11 @@ namespace MyFacebookApp.View
 			}
 		}
 
-		private void fetchAlbums()
-		{
-			FacebookObjectCollection<Album> allAlbums = m_AppEngine.GetAlbums();
-			int counter = 0;
-			foreach (Album currAlbum in allAlbums)
-			{
-				if (currAlbum.Count > 0)
-				{
-					PictureBox currAlbumPictureBox = new PictureBox();
-					currAlbumPictureBox.Height = 100;
-					currAlbumPictureBox.Width = 100;
-					currAlbumPictureBox.Cursor = Cursors.Hand;
-					currAlbumPictureBox.MouseEnter += new EventHandler(album_Enter);
-					currAlbumPictureBox.MouseLeave += new EventHandler(album_Leave);
-					currAlbumPictureBox.LoadAsync(currAlbum.CoverPhoto.PictureNormalURL);
-					currAlbumPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-					currAlbumPictureBox.Click += (sender, e) => album_Clicked(currAlbum);
-					if(counter == 0)
-					{
-						currAlbumPictureBox.Focus();
-						counter++;
-					}
-					flowLayoutPanelAlbums.Controls.Add(currAlbumPictureBox);
-				}
-
-			}
-		}
-
-		private void album_Leave(object sender, EventArgs e)
-		{
-			PictureBox albumLeft = sender as PictureBox;
-			if (albumLeft != null)
-			{
-				albumLeft.BorderStyle = BorderStyle.None;
-			}
-		}
-
 		internal void ShowAllDetails()
 		{
 			try
 			{
-				fetchAlbums();
+				displayAlbums();
 				fetchPosts();
 				fetchEvents();
 			}
@@ -113,52 +77,38 @@ namespace MyFacebookApp.View
 			}
 		}
 
-		private void album_Enter(object sender, EventArgs e)
-		{
-			PictureBox albumHovered = sender as PictureBox;
-			if (albumHovered != null)
-			{
-				albumHovered.BorderStyle = BorderStyle.Fixed3D;
-			}
-		}
-
-		private void album_Clicked(Album i_ClickedAlbum)
-		{
-			flowLayoutPanelAlbums.Controls.Clear();
-			albumsButton.Text = "Back To Albums";
-			foreach (Photo currPhoto in i_ClickedAlbum.Photos)
-			{
-				PictureBox currPhotoPictureBox = new PictureBox();
-				currPhotoPictureBox.Width = 100;
-				currPhotoPictureBox.Height = 100;
-				currPhotoPictureBox.LoadAsync(currPhoto.PictureNormalURL);
-				currPhotoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-				flowLayoutPanelAlbums.Controls.Add(currPhotoPictureBox);
-			}
-
-		}
-
 		private void fetchInitialDetails()
 		{
-			panelUserDetails.SetProfilePicture(m_AppEngine.GetProfilePicture());
-			panelUserDetails.SetFirstName(m_AppEngine.GetFirstName());
-			panelUserDetails.SetLastName(m_AppEngine.GetLastName());
-			panelUserDetails.SetCity(m_AppEngine.GetCity());
-			panelUserDetails.SetBirthday(m_AppEngine.GetBirthday());
+			panelUserDetails.SetAllUserDetails(m_AppEngine.GetProfilePicture(), m_AppEngine.GetFirstName(), m_AppEngine.GetLastName(),
+				m_AppEngine.GetCity(), m_AppEngine.GetBirthday());
 		}
 
 		private void albumsButton_Click(object sender, EventArgs e)
 		{
-			flowLayoutPanelAlbums.Controls.Clear();
+			displayAlbums();
+		}
+
+		private void displayAlbums()
+		{
+			if (m_AlbumsManager == null)
+			{
+				m_AlbumsManager = new AlbumsManger(m_AppEngine.GetAlbums(), flowLayoutPanelAlbums);
+			}
+			m_AlbumsManager.AlbumClicked += albumsButtonChangeDescription;
 			albumsButton.Text = "Albums";
 			try
 			{
-				fetchAlbums();
+				m_AlbumsManager.displayAlbums();
 			}
 			catch (Exception exAlbums)
 			{
 				MessageBox.Show(string.Format("Error! could'nt fetch albums - {0}.", exAlbums.Message));
 			}
+		}
+
+		private void albumsButtonChangeDescription()
+		{
+			albumsButton.Text = "Back To Albums";
 		}
 
 		private void eventsButton_Click(object sender, EventArgs e)

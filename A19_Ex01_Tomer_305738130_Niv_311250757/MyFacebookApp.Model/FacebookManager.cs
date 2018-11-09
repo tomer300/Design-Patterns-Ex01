@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+//2246590548924227
+
 namespace MyFacebookApp.Model
 {
 	public class FacebookManager
@@ -14,6 +16,7 @@ namespace MyFacebookApp.Model
 				"public_profile",
 				//"user_education_history",
 				"user_birthday",
+				"user_gender",
 				//"user_about_me",
 				"user_friends",
 				//"publish_actions",

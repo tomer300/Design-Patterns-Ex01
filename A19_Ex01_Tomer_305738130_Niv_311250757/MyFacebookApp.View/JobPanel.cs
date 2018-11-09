@@ -39,22 +39,21 @@ namespace MyFacebookApp.View
 
 			foreach (AppUser currContact in hitechWorkerContacts)
 			{
-				string contactInfo = "";
-				string contactItemName = "";
+				string contactFullName = "";
 				PictureBox contactPic = new PictureBox();
 
+				contactFullName = string.Format("{0} {1}", currContact.GetFirstName(), currContact.GetLastName());
 				contactPic.Width = 100;
 				contactPic.Height = 100;
 				contactPic.LoadAsync(currContact.GetProfilePicture());
 				contactPic.SizeMode = PictureBoxSizeMode.StretchImage;
-				contactPic.Name = string.Format("{0} {1}", currContact.GetFirstName(),
-					currContact.GetLastName());
+				contactPic.Name = contactFullName;
 				contactPic.Click += new EventHandler(contactPic_Click);
 				flowLayoutPanelContactPhotos.Controls.Add(contactPic);
-
-				contactInfo = string.Format("Name: {0} {1}", currContact.GetFirstName(), currContact.GetLastName());
-				contactItemName = string.Format("{0} {1}", currContact.GetFirstName(), currContact.GetLastName());
-				listBoxJobs.Items.Add(new ContactItem(new KeyValuePair<string, string>(contactItemName, contactInfo)));
+				//listBoxJobs.Items.Add(new ContactItem(new KeyValuePair<string, string>(contactFullName,
+				//	string.Format("{0} works at '{1}' ", contactFullName, currContact.GetWorkPlace().Name))));
+				listBoxJobs.Items.Add(new ContactItem(new KeyValuePair<string, string>(contactFullName,
+					string.Format("{0} works at ", contactFullName))));
 			}
 
 			listBoxJobs.SelectedIndexChanged += new EventHandler(contactInfo_Click);
@@ -63,21 +62,23 @@ namespace MyFacebookApp.View
 		private void contactInfo_Click(object sender, EventArgs e)
 		{
 			PictureBox lastChosenContactPhoto = flowLayoutPanelContactPhotos.Controls[m_LastChosenContactIndex] as PictureBox;
+			ContactItem contactClicked;
+			PictureBox contactPicture;
 			string contactName = "";
 
-			if(lastChosenContactPhoto != null)
+			if (lastChosenContactPhoto != null)
 			{
 				lastChosenContactPhoto.BorderStyle = BorderStyle.None;
 			}
 
 			m_LastChosenContactIndex = listBoxJobs.SelectedIndex;
-			ContactItem contactClicked = listBoxJobs.Items[m_LastChosenContactIndex] as ContactItem;
-			if(contactClicked != null)
+			contactClicked = listBoxJobs.Items[m_LastChosenContactIndex] as ContactItem;
+			if (contactClicked != null)
 			{
 				contactName = contactClicked.Contact.Key;
 				foreach (Control currentPicture in flowLayoutPanelContactPhotos.Controls)
 				{
-					PictureBox contactPicture = currentPicture as PictureBox;
+					contactPicture = currentPicture as PictureBox;
 					if (contactPicture != null)
 					{
 						if (contactPicture.Name.Equals(contactName))
@@ -85,16 +86,14 @@ namespace MyFacebookApp.View
 							contactPicture.BorderStyle = BorderStyle.Fixed3D;
 						}
 					}
-
 				}
 			}
-			
-			
 		}
 
 		private void contactPic_Click(object sender, EventArgs e)
 		{
 			PictureBox clickedContact = sender as PictureBox;
+			ContactItem currentContactInfo;
 			string contactName;
 
 			if(clickedContact != null)
@@ -102,7 +101,7 @@ namespace MyFacebookApp.View
 				contactName = clickedContact.Name;
 				foreach(object currentItem in listBoxJobs.Items)
 				{
-					ContactItem currentContactInfo = currentItem as ContactItem;
+					currentContactInfo = currentItem as ContactItem;
 					if(currentContactInfo != null)
 					{
 						if(currentContactInfo.Contact.Key.Equals(contactName))
@@ -112,10 +111,9 @@ namespace MyFacebookApp.View
 						}
 					}
 				}
-
-
 			}
 		}
+
 		class ContactItem
 		{
 			public KeyValuePair<string, string> Contact { get; private set; }

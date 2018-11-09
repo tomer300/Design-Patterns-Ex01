@@ -31,10 +31,17 @@ namespace MyFacebookApp.Model
 		{
 			return m_LoggedInUser.LastName;
 		}
-		internal FacebookObjectCollection<Album> GetAlbums()
+		public FacebookObjectCollection<Album> GetAlbums()
 		{
 			return m_LoggedInUser.Albums;
 		}
+
+		internal string GetGender()
+		{
+
+			return m_LoggedInUser.Gender.ToString();
+		}
+
 		internal FacebookObjectCollection<Event> GetEvents()
 		{
 			return m_LoggedInUser.Events;
@@ -54,27 +61,26 @@ namespace MyFacebookApp.Model
 			return friends;
 		}
 
-		public string GetWorkPlace()
+		public Page GetWorkPlace()
 		{
-			string workPlace = "";
+			Page workPlace = null;
 
-			if(m_LoggedInUser.WorkExperiences != null)
+			if (m_LoggedInUser.WorkExperiences != null)
 			{
-				if(m_LoggedInUser.WorkExperiences[m_LoggedInUser.WorkExperiences.Length - 1] != null)
+				if (m_LoggedInUser.WorkExperiences[m_LoggedInUser.WorkExperiences.Length - 1] != null)
 				{
-					workPlace = m_LoggedInUser.WorkExperiences[m_LoggedInUser.WorkExperiences.Length - 1].Employer.Name;
+					workPlace = m_LoggedInUser.WorkExperiences[m_LoggedInUser.WorkExperiences.Length - 1].Employer;
 				}
 			}
-
 			return workPlace;
 		}
 
-		internal string GetCity()
+		public string GetCity()
 		{
 			return m_LoggedInUser.Location.Name;
 		}
 
-		internal string GetBirthday()
+		public string GetBirthday()
 		{
 			return m_LoggedInUser.Birthday;
 		}

@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlbumsManger.cs" />
     <Compile Include="FacebookView.cs">
       <SubType>Form</SubType>
     </Compile>
