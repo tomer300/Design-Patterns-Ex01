@@ -59,25 +59,31 @@ namespace MyFacebookApp.Model
 			const int SINGLE_BOUND = 1, LOWER_BOUND = 0, UPPER_BOUND = 1;
 			const char RANGE_DELIMITER = '-', ABOVE_DELIMITER = '+';
 			string[] chosenRange = i_AgeRange.Split(RANGE_DELIMITER, ABOVE_DELIMITER);
-			int usersAge = calculateAge(i_User.GetBirthday());
 			bool iswithinRange = false;
+			int usersAge;
+			try {
+				usersAge = calculateAge(i_User.GetBirthday());
 
-			if (chosenRange.Length == SINGLE_BOUND)
-			{
-				if (usersAge > int.Parse(chosenRange[LOWER_BOUND]))
+				if (chosenRange.Length == SINGLE_BOUND)
 				{
-					iswithinRange = true;
+					if (usersAge > int.Parse(chosenRange[LOWER_BOUND]))
+					{
+						iswithinRange = true;
+					}
+				}
+				else
+				{
+					if (usersAge >= int.Parse(chosenRange[LOWER_BOUND]) && usersAge <= int.Parse(chosenRange[UPPER_BOUND]))
+					{
+						iswithinRange = true;
+					}
+
 				}
 			}
-			else
+			catch (Exception ex)
 			{
-				if (usersAge >= int.Parse(chosenRange[LOWER_BOUND]) && usersAge <= int.Parse(chosenRange[UPPER_BOUND]))
-									{
-					iswithinRange = true;
-				}
-
+				return iswithinRange;
 			}
-
 			return iswithinRange;
 
 		}

@@ -60,7 +60,7 @@ namespace MyFacebookApp.View
 		private void album_Clicked(Album i_ClickedAlbum)
 		{
 			m_PanelToDisplayIn.Controls.Clear();
-			AlbumClicked.Invoke();
+			//AlbumClicked.Invoke();
 			foreach (Photo currPhoto in i_ClickedAlbum.Photos)
 			{
 				PictureBox currPhotoPictureBox = new PictureBox();
