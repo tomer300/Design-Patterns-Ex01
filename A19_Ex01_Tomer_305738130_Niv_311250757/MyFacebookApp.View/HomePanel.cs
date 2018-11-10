@@ -23,7 +23,6 @@ namespace MyFacebookApp.View
 			fetchInitialDetails();
 		}
 
-		//TODO: Minimize function
 		private void friendsButton_Click(object sender, EventArgs e)
 		{
 			fetchFriends();
@@ -50,30 +49,36 @@ namespace MyFacebookApp.View
 			try
 			{
 				FacebookObjectCollection<AppUser> myFriends = m_AppEngine.GetFriends();
+				bool hasShownMessageBox = false;
+
 				foreach (AppUser friend in myFriends)
 				{
-					PictureWrapper friendPictureWrapper = new PictureWrapper(friend.GetProfilePicture());
-					PictureBox friendPicture = friendPictureWrapper.PictureBox;
+					string profilePictureURL = "";
 
-					friendPicture.Paint += new PaintEventHandler((sender1, e1) =>
+					try
 					{
-						e1.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-						string firstName = friend.GetFirstName();
-						string lastName = friend.GetLastName();
-						float fontSize = 12;
-						SizeF firstNameSize = e1.Graphics.MeasureString(firstName, new Font("Franklin Gothic Heavy", fontSize));
-						SizeF lastNameSize = e1.Graphics.MeasureString(lastName, new Font("Franklin Gothic Heavy", fontSize));
-						PointF locationToDraw = new PointF();
-						locationToDraw.X = (friendPicture.Width / 2) - (firstNameSize.Width / 2);
-						locationToDraw.Y = (friendPicture.Height / (float)1.4) - (firstNameSize.Height / (float)2);
-						e1.Graphics.DrawString(firstName, new Font("Franklin Gothic Heavy", fontSize), Brushes.White, locationToDraw);
-						locationToDraw.X = (friendPicture.Width / 2) - (lastNameSize.Width / 2);
-						locationToDraw.Y = (friendPicture.Height / (float)1.1) - (lastNameSize.Height / (float)2);
-						e1.Graphics.DrawString(lastName, new Font("Franklin Gothic Heavy", fontSize), Brushes.White, locationToDraw);
+						profilePictureURL = friend.GetProfilePicture();
+					}
+					catch (Exception ex)
+					{
+						if(!hasShownMessageBox)
+						{
+							MessageBox.Show(ex.Message);
+							hasShownMessageBox = true;
+						}
+					}
+					finally
+					{
+						PictureWrapper friendPictureWrapper = new PictureWrapper(profilePictureURL);
+						PictureBox friendPicture = friendPictureWrapper.PictureBox;
 
-					}); ;
+						friendPicture.Paint += new PaintEventHandler((senderFriend, ePaint) =>
+						{
+							writeNameOnFriendPicture(senderFriend, ePaint, friend);
+						});
 
-					flowLayoutPanelFriends.Controls.Add(friendPicture);
+						flowLayoutPanelFriends.Controls.Add(friendPicture);
+					}
 				}
 			}
 			catch (Exception exPosts)
@@ -82,10 +87,63 @@ namespace MyFacebookApp.View
 			}
 		}
 
+		private void writeNameOnFriendPicture(object senderFriend, PaintEventArgs ePaint, AppUser i_Friend)
+		{
+			PictureBox friendPicture = senderFriend as PictureBox;
+
+
+			if (friendPicture != null)
+			{
+				string friendFirstName = "";
+				string friendLastName = "";
+				try
+				{
+					friendFirstName = i_Friend.GetFirstName();
+					friendLastName = i_Friend.GetLastName();
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show(ex.Message);
+				}
+				finally
+				{
+					float fontSize = 12;
+					SizeF firstNameSize = ePaint.Graphics.MeasureString(friendFirstName, new Font("Franklin Gothic Heavy", fontSize));
+					SizeF lastNameSize = ePaint.Graphics.MeasureString(friendLastName, new Font("Franklin Gothic Heavy", fontSize));
+					PointF locationToDraw = new PointF();
+
+					ePaint.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+					locationToDraw.X = (friendPicture.Width / 2) - (firstNameSize.Width / 2);
+					locationToDraw.Y = (friendPicture.Height / (float)1.4) - (firstNameSize.Height / (float)2);
+					ePaint.Graphics.DrawString(friendFirstName, new Font("Franklin Gothic Heavy", fontSize), Brushes.White, locationToDraw);
+					locationToDraw.X = (friendPicture.Width / 2) - (lastNameSize.Width / 2);
+					locationToDraw.Y = (friendPicture.Height / (float)1.1) - (lastNameSize.Height / (float)2);
+					ePaint.Graphics.DrawString(friendLastName, new Font("Franklin Gothic Heavy", fontSize), Brushes.White, locationToDraw);
+				}
+			}
+		}
+
 		private void fetchInitialDetails()
 		{
-			panelUserDetails.SetAllUserDetails(m_AppEngine.GetProfilePicture(), m_AppEngine.GetFirstName(), m_AppEngine.GetLastName(),
+			string profilePictureURL = "";
+			string firstName = "";
+			string lastName = "";
+
+			try
+			{
+				profilePictureURL = m_AppEngine.GetProfilePicture();
+				firstName = m_AppEngine.GetFirstName();
+				lastName = m_AppEngine.GetLastName();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+			finally
+			{
+				panelUserDetails.SetAllUserDetails(profilePictureURL, firstName, lastName,
 				m_AppEngine.GetCity(), m_AppEngine.GetBirthday());
+			}
 		}
 
 		private void albumsButton_Click(object sender, EventArgs e)
@@ -118,7 +176,6 @@ namespace MyFacebookApp.View
 
 		private void eventsButton_Click(object sender, EventArgs e)
 		{
-			listBoxEvents.Controls.Clear();
 			try
 			{
 				fetchEvents();
@@ -147,42 +204,32 @@ namespace MyFacebookApp.View
 
 		}
 
-		//TODO: Minimize function
 		private void fetchPosts()
 		{
 			FacebookObjectCollection<Post> allPosts = m_AppEngine.GetPosts();
 			tableLayoutPanelPosts.Controls.Clear();
 			tableLayoutPanelPosts.RowStyles.Clear();
 
-			foreach (Post currPost in allPosts)
+			foreach (Post currentPost in allPosts)
 			{
-
+				bool isLegalPost = false;
 				Label postDetails = new Label();
 				postDetails.Text = string.Format("Posted at: {0}{1}Post Type: {2}{3}"
-					, currPost.CreatedTime.ToString(), Environment.NewLine, currPost.Type, Environment.NewLine);
+					, currentPost.CreatedTime.ToString(), Environment.NewLine, currentPost.Type, Environment.NewLine);
 				postDetails.AutoSize = true;
 
-				bool isLegalPost = false;
-				if (currPost.Message != null && currPost.Message.Length > 0)
+				if(currentPost.Message != null)
 				{
-					Label postMessage = new Label();
-					postMessage.Text = currPost.Message;
-					postMessage.AutoSize = true;
-					tableLayoutPanelPosts.Controls.Add(postMessage);
-					isLegalPost = true;
+					addPostData(currentPost.Message, ref isLegalPost);
 				}
-				if (currPost.Caption != null && currPost.Caption.Length > 0)
+				if(currentPost.Caption != null)
 				{
-					Label postCaption = new Label();
-					postCaption.Text = currPost.Caption;
-					postCaption.AutoSize = true;
-					tableLayoutPanelPosts.Controls.Add(postCaption);
-					isLegalPost = true;
+					addPostData(currentPost.Caption, ref isLegalPost);
 				}
-
-				if (currPost.Type == Post.eType.photo)
+				
+				if (currentPost.Type == Post.eType.photo)
 				{
-					PictureWrapper postPictureWrapper = new PictureWrapper(currPost.PictureURL);
+					PictureWrapper postPictureWrapper = new PictureWrapper(currentPost.PictureURL);
 					PictureBox postPicture = postPictureWrapper.PictureBox;
 
 					tableLayoutPanelPosts.Controls.Add(postPicture);
@@ -206,9 +253,20 @@ namespace MyFacebookApp.View
 			}
 		}
 
+		private void addPostData(string i_Content, ref bool io_IsLegalPost)
+		{
+			if (i_Content.Length > 0)
+			{
+				Label message = new Label();
+				message.Text = i_Content;
+				message.AutoSize = true;
+				tableLayoutPanelPosts.Controls.Add(message);
+				io_IsLegalPost = true;
+			}
+		}
+
 		private void postsButton_Click(object sender, EventArgs e)
 		{
-			tableLayoutPanelPosts.Controls.Clear();
 			try
 			{
 				fetchPosts();

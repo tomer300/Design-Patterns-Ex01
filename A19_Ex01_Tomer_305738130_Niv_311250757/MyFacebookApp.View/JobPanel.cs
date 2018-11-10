@@ -34,19 +34,44 @@ namespace MyFacebookApp.View
 
 		private void findAJobButton_Click(object sender, EventArgs e)
 		{
-			FacebookObjectCollection<AppUser> hitechWorkerContacts = m_AppEngine.FindHitechWorkersContacts();
+			FacebookObjectCollection<AppUser> hitechWorkerContacts = m_AppEngine.GetFriends();//FindHitechWorkersContacts();
 
-			foreach (AppUser currContact in hitechWorkerContacts)
+			listBoxJobs.Items.Clear();
+			flowLayoutPanelContactPhotos.Controls.Clear();
+
+			bool hasShownMessageBox = false;
+			foreach (AppUser currentContact in hitechWorkerContacts)
 			{
 				string contactFullName = "";
-				PictureWrapper contactPictureWrapper = new PictureWrapper(currContact.GetProfilePicture());
-				PictureBox contactPic = contactPictureWrapper.PictureBox;
-				contactFullName = string.Format("{0} {1}", currContact.GetFirstName(), currContact.GetLastName());
-				contactPic.Name = contactFullName;
-				contactPic.Click += new EventHandler(contactPic_Click);
-				flowLayoutPanelContactPhotos.Controls.Add(contactPic);
-				listBoxJobs.Items.Add(new ContactItem(new KeyValuePair<string, string>(contactFullName,
-					string.Format("{0} works at '{1}' ", contactFullName, currContact.GetWorkPlace().Name))));
+				string profilePictureURL = "";
+				string contactFirstName = "";
+				string contactLastName = "";
+
+				try
+				{
+					profilePictureURL = currentContact.GetProfilePicture();
+					contactFirstName = currentContact.GetFirstName();
+					contactLastName = currentContact.GetLastName();
+				}
+				catch (Exception ex)
+				{
+					if (!hasShownMessageBox)
+					{
+						MessageBox.Show(ex.Message);
+						hasShownMessageBox = true;
+					}
+				}
+				finally
+				{
+					PictureWrapper contactPictureWrapper = new PictureWrapper(profilePictureURL);
+					PictureBox contactPic = contactPictureWrapper.PictureBox;
+					contactFullName = string.Format("{0} {1}", contactFirstName, contactLastName);
+					contactPic.Name = contactFullName;
+					contactPic.Click += new EventHandler(contactPic_Click);
+					flowLayoutPanelContactPhotos.Controls.Add(contactPic);
+					listBoxJobs.Items.Add(new ContactItem(new KeyValuePair<string, string>(contactFullName,
+						string.Format("{0} works at", contactFullName/*, currentContact.GetWorkPlace().Name)*/))));
+				}
 			}
 
 			listBoxJobs.SelectedIndexChanged += new EventHandler(contactInfo_Click);
@@ -77,6 +102,7 @@ namespace MyFacebookApp.View
 						if (contactPicture.Name.Equals(contactName))
 						{
 							contactPicture.BorderStyle = BorderStyle.Fixed3D;
+							contactPicture.Focus();
 						}
 					}
 				}
@@ -107,7 +133,7 @@ namespace MyFacebookApp.View
 			}
 		}
 
-		class ContactItem
+		private class ContactItem
 		{
 			public KeyValuePair<string, string> Contact { get; private set; }
 			public ContactItem(KeyValuePair<string, string> i_Contact)

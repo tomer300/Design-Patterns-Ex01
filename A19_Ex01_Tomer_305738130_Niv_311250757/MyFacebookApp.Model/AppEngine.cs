@@ -9,15 +9,10 @@ using System.Windows.Forms;
 //Check all exceptions messages.
 //Check that all possible exception throwing are being used in try and catch!
 //Check that refering facebook item with details (!= null).
-
-//Check if able to create a function that handles creating a new picture box with width, height, async, sizemode.
 //every try and catch need to be inside of ui part to show a messagebox, need to do try and catch in engine only if we want to change ex message.
-//auto scroll to a picture in job screen
-//chanage all curr to current
-//change all functions to click insted of clicked
-//clear every flowlayout/listbox/items in every function start.
+
+//Fix job label position.
 //check if internal names are capital or not.
-//check match album showing, need to deal with invoke (we want to invoke only when in homapanel and its null).
 //App ID: 2246590548924227
 
 namespace MyFacebookApp.Model

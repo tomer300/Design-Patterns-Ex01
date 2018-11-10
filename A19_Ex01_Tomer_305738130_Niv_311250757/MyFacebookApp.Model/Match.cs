@@ -22,7 +22,7 @@ namespace MyFacebookApp.Model
 
 			foreach (AppUser currentPotentialMatch in r_UserFriends)
 			{
-				if (isUserWithinChosenAgeRange(currentPotentialMatch, i_AgeRange)/* && isUserSingle(currentPotentialMatch)*/)
+				if (isUserWithinChosenAgeRange(currentPotentialMatch, i_AgeRange) && isUserSingle(currentPotentialMatch))
 				{
 					if ((!i_ChoseBoys && !i_ChoseGirls) || (i_ChoseBoys && i_ChoseGirls))
 					{

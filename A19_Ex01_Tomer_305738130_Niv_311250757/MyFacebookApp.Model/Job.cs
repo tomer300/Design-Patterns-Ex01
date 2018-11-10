@@ -31,9 +31,9 @@ namespace MyFacebookApp.Model
 					XmlSerializer serializer = new XmlSerializer(typeof(List<T>));
 					List<T> listFromFile = serializer.Deserialize(reader) as List<T>;
 
-					foreach (T currMember in listFromFile)
+					foreach (T currentMember in listFromFile)
 					{
-						setFromFile.Add(currMember.ToString());
+						setFromFile.Add(currentMember.ToString());
 					}
 				}
 			}
@@ -44,24 +44,24 @@ namespace MyFacebookApp.Model
 		{
 			FacebookObjectCollection<AppUser> hitechWorkingContacts = new FacebookObjectCollection<AppUser>();
 
-			foreach (AppUser currFriend in r_UserFriends)
+			foreach (AppUser currentFriend in r_UserFriends)
 			{
-				if (worksAtKnownHitechCompany(currFriend) || worksAtPotentiallyHitechRelatedCompany(currFriend))
+				if (worksAtKnownHitechCompany(currentFriend) || worksAtPotentiallyHitechRelatedCompany(currentFriend))
 				{
-					hitechWorkingContacts.Add(currFriend);
+					hitechWorkingContacts.Add(currentFriend);
 				}
 			}
 			return hitechWorkingContacts;
 		}
 
-		private bool worksAtPotentiallyHitechRelatedCompany(AppUser currFriend)
+		private bool worksAtPotentiallyHitechRelatedCompany(AppUser i_CurrentFriend)
 		{
 			Page workPlace;
 			bool doesAtPotentiallyHitechRelatedCompany = false;
 
 			try
 			{
-				workPlace = currFriend.GetWorkPlace();
+				workPlace = i_CurrentFriend.GetWorkPlace();
 				foreach (string wordInDescriptionOfWorkPlace in workPlace.Description.Split(' '))
 				{
 					if (r_HitechKeyWords.Contains(wordInDescriptionOfWorkPlace))
@@ -79,13 +79,13 @@ namespace MyFacebookApp.Model
 		}
 
 
-		private bool worksAtKnownHitechCompany(AppUser currFriend)
+		private bool worksAtKnownHitechCompany(AppUser i_CurrentFriend)
 		{
 			bool doesWorksAtKnownHitechCompany = false;
 			string workPlace;
 			try
 			{
-				workPlace = currFriend.GetWorkPlace().Name.ToLower();
+				workPlace = i_CurrentFriend.GetWorkPlace().Name.ToLower();
 				if (r_HitechWorkPlaces.Contains(workPlace))
 				{
 					doesWorksAtKnownHitechCompany = true;

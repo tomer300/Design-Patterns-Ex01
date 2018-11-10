@@ -22,31 +22,33 @@ namespace MyFacebookApp.View
 		}
 		internal void displayAlbums()
 		{
+			bool hasShownMessageBox = false;
+
 			m_PanelToDisplayIn.Controls.Clear();
-			foreach (Album currAlbum in m_AlbumsOfUser)
+			foreach (Album currentAlbum in m_AlbumsOfUser)
 			{
-				if (currAlbum.Count > 0)
+				if (currentAlbum.Count > 0)
 				{
-					PictureWrapper currAlbumPictureWrapper = null;
-					PictureBox currAlbumPictureBox;
+					PictureWrapper currentAlbumPictureWrapper = null;
+					PictureBox currentAlbumPictureBox;
 
 					try
 					{
-						Photo albumCover = currAlbum.CoverPhoto;
-						currAlbumPictureWrapper = new PictureWrapper(albumCover.PictureNormalURL);
+						Photo albumCover = currentAlbum.CoverPhoto;
+						currentAlbumPictureWrapper = new PictureWrapper(albumCover.PictureNormalURL);
 					}
 					catch (Facebook.FacebookApiException ex)
 					{
-						currAlbumPictureWrapper = new PictureWrapper("");
+						currentAlbumPictureWrapper = new PictureWrapper("");
 					}
 					finally
 					{
-						currAlbumPictureBox = currAlbumPictureWrapper.PictureBox;
-						currAlbumPictureBox.Cursor = Cursors.Hand;
-						currAlbumPictureBox.MouseEnter += new EventHandler(album_Enter);
-						currAlbumPictureBox.MouseLeave += new EventHandler(album_Leave);
-						currAlbumPictureBox.Click += (sender, e) => album_Clicked(currAlbum);
-						m_PanelToDisplayIn.Controls.Add(currAlbumPictureBox);
+						currentAlbumPictureBox = currentAlbumPictureWrapper.PictureBox;
+						currentAlbumPictureBox.Cursor = Cursors.Hand;
+						currentAlbumPictureBox.MouseEnter += new EventHandler(album_Enter);
+						currentAlbumPictureBox.MouseLeave += new EventHandler(album_Leave);
+						currentAlbumPictureBox.Click += (sender, e) => album_Click(currentAlbum);
+						m_PanelToDisplayIn.Controls.Add(currentAlbumPictureBox);
 					}
 				}
 			}
@@ -68,18 +70,18 @@ namespace MyFacebookApp.View
 			}
 		}
 
-		private void album_Clicked(Album i_ClickedAlbum)
+		private void album_Click(Album i_ClickedAlbum)
 		{
 			m_PanelToDisplayIn.Controls.Clear();
 			if(m_PanelToDisplayIn.Parent is HomePanel)
 			{
 				AlbumClicked.Invoke();
 			}
-			foreach (Photo currPhoto in i_ClickedAlbum.Photos)
+			foreach (Photo currentPhoto in i_ClickedAlbum.Photos)
 			{
-				PictureWrapper currPictureWrapper = new PictureWrapper(currPhoto.PictureNormalURL);
-				PictureBox currPhotoPictureBox = currPictureWrapper.PictureBox;
-				m_PanelToDisplayIn.Controls.Add(currPhotoPictureBox);
+				PictureWrapper currentPictureWrapper = new PictureWrapper(currentPhoto.PictureNormalURL);
+				PictureBox currentPhotoPictureBox = currentPictureWrapper.PictureBox;
+				m_PanelToDisplayIn.Controls.Add(currentPhotoPictureBox);
 			}
 		}
 	}

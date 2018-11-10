@@ -41,11 +41,24 @@ namespace MyFacebookApp.View
 				panelUserDetails.Visible = false;
 				foreach (AppUser currentPotentialMatch in potentialMatches)
 				{
-					PictureWrapper matchPicWrapper = new PictureWrapper(currentPotentialMatch.GetProfilePicture());
-					PictureBox matchPic = matchPicWrapper.PictureBox;
-					matchPic.Cursor = Cursors.Hand;
-					matchPic.Click += (user, ex) => match_Click(currentPotentialMatch);
-					flowLayoutPanelMatchPictures.Controls.Add(matchPic);
+					PictureWrapper matchPicWrapper;
+					string profilePictureURL = "";
+					try
+					{
+						profilePictureURL = currentPotentialMatch.GetProfilePicture();
+					}
+					catch (Exception ex)
+					{
+						MessageBox.Show(ex.Message);
+					}
+					finally
+					{
+						matchPicWrapper = new PictureWrapper(profilePictureURL);
+						PictureBox matchPic = matchPicWrapper.PictureBox;
+						matchPic.Cursor = Cursors.Hand;
+						matchPic.Click += (user, ex) => match_Click(currentPotentialMatch);
+						flowLayoutPanelMatchPictures.Controls.Add(matchPic);
+					}
 				}
 
 				if(potentialMatches.Count == 0)
@@ -76,8 +89,30 @@ namespace MyFacebookApp.View
 			AlbumsManger matchAlbumsManager = new AlbumsManger(currentPotentialMatch.GetAlbums(), flowLayoutPanelMatchPictures);
 			matchAlbumsManager.displayAlbums();
 			panelUserDetails.Visible = true;
-			panelUserDetails.SetAllUserDetails(currentPotentialMatch.GetProfilePicture(), currentPotentialMatch.GetFirstName(), 
-			currentPotentialMatch.GetLastName(), currentPotentialMatch.GetCity(), currentPotentialMatch.GetBirthday());
+			string profilePictureURL = "";
+			string potentialMatchFirstName = "";
+			string potentialMatchLastName = "";
+			string potentialMatchCity = "";
+			string potentialMatchBirthday = "";
+
+			try
+			{
+				profilePictureURL = currentPotentialMatch.GetProfilePicture();
+				potentialMatchFirstName = currentPotentialMatch.GetFirstName();
+				potentialMatchLastName = currentPotentialMatch.GetLastName();
+				potentialMatchCity = currentPotentialMatch.GetCity();
+				potentialMatchBirthday = currentPotentialMatch.GetBirthday();
+			}
+			catch(Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+			finally
+			{
+				panelUserDetails.SetAllUserDetails(profilePictureURL, potentialMatch
+					,
+				potentialMatchLastName, potentialMatchCity, potentialMatchBirthday);
+			}
 		}
 
 	}

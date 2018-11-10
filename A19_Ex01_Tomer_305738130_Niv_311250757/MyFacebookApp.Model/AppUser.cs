@@ -17,21 +17,69 @@ namespace MyFacebookApp.Model
         }
 
 		public string GetProfilePicture()
-        {
-            return m_LoggedInUser.PictureNormalURL;
-        }
+		{
+			string pictureURL;
 
-		//TODO:
-		//Add (!= null || Exceptions When taking data form logged user).
+			try
+			{
+				pictureURL = m_LoggedInUser.PictureNormalURL;
+
+				if(pictureURL == null)
+				{
+					throw new ArgumentNullException("No profile picture.");
+				}
+			}
+			catch(Exception ex)
+			{
+				throw new Facebook.FacebookApiException("Couldn't fetch profile picture.");
+			}
+
+			return pictureURL;
+			
+        }
 
 		public string GetFirstName()
         {
-            return m_LoggedInUser.FirstName;
+			string firstName;
+
+			try
+			{
+				firstName = m_LoggedInUser.FirstName;
+
+				if (firstName == null)
+				{
+					throw new ArgumentNullException("No first name.");
+				}
+			}
+			catch (Exception ex)
+			{
+				throw new Facebook.FacebookApiException("Couldn't fetch first name.");
+			}
+
+            return firstName;
         }
+
 		public string GetLastName()
 		{
-			return m_LoggedInUser.LastName;
+			string lastName;
+
+			try
+			{
+				lastName = m_LoggedInUser.LastName;
+
+				if (lastName == null)
+				{
+					throw new ArgumentNullException("No last name.");
+				}
+			}
+			catch (Exception ex)
+			{
+				throw new Facebook.FacebookApiException("Couldn't fetch last name.");
+			}
+
+			return lastName;
 		}
+
 		public FacebookObjectCollection<Album> GetAlbums()
 		{
 			return m_LoggedInUser.Albums;
@@ -54,9 +102,9 @@ namespace MyFacebookApp.Model
 		internal FacebookObjectCollection<AppUser> GetFriends()
 		{
 			FacebookObjectCollection<AppUser> friends = new FacebookObjectCollection<AppUser>();
-			foreach (User currFriend in m_LoggedInUser.Friends)
+			foreach (User currentFriend in m_LoggedInUser.Friends)
 			{
-				friends.Add(new AppUser(currFriend));
+				friends.Add(new AppUser(currentFriend));
 			}
 
 			return friends;
