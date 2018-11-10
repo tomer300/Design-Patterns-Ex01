@@ -40,7 +40,6 @@
 			this.labelAppName = new System.Windows.Forms.Label();
 			this.panelShadowColorLight = new System.Windows.Forms.Panel();
 			this.panelShadowColorDark = new System.Windows.Forms.Panel();
-			this.panelMain.SuspendLayout();
 			this.panelMainButtons.SuspendLayout();
 			this.panelFaceBookTitle.SuspendLayout();
 			this.panelShadowColorLight.SuspendLayout();
@@ -64,11 +63,11 @@
 			this.logoutButton.UseVisualStyleBackColor = true;
 			this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
 			// 
-			// backToHomePageFromJobPanelButton
+			// backToHomeButton
 			// 
-			this.backToHomeButton.Location = new System.Drawing.Point(-1, 0);
-			this.backToHomeButton.Name = "backToHomePageFromJobPanelButton";
-			this.backToHomeButton.Size = new System.Drawing.Size(160, 55);
+			this.backToHomeButton.Location = new System.Drawing.Point(-1, 10);
+			this.backToHomeButton.Name = "backToHomeButton";
+			this.backToHomeButton.Size = new System.Drawing.Size(135, 35);
 			this.backToHomeButton.TabIndex = 2;
 			this.backToHomeButton.Text = "Back To Home";
 			this.backToHomeButton.UseVisualStyleBackColor = true;
@@ -119,7 +118,7 @@
 			this.loadDetailsAppButton.Name = "loadDetailsAppButton";
 			this.loadDetailsAppButton.Size = new System.Drawing.Size(216, 103);
 			this.loadDetailsAppButton.TabIndex = 6;
-			this.loadDetailsAppButton.Text = "Load Details";
+			this.loadDetailsAppButton.Text = "Load Profile";
 			this.loadDetailsAppButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
 			this.loadDetailsAppButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
 			this.loadDetailsAppButton.UseVisualStyleBackColor = true;
@@ -206,7 +205,6 @@
 			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "FacebookView";
 			this.Text = "Facebook App";
-			this.panelMain.ResumeLayout(false);
 			this.panelMainButtons.ResumeLayout(false);
 			this.panelFaceBookTitle.ResumeLayout(false);
 			this.panelFaceBookTitle.PerformLayout();

@@ -63,7 +63,9 @@ namespace MyFacebookApp.View
 		}
 
 		private void loadDetailsButton_Click(object sender, EventArgs e)
-		{ 
+		{
+			this.panelMain.Controls.Clear();
+			this.panelMain.Controls.Add(panelHomePage);
 			panelHomePage.ShowAllDetails();
 		}
 

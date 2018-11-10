@@ -24,36 +24,29 @@ namespace MyFacebookApp.View
 
 		public void AddLogoutButton(Button i_LogoutButton)
 		{
-			this.panelJob.Controls.Add(i_LogoutButton);
+			Controls.Add(i_LogoutButton);
 		}
 
 		public void AddBackToHomeButton(Button i_BackToHomeButton)
 		{
-			this.panelJob.Controls.Add(i_BackToHomeButton);
+			Controls.Add(i_BackToHomeButton);
 		}
 
 		private void findAJobButton_Click(object sender, EventArgs e)
 		{
-			//FacebookObjectCollection<AppUser> hitechWorkerContacts = m_AppEngine.FindHitechWorkersContacts();
-			FacebookObjectCollection<AppUser> hitechWorkerContacts = m_AppEngine.GetFriends();
+			FacebookObjectCollection<AppUser> hitechWorkerContacts = m_AppEngine.FindHitechWorkersContacts();
 
 			foreach (AppUser currContact in hitechWorkerContacts)
 			{
 				string contactFullName = "";
-				PictureBox contactPic = new PictureBox();
-
+				PictureWrapper contactPictureWrapper = new PictureWrapper(currContact.GetProfilePicture());
+				PictureBox contactPic = contactPictureWrapper.PictureBox;
 				contactFullName = string.Format("{0} {1}", currContact.GetFirstName(), currContact.GetLastName());
-				contactPic.Width = 100;
-				contactPic.Height = 100;
-				contactPic.LoadAsync(currContact.GetProfilePicture());
-				contactPic.SizeMode = PictureBoxSizeMode.StretchImage;
 				contactPic.Name = contactFullName;
 				contactPic.Click += new EventHandler(contactPic_Click);
 				flowLayoutPanelContactPhotos.Controls.Add(contactPic);
-				//listBoxJobs.Items.Add(new ContactItem(new KeyValuePair<string, string>(contactFullName,
-				//	string.Format("{0} works at '{1}' ", contactFullName, currContact.GetWorkPlace().Name))));
 				listBoxJobs.Items.Add(new ContactItem(new KeyValuePair<string, string>(contactFullName,
-					string.Format("{0} works at ", contactFullName))));
+					string.Format("{0} works at '{1}' ", contactFullName, currContact.GetWorkPlace().Name))));
 			}
 
 			listBoxJobs.SelectedIndexChanged += new EventHandler(contactInfo_Click);

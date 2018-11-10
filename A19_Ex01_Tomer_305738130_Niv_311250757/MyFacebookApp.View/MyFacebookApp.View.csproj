@@ -76,6 +76,7 @@
       <DependentUpon>HomePanel.cs</DependentUpon>
     </Compile>
     <Compile Include="ILogoutable.cs" />
+    <Compile Include="PictureWrapper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserDetailsPanel.cs">

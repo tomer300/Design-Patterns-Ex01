@@ -56,15 +56,23 @@ namespace MyFacebookApp.Model
 
 		private bool worksAtPotentiallyHitechRelatedCompany(AppUser currFriend)
 		{
-			Page workPlace = currFriend.GetWorkPlace();
+			Page workPlace;
 			bool doesAtPotentiallyHitechRelatedCompany = false;
 
-			foreach (string wordInDescriptionOfWorkPlace in workPlace.Description.Split(' '))
+			try
 			{
-				if (r_HitechKeyWords.Contains(wordInDescriptionOfWorkPlace))
+				workPlace = currFriend.GetWorkPlace();
+				foreach (string wordInDescriptionOfWorkPlace in workPlace.Description.Split(' '))
 				{
-					doesAtPotentiallyHitechRelatedCompany = true;
+					if (r_HitechKeyWords.Contains(wordInDescriptionOfWorkPlace))
+					{
+						doesAtPotentiallyHitechRelatedCompany = true;
+					}
 				}
+			}
+			catch(Exception ex)
+			{
+				throw new ArgumentNullException("Couldn't fetch work experience.");
 			}
 
 			return doesAtPotentiallyHitechRelatedCompany;
@@ -73,14 +81,20 @@ namespace MyFacebookApp.Model
 
 		private bool worksAtKnownHitechCompany(AppUser currFriend)
 		{
-			string workPlace = currFriend.GetWorkPlace().Name.ToLower();
 			bool doesWorksAtKnownHitechCompany = false;
-
-			if (r_HitechWorkPlaces.Contains(workPlace))
+			string workPlace;
+			try
 			{
-				doesWorksAtKnownHitechCompany = true;
+				workPlace = currFriend.GetWorkPlace().Name.ToLower();
+				if (r_HitechWorkPlaces.Contains(workPlace))
+				{
+					doesWorksAtKnownHitechCompany = true;
+				}
 			}
-
+			catch(Exception ex)
+			{
+				throw new ArgumentNullException("Couldn't fetch work experience.");
+			}
 			return doesWorksAtKnownHitechCompany;
 		}
 

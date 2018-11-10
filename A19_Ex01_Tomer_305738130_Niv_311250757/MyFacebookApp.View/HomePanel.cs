@@ -26,41 +26,7 @@ namespace MyFacebookApp.View
 		//TODO: Minimize function
 		private void friendsButton_Click(object sender, EventArgs e)
 		{
-			flowLayoutPanelFriends.Controls.Clear();
-			try
-			{
-				FacebookObjectCollection<AppUser> myFriends = m_AppEngine.GetFriends();
-				foreach (AppUser friend in myFriends)
-				{
-					PictureBox pic = new PictureBox();
-					pic.Width = 100;
-					pic.Height = 100;
-					pic.Load(friend.GetProfilePicture());
-					pic.Paint += new PaintEventHandler((sender1, e1) =>
-					{
-						e1.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-						string firstName = friend.GetFirstName();
-						string lastName = friend.GetLastName();
-						float fontSize = 12;
-						SizeF firstNameSize = e1.Graphics.MeasureString(firstName, new Font("Franklin Gothic Heavy", fontSize));
-						SizeF lastNameSize = e1.Graphics.MeasureString(lastName, new Font("Franklin Gothic Heavy", fontSize));
-						PointF locationToDraw = new PointF();
-						locationToDraw.X = (pic.Width / 2) - (firstNameSize.Width / 2);
-						locationToDraw.Y = (pic.Height / (float)1.4) - (firstNameSize.Height / (float)2);
-						e1.Graphics.DrawString(firstName, new Font("Franklin Gothic Heavy", fontSize), Brushes.White, locationToDraw);
-						locationToDraw.X = (pic.Width / 2) - (lastNameSize.Width / 2);
-						locationToDraw.Y = (pic.Height / (float)1.1) - (lastNameSize.Height / (float)2);
-						e1.Graphics.DrawString(lastName, new Font("Franklin Gothic Heavy", fontSize), Brushes.White, locationToDraw);
-
-					}); ;
-
-					flowLayoutPanelFriends.Controls.Add(pic);
-				}
-			}
-			catch (Exception exPosts)
-			{
-				MessageBox.Show(string.Format("Error! could'nt fetch posts - {0}.", exPosts.Message));
-			}
+			fetchFriends();
 		}
 
 		internal void ShowAllDetails()
@@ -70,10 +36,49 @@ namespace MyFacebookApp.View
 				displayAlbums();
 				fetchPosts();
 				fetchEvents();
+				fetchFriends();
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show(string.Format("Error! could'nt fetch information - {0}.", ex.Message));
+			}
+		}
+
+		private void fetchFriends()
+		{
+			flowLayoutPanelFriends.Controls.Clear();
+			try
+			{
+				FacebookObjectCollection<AppUser> myFriends = m_AppEngine.GetFriends();
+				foreach (AppUser friend in myFriends)
+				{
+					PictureWrapper friendPictureWrapper = new PictureWrapper(friend.GetProfilePicture());
+					PictureBox friendPicture = friendPictureWrapper.PictureBox;
+
+					friendPicture.Paint += new PaintEventHandler((sender1, e1) =>
+					{
+						e1.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+						string firstName = friend.GetFirstName();
+						string lastName = friend.GetLastName();
+						float fontSize = 12;
+						SizeF firstNameSize = e1.Graphics.MeasureString(firstName, new Font("Franklin Gothic Heavy", fontSize));
+						SizeF lastNameSize = e1.Graphics.MeasureString(lastName, new Font("Franklin Gothic Heavy", fontSize));
+						PointF locationToDraw = new PointF();
+						locationToDraw.X = (friendPicture.Width / 2) - (firstNameSize.Width / 2);
+						locationToDraw.Y = (friendPicture.Height / (float)1.4) - (firstNameSize.Height / (float)2);
+						e1.Graphics.DrawString(firstName, new Font("Franklin Gothic Heavy", fontSize), Brushes.White, locationToDraw);
+						locationToDraw.X = (friendPicture.Width / 2) - (lastNameSize.Width / 2);
+						locationToDraw.Y = (friendPicture.Height / (float)1.1) - (lastNameSize.Height / (float)2);
+						e1.Graphics.DrawString(lastName, new Font("Franklin Gothic Heavy", fontSize), Brushes.White, locationToDraw);
+
+					}); ;
+
+					flowLayoutPanelFriends.Controls.Add(friendPicture);
+				}
+			}
+			catch (Exception exPosts)
+			{
+				MessageBox.Show(string.Format("Error! could'nt fetch posts - {0}.", exPosts.Message));
 			}
 		}
 
@@ -177,11 +182,9 @@ namespace MyFacebookApp.View
 
 				if (currPost.Type == Post.eType.photo)
 				{
-					PictureBox postPicture = new PictureBox();
-					postPicture.Height = 100;
-					postPicture.Width = 100;
-					postPicture.LoadAsync(currPost.PictureURL);
-					postPicture.SizeMode = PictureBoxSizeMode.StretchImage;
+					PictureWrapper postPictureWrapper = new PictureWrapper(currPost.PictureURL);
+					PictureBox postPicture = postPictureWrapper.PictureBox;
+
 					tableLayoutPanelPosts.Controls.Add(postPicture);
 					isLegalPost = true;
 				}

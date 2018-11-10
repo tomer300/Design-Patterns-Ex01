@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using static FacebookWrapper.ObjectModel.User;
 
 namespace MyFacebookApp.Model
 {
@@ -36,10 +37,10 @@ namespace MyFacebookApp.Model
 			return m_LoggedInUser.Albums;
 		}
 
-		internal string GetGender()
+		internal eGender? GetGender()
 		{
 
-			return m_LoggedInUser.Gender.ToString();
+			return m_LoggedInUser.Gender;
 		}
 
 		internal FacebookObjectCollection<Event> GetEvents()
@@ -73,6 +74,11 @@ namespace MyFacebookApp.Model
 				}
 			}
 			return workPlace;
+		}
+
+		internal eRelationshipStatus? GetRelationshipStatus()
+		{
+			return m_LoggedInUser.RelationshipStatus;
 		}
 
 		public string GetCity()

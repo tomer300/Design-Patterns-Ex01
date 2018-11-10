@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using FacebookWrapper.ObjectModel;
 using System.ComponentModel;
+using static FacebookWrapper.ObjectModel.User;
 
 namespace MyFacebookApp.Model
 {
@@ -21,7 +22,7 @@ namespace MyFacebookApp.Model
 
 			foreach (AppUser currentPotentialMatch in r_UserFriends)
 			{
-				if (isUserWithinChosenAgeRange(currentPotentialMatch, i_AgeRange))
+				if (isUserWithinChosenAgeRange(currentPotentialMatch, i_AgeRange)/* && isUserSingle(currentPotentialMatch)*/)
 				{
 					if ((!i_ChoseBoys && !i_ChoseGirls) || (i_ChoseBoys && i_ChoseGirls))
 					{
@@ -29,19 +30,60 @@ namespace MyFacebookApp.Model
 					}
 					else
 					{
-						if (i_ChoseBoys && currentPotentialMatch.GetGender().Equals("male"))
+						eGender? userGender = currentPotentialMatch.GetGender();
+						if (userGender != null)
 						{
-							potentialMatches.Add(currentPotentialMatch);
-						}
-						else if (i_ChoseGirls && currentPotentialMatch.GetGender().Equals("female"))
-						{
-							potentialMatches.Add(currentPotentialMatch);
+							if (i_ChoseBoys && userGender == eGender.male)
+							{
+								potentialMatches.Add(currentPotentialMatch);
+							}
+							else if (i_ChoseGirls && userGender == eGender.female)
+							{
+								potentialMatches.Add(currentPotentialMatch);
+							}
 						}
 					}
 				}
 			}
 
 			return potentialMatches;
+		}
+
+		private bool isUserSingle(AppUser i_CurrentPotentialMatch)
+		{
+			bool isSingle = false;
+			try
+			{
+				eRelationshipStatus? userRelationshipStatus = i_CurrentPotentialMatch.GetRelationshipStatus();
+				if (userRelationshipStatus != null)
+				{
+					if(userIsReadyForRelationship(userRelationshipStatus))
+					{
+						isSingle = true;
+					}
+				}
+			}
+			catch(Exception ex)
+			{
+				throw new ArgumentNullException("Couldn't fetch user relationship status.");
+			}
+
+			return isSingle;
+		}
+
+		private bool userIsReadyForRelationship(eRelationshipStatus? i_UserRelationshipStatus)
+		{
+			bool isReadyForRelationship = false;
+
+			if(i_UserRelationshipStatus != eRelationshipStatus.InACivilUnion &&
+				i_UserRelationshipStatus != eRelationshipStatus.InADomesticPartnership &&
+				i_UserRelationshipStatus != eRelationshipStatus.InARelationship &&
+				i_UserRelationshipStatus != eRelationshipStatus.Married)
+			{
+				isReadyForRelationship = true;
+			}
+
+			return isReadyForRelationship;
 		}
 
 		private bool isUserWithinChosenAgeRange(AppUser i_User, string i_AgeRange)

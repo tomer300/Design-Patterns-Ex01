@@ -27,37 +27,28 @@ namespace MyFacebookApp.View
 			{
 				if (currAlbum.Count > 0)
 				{
-					PictureBox currAlbumPictureBox = new PictureBox();
-					currAlbumPictureBox.Height = 100;
-					currAlbumPictureBox.Width = 100;
-					currAlbumPictureBox.Cursor = Cursors.Hand;
-					currAlbumPictureBox.MouseEnter += new EventHandler(album_Enter);
-					currAlbumPictureBox.MouseLeave += new EventHandler(album_Leave);
+					PictureWrapper currAlbumPictureWrapper = null;
+					PictureBox currAlbumPictureBox;
+
 					try
 					{
-						currAlbumPictureBox.LoadAsync(currAlbum.CoverPhoto.PictureNormalURL);
+						Photo albumCover = currAlbum.CoverPhoto;
+						currAlbumPictureWrapper = new PictureWrapper(albumCover.PictureNormalURL);
 					}
-					catch(Facebook.FacebookApiException ex)
+					catch (Facebook.FacebookApiException ex)
 					{
-						currAlbumPictureBox.BackColor = System.Drawing.Color.Gray;
-						currAlbumPictureBox.Paint += new PaintEventHandler((sender, e) =>
-						{
-							e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-							float fontSize = 12;
-							string noPictureMessage= "No Picture";
-							SizeF noPictureMessageSize = e.Graphics.MeasureString(noPictureMessage, new Font("Franklin Gothic Heavy", fontSize));
-							PointF locationToDraw = new PointF();
-							locationToDraw.X = (currAlbumPictureBox.Width / 2) - (noPictureMessageSize.Width / 2);
-							locationToDraw.Y = (currAlbumPictureBox.Height / (float)1.4) - (noPictureMessageSize.Height / (float)2);
-							e.Graphics.DrawString(noPictureMessage, new Font("Franklin Gothic Heavy", fontSize), Brushes.White, locationToDraw);
-						}); ;
-
+						currAlbumPictureWrapper = new PictureWrapper("");
 					}
-					currAlbumPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-					currAlbumPictureBox.Click += (sender, e) => album_Clicked(currAlbum);
-					m_PanelToDisplayIn.Controls.Add(currAlbumPictureBox);
+					finally
+					{
+						currAlbumPictureBox = currAlbumPictureWrapper.PictureBox;
+						currAlbumPictureBox.Cursor = Cursors.Hand;
+						currAlbumPictureBox.MouseEnter += new EventHandler(album_Enter);
+						currAlbumPictureBox.MouseLeave += new EventHandler(album_Leave);
+						currAlbumPictureBox.Click += (sender, e) => album_Clicked(currAlbum);
+						m_PanelToDisplayIn.Controls.Add(currAlbumPictureBox);
+					}
 				}
-
 			}
 		}
 		private void album_Leave(object sender, EventArgs e)
@@ -80,14 +71,14 @@ namespace MyFacebookApp.View
 		private void album_Clicked(Album i_ClickedAlbum)
 		{
 			m_PanelToDisplayIn.Controls.Clear();
-			//AlbumClicked.Invoke();
+			if(m_PanelToDisplayIn.Parent is HomePanel)
+			{
+				AlbumClicked.Invoke();
+			}
 			foreach (Photo currPhoto in i_ClickedAlbum.Photos)
 			{
-				PictureBox currPhotoPictureBox = new PictureBox();
-				currPhotoPictureBox.Width = 100;
-				currPhotoPictureBox.Height = 100;
-				currPhotoPictureBox.LoadAsync(currPhoto.PictureNormalURL);
-				currPhotoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+				PictureWrapper currPictureWrapper = new PictureWrapper(currPhoto.PictureNormalURL);
+				PictureBox currPhotoPictureBox = currPictureWrapper.PictureBox;
 				m_PanelToDisplayIn.Controls.Add(currPhotoPictureBox);
 			}
 		}
