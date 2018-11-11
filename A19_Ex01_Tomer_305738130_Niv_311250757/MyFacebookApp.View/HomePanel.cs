@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using MyFacebookApp.Model;
+using System.Drawing.Drawing2D;
 
 namespace MyFacebookApp.View
 {
@@ -316,5 +317,8 @@ namespace MyFacebookApp.View
 		{
 			panelHomePageTop.Controls.Add(i_LogoutButton);
 		}
+
+		
+		
 	}
 }

@@ -44,6 +44,7 @@ namespace MyFacebookApp.View
 				m_AppEngine = m_FacebookManager.Login();
 				panelHomePage = new HomePanel(m_AppEngine);
 				panelHomePage.AddLogoutButton(logoutButton);
+				this.panelMain.Controls.Clear();
 				this.panelMain.Controls.Add(this.panelHomePage);
 				setAppButtonsEnabledStatus(true);
 				//Job stam = new Job();

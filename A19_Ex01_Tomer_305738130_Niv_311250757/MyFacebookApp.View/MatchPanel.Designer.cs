@@ -28,35 +28,15 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.panelUserDetails = new MyFacebookApp.View.UserDetailsPanel();
-			this.findMeAMatchButton = new System.Windows.Forms.Button();
 			this.flowLayoutPanelMatchPictures = new System.Windows.Forms.FlowLayoutPanel();
 			this.labelBetweenAges = new System.Windows.Forms.Label();
 			this.comboBoxAgeRanges = new System.Windows.Forms.ComboBox();
 			this.labelInterestedIn = new System.Windows.Forms.Label();
 			this.checkBoxBoys = new System.Windows.Forms.CheckBox();
 			this.checkBoxGirls = new System.Windows.Forms.CheckBox();
+			this.panelUserDetails = new MyFacebookApp.View.UserDetailsPanel();
+			this.findMeAMatchButton = new MyFacebookApp.View.RoundedButton();
 			this.SuspendLayout();
-			// 
-			// panelUserDetails
-			// 
-			this.panelUserDetails.Location = new System.Drawing.Point(348, 41);
-			this.panelUserDetails.Name = "panelUserDetails";
-			this.panelUserDetails.Size = new System.Drawing.Size(548, 130);
-			this.panelUserDetails.TabIndex = 15;
-			this.panelUserDetails.Visible = false;
-			// 
-			// findMeAMatchButton
-			// 
-			this.findMeAMatchButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.findMeAMatchButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
-			this.findMeAMatchButton.Location = new System.Drawing.Point(75, 248);
-			this.findMeAMatchButton.Name = "findMeAMatchButton";
-			this.findMeAMatchButton.Size = new System.Drawing.Size(209, 39);
-			this.findMeAMatchButton.TabIndex = 14;
-			this.findMeAMatchButton.Text = "Find me a match!";
-			this.findMeAMatchButton.UseVisualStyleBackColor = true;
-			this.findMeAMatchButton.Click += new System.EventHandler(this.findMeAMatchButton_Click);
 			// 
 			// flowLayoutPanelMatchPictures
 			// 
@@ -72,7 +52,7 @@
 			this.labelBetweenAges.AutoSize = true;
 			this.labelBetweenAges.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.labelBetweenAges.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
-			this.labelBetweenAges.Location = new System.Drawing.Point(71, 166);
+			this.labelBetweenAges.Location = new System.Drawing.Point(71, 161);
 			this.labelBetweenAges.Name = "labelBetweenAges";
 			this.labelBetweenAges.Size = new System.Drawing.Size(157, 23);
 			this.labelBetweenAges.TabIndex = 12;
@@ -92,7 +72,7 @@
             "41-45",
             "46-50",
             "50+"});
-			this.comboBoxAgeRanges.Location = new System.Drawing.Point(75, 201);
+			this.comboBoxAgeRanges.Location = new System.Drawing.Point(75, 194);
 			this.comboBoxAgeRanges.Name = "comboBoxAgeRanges";
 			this.comboBoxAgeRanges.Size = new System.Drawing.Size(208, 31);
 			this.comboBoxAgeRanges.TabIndex = 11;
@@ -133,6 +113,26 @@
 			this.checkBoxGirls.Text = "Girls";
 			this.checkBoxGirls.UseVisualStyleBackColor = true;
 			// 
+			// panelUserDetails
+			// 
+			this.panelUserDetails.Location = new System.Drawing.Point(348, 41);
+			this.panelUserDetails.Name = "panelUserDetails";
+			this.panelUserDetails.Size = new System.Drawing.Size(548, 130);
+			this.panelUserDetails.TabIndex = 15;
+			this.panelUserDetails.Visible = false;
+			// 
+			// findMeAMatchButton
+			// 
+			this.findMeAMatchButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.findMeAMatchButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
+			this.findMeAMatchButton.Location = new System.Drawing.Point(90, 235);
+			this.findMeAMatchButton.Name = "findMeAMatchButton";
+			this.findMeAMatchButton.Size = new System.Drawing.Size(163, 55);
+			this.findMeAMatchButton.TabIndex = 14;
+			this.findMeAMatchButton.Text = "Find me a match!";
+			this.findMeAMatchButton.UseVisualStyleBackColor = true;
+			this.findMeAMatchButton.Click += new System.EventHandler(this.findMeAMatchButton_Click);
+			// 
 			// MatchPanel
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -155,7 +155,7 @@
 		#endregion
 
 		private UserDetailsPanel panelUserDetails;
-		private System.Windows.Forms.Button findMeAMatchButton;
+		private RoundedButton findMeAMatchButton;
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelMatchPictures;
 		private System.Windows.Forms.Label labelBetweenAges;
 		private System.Windows.Forms.ComboBox comboBoxAgeRanges;

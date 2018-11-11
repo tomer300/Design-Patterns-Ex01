@@ -30,7 +30,7 @@
 		{
 			this.flowLayoutPanelContactPhotos = new System.Windows.Forms.FlowLayoutPanel();
 			this.listBoxJobs = new System.Windows.Forms.ListBox();
-			this.findAJobButton = new System.Windows.Forms.Button();
+			this.findAJobButton = new RoundedButton();
 			this.label1 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
@@ -100,7 +100,7 @@
 
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelContactPhotos;
 		private System.Windows.Forms.ListBox listBoxJobs;
-		private System.Windows.Forms.Button findAJobButton;
+		private RoundedButton findAJobButton;
 		private System.Windows.Forms.Label label1;
 	}
 }
