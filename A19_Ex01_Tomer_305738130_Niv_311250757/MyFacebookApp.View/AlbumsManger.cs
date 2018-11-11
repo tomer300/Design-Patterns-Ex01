@@ -23,26 +23,30 @@ namespace MyFacebookApp.View
 		internal void displayAlbums()
 		{
 			bool hasShownMessageBox = false;
-
+			string albumPictureURL = "";
 			m_PanelToDisplayIn.Controls.Clear();
 			foreach (Album currentAlbum in m_AlbumsOfUser)
 			{
 				if (currentAlbum.Count > 0)
 				{
-					PictureWrapper currentAlbumPictureWrapper = null;
+					PictureWrapper currentAlbumPictureWrapper;
 					PictureBox currentAlbumPictureBox;
 
 					try
 					{
-						Photo albumCover = currentAlbum.CoverPhoto;
-						currentAlbumPictureWrapper = new PictureWrapper(albumCover.PictureNormalURL);
+						albumPictureURL = currentAlbum.CoverPhoto.PictureNormalURL;
 					}
 					catch (Facebook.FacebookApiException ex)
 					{
-						currentAlbumPictureWrapper = new PictureWrapper("");
+						if (!hasShownMessageBox)
+						{
+							MessageBox.Show(ex.Message);
+							hasShownMessageBox = true;
+						}
 					}
 					finally
 					{
+						currentAlbumPictureWrapper = new PictureWrapper(albumPictureURL);
 						currentAlbumPictureBox = currentAlbumPictureWrapper.PictureBox;
 						currentAlbumPictureBox.Cursor = Cursors.Hand;
 						currentAlbumPictureBox.MouseEnter += new EventHandler(album_Enter);

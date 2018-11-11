@@ -51,6 +51,7 @@ namespace MyFacebookApp.Model
 			{
 				m_Job = new Job(m_LoggedUser.GetFriends());
 			}
+
 			return m_Job.FindHitechWorkerContacts();
 		}
 

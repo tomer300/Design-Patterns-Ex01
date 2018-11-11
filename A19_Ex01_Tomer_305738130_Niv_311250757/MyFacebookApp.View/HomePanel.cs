@@ -150,22 +150,36 @@ namespace MyFacebookApp.View
 		{
 			displayAlbums();
 		}
-
 		private void displayAlbums()
 		{
+			
 			if (m_AlbumsManager == null)
 			{
-				m_AlbumsManager = new AlbumsManger(m_AppEngine.GetAlbums(), flowLayoutPanelAlbums);
+				try
+				{
+					FacebookObjectCollection<Album> usersAlbums = m_AppEngine.GetAlbums();
+
+					if (usersAlbums != null)
+					{
+						m_AlbumsManager = new AlbumsManger(m_AppEngine.GetAlbums(), flowLayoutPanelAlbums);
+						m_AlbumsManager.AlbumClicked += albumsButtonChangeDescription;
+						m_AlbumsManager.displayAlbums();
+					}
+					else
+					{
+						MessageBox.Show("User has no albums.");
+					}
+
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show(ex.Message);
+				}
 			}
-			m_AlbumsManager.AlbumClicked += albumsButtonChangeDescription;
-			albumsButton.Text = "Albums";
-			try
+			else
 			{
+				albumsButton.Text = "Albums";
 				m_AlbumsManager.displayAlbums();
-			}
-			catch (Exception exAlbums)
-			{
-				MessageBox.Show(string.Format("Error! could'nt fetch albums - {0}.", exAlbums.Message));
 			}
 		}
 
@@ -189,19 +203,29 @@ namespace MyFacebookApp.View
 
 		private void fetchEvents()
 		{
-			FacebookObjectCollection<Event> allEvents = m_AppEngine.GetEvents();
+			FacebookObjectCollection<Event> allEvents;
 			listBoxEvents.Items.Clear();
-			listBoxEvents.DisplayMember = "Name";
-			foreach (Event fbEvent in allEvents)
+			try
 			{
-				listBoxEvents.Items.Add(fbEvent);
-			}
+				allEvents = m_AppEngine.GetEvents();
+				if(allEvents!=null && allEvents.Count>0)
+				{
+					listBoxEvents.DisplayMember = "Name";
+					foreach (Event fbEvent in allEvents)
+					{
+						listBoxEvents.Items.Add(fbEvent);
+					}
+				}
+				else
+				{
+					MessageBox.Show("No Events to retrieve :(");
 
-			if (allEvents.Count == 0)
+				}
+			}
+			catch(Exception ex)
 			{
-				MessageBox.Show("No Events to retrieve :(");
+				MessageBox.Show(ex.Message);
 			}
-
 		}
 
 		private void fetchPosts()

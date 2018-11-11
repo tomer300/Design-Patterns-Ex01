@@ -33,10 +33,12 @@ namespace MyFacebookApp.View
 
 		private void findMeAMatchButton_Click(object sender, EventArgs e)
 		{
-			if (checkedGenferPreference())
+			if (checkedGenderPreference())
 			{
 				FacebookObjectCollection<AppUser> potentialMatches = m_AppEngine.FindAMatch(checkBoxGirls.Checked, checkBoxBoys.Checked,
 					comboBoxAgeRanges.Items[comboBoxAgeRanges.SelectedIndex].ToString());
+				bool hasShownMessageBox = false;
+
 				flowLayoutPanelMatchPictures.Controls.Clear();
 				panelUserDetails.Visible = false;
 				foreach (AppUser currentPotentialMatch in potentialMatches)
@@ -49,7 +51,11 @@ namespace MyFacebookApp.View
 					}
 					catch (Exception ex)
 					{
-						MessageBox.Show(ex.Message);
+						if (!hasShownMessageBox)
+						{
+							MessageBox.Show(ex.Message);
+							hasShownMessageBox = true;
+						}
 					}
 					finally
 					{
@@ -72,7 +78,7 @@ namespace MyFacebookApp.View
 			}
 		}
 
-		private bool checkedGenferPreference()
+		private bool checkedGenderPreference()
 		{
 			bool choseGender = false;
 
@@ -84,11 +90,10 @@ namespace MyFacebookApp.View
 			return choseGender;
 		}
 
-		private void match_Click(AppUser currentPotentialMatch)
+		private void match_Click(AppUser i_PotentialMatch)
 		{
-			AlbumsManger matchAlbumsManager = new AlbumsManger(currentPotentialMatch.GetAlbums(), flowLayoutPanelMatchPictures);
-			matchAlbumsManager.displayAlbums();
-			panelUserDetails.Visible = true;
+			AlbumsManger matchAlbumsManager;
+			FacebookObjectCollection<Album> matchAlbums;
 			string profilePictureURL = "";
 			string potentialMatchFirstName = "";
 			string potentialMatchLastName = "";
@@ -97,11 +102,18 @@ namespace MyFacebookApp.View
 
 			try
 			{
-				profilePictureURL = currentPotentialMatch.GetProfilePicture();
-				potentialMatchFirstName = currentPotentialMatch.GetFirstName();
-				potentialMatchLastName = currentPotentialMatch.GetLastName();
-				potentialMatchCity = currentPotentialMatch.GetCity();
-				potentialMatchBirthday = currentPotentialMatch.GetBirthday();
+				matchAlbums = i_PotentialMatch.GetAlbums();
+				if(matchAlbums!=null)
+				{
+					matchAlbumsManager = new AlbumsManger(matchAlbums, flowLayoutPanelMatchPictures);
+					matchAlbumsManager.displayAlbums();
+				}	
+				
+				profilePictureURL = i_PotentialMatch.GetProfilePicture();
+				potentialMatchFirstName = i_PotentialMatch.GetFirstName();
+				potentialMatchLastName = i_PotentialMatch.GetLastName();
+				potentialMatchCity = i_PotentialMatch.GetCity();
+				potentialMatchBirthday = i_PotentialMatch.GetBirthday();
 			}
 			catch(Exception ex)
 			{
@@ -109,9 +121,9 @@ namespace MyFacebookApp.View
 			}
 			finally
 			{
-				panelUserDetails.SetAllUserDetails(profilePictureURL, potentialMatch
-					,
+				panelUserDetails.SetAllUserDetails(profilePictureURL, potentialMatchFirstName,
 				potentialMatchLastName, potentialMatchCity, potentialMatchBirthday);
+				panelUserDetails.Visible = true;
 			}
 		}
 

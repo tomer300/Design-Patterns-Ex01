@@ -82,18 +82,50 @@ namespace MyFacebookApp.Model
 
 		public FacebookObjectCollection<Album> GetAlbums()
 		{
-			return m_LoggedInUser.Albums;
+			FacebookObjectCollection<Album> albums;
+
+			try
+			{
+				albums = m_LoggedInUser.Albums;
+			}
+			catch (Exception ex)
+			{
+				throw new Facebook.FacebookApiException("Couldn't fetch albums.");
+			}
+
+			return albums;
 		}
 
 		internal eGender? GetGender()
 		{
+			eGender? usersGender;
+
+			try
+			{
+				usersGender = m_LoggedInUser.Gender;
+			}
+			catch (Exception ex)
+			{
+				throw new Facebook.FacebookApiException("Couldn't fetch gender.");
+			}
 
 			return m_LoggedInUser.Gender;
 		}
 
 		internal FacebookObjectCollection<Event> GetEvents()
 		{
-			return m_LoggedInUser.Events;
+			FacebookObjectCollection<Event> events;
+
+			try
+			{
+				events = m_LoggedInUser.Events;
+			}
+			catch (Exception ex)
+			{
+				throw new Facebook.FacebookApiException("Couldn't fetch events.");
+			}
+
+			return events;
 		}
 		internal FacebookObjectCollection<Post> GetPosts()
 		{
