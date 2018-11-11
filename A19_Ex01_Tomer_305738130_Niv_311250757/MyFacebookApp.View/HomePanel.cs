@@ -81,9 +81,9 @@ namespace MyFacebookApp.View
 					}
 				}
 			}
-			catch (Exception exPosts)
+			catch (Exception ex)
 			{
-				MessageBox.Show(string.Format("Error! could'nt fetch posts - {0}.", exPosts.Message));
+				MessageBox.Show(ex.Message);
 			}
 		}
 
@@ -128,12 +128,16 @@ namespace MyFacebookApp.View
 			string profilePictureURL = "";
 			string firstName = "";
 			string lastName = "";
+			string cityName = "";
+			string birthday = "";
 
 			try
 			{
 				profilePictureURL = m_AppEngine.GetProfilePicture();
 				firstName = m_AppEngine.GetFirstName();
 				lastName = m_AppEngine.GetLastName();
+				cityName = m_AppEngine.GetCity();
+				birthday = m_AppEngine.GetBirthday();
 			}
 			catch (Exception ex)
 			{
@@ -141,8 +145,7 @@ namespace MyFacebookApp.View
 			}
 			finally
 			{
-				panelUserDetails.SetAllUserDetails(profilePictureURL, firstName, lastName,
-				m_AppEngine.GetCity(), m_AppEngine.GetBirthday());
+				panelUserDetails.SetAllUserDetails(profilePictureURL, firstName, lastName, cityName, birthday);
 			}
 		}
 
@@ -230,50 +233,58 @@ namespace MyFacebookApp.View
 
 		private void fetchPosts()
 		{
-			FacebookObjectCollection<Post> allPosts = m_AppEngine.GetPosts();
+			FacebookObjectCollection<Post> allPosts;
+
 			tableLayoutPanelPosts.Controls.Clear();
 			tableLayoutPanelPosts.RowStyles.Clear();
-
-			foreach (Post currentPost in allPosts)
+			try
 			{
-				bool isLegalPost = false;
-				Label postDetails = new Label();
-				postDetails.Text = string.Format("Posted at: {0}{1}Post Type: {2}{3}"
-					, currentPost.CreatedTime.ToString(), Environment.NewLine, currentPost.Type, Environment.NewLine);
-				postDetails.AutoSize = true;
+				allPosts = m_AppEngine.GetPosts();
 
-				if(currentPost.Message != null)
+				foreach (Post currentPost in allPosts)
 				{
-					addPostData(currentPost.Message, ref isLegalPost);
-				}
-				if(currentPost.Caption != null)
-				{
-					addPostData(currentPost.Caption, ref isLegalPost);
-				}
-				
-				if (currentPost.Type == Post.eType.photo)
-				{
-					PictureWrapper postPictureWrapper = new PictureWrapper(currentPost.PictureURL);
-					PictureBox postPicture = postPictureWrapper.PictureBox;
+					bool isLegalPost = false;
+					Label postDetails = new Label();
+					postDetails.Text = string.Format("Posted at: {0}{1}Post Type: {2}{3}"
+						, currentPost.CreatedTime.ToString(), Environment.NewLine, currentPost.Type, Environment.NewLine);
+					postDetails.AutoSize = true;
 
-					tableLayoutPanelPosts.Controls.Add(postPicture);
-					isLegalPost = true;
-				}
+					if (currentPost.Message != null)
+					{
+						addPostData(currentPost.Message, ref isLegalPost);
+					}
+					if (currentPost.Caption != null)
+					{
+						addPostData(currentPost.Caption, ref isLegalPost);
+					}
 
-				if (isLegalPost == true)
-				{
-					tableLayoutPanelPosts.Controls.Add(postDetails);
-					Label seperator = new Label();
-					seperator.Text = " ";
-					seperator.AutoSize = true;
-					tableLayoutPanelPosts.Controls.Add(seperator);
-				}
+					if (currentPost.Type == Post.eType.photo)
+					{
+						PictureWrapper postPictureWrapper = new PictureWrapper(currentPost.PictureURL);
+						PictureBox postPicture = postPictureWrapper.PictureBox;
 
+						tableLayoutPanelPosts.Controls.Add(postPicture);
+						isLegalPost = true;
+					}
+
+					if (isLegalPost == true)
+					{
+						tableLayoutPanelPosts.Controls.Add(postDetails);
+						Label seperator = new Label();
+						seperator.Text = " ";
+						seperator.AutoSize = true;
+						tableLayoutPanelPosts.Controls.Add(seperator);
+
+					}
+					if (allPosts.Count == 0)
+					{
+						MessageBox.Show("No Posts to retrieve :(");
+					}
+				}
 			}
-			Console.WriteLine("num of rows: " + tableLayoutPanelPosts.RowCount);
-			if (allPosts.Count == 0)
+			catch (Exception ex)
 			{
-				MessageBox.Show("No Posts to retrieve :(");
+				MessageBox.Show(ex.Message);
 			}
 		}
 

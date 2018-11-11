@@ -34,44 +34,54 @@ namespace MyFacebookApp.View
 
 		private void findAJobButton_Click(object sender, EventArgs e)
 		{
-			FacebookObjectCollection<AppUser> hitechWorkerContacts = m_AppEngine.GetFriends();//FindHitechWorkersContacts();
+			FacebookObjectCollection<AppUser> hitechWorkerContacts;
+			bool hasShownMessageBox = false;
 
 			listBoxJobs.Items.Clear();
 			flowLayoutPanelContactPhotos.Controls.Clear();
-
-			bool hasShownMessageBox = false;
-			foreach (AppUser currentContact in hitechWorkerContacts)
+			try
 			{
-				string contactFullName = "";
-				string profilePictureURL = "";
-				string contactFirstName = "";
-				string contactLastName = "";
+				hitechWorkerContacts = m_AppEngine.FindHitechWorkersContacts();
 
-				try
+
+				foreach (AppUser currentContact in hitechWorkerContacts)
 				{
-					profilePictureURL = currentContact.GetProfilePicture();
-					contactFirstName = currentContact.GetFirstName();
-					contactLastName = currentContact.GetLastName();
-				}
-				catch (Exception ex)
-				{
-					if (!hasShownMessageBox)
+					string contactFullName = "";
+					string profilePictureURL = "";
+					string contactFirstName = "";
+					string contactLastName = "";
+					string workPlace = "";
+					try
 					{
-						MessageBox.Show(ex.Message);
-						hasShownMessageBox = true;
+						profilePictureURL = currentContact.GetProfilePicture();
+						contactFirstName = currentContact.GetFirstName();
+						contactLastName = currentContact.GetLastName();
+						workPlace = currentContact.GetWorkPlace().Name;
+					}
+					catch (Exception ex)
+					{
+						if (!hasShownMessageBox)
+						{
+							MessageBox.Show(ex.Message);
+							hasShownMessageBox = true;
+						}
+					}
+					finally
+					{
+						PictureWrapper contactPictureWrapper = new PictureWrapper(profilePictureURL);
+						PictureBox contactPic = contactPictureWrapper.PictureBox;
+						contactFullName = string.Format("{0} {1}", contactFirstName, contactLastName);
+						contactPic.Name = contactFullName;
+						contactPic.Click += new EventHandler(contactPic_Click);
+						flowLayoutPanelContactPhotos.Controls.Add(contactPic);
+						listBoxJobs.Items.Add(new ContactItem(new KeyValuePair<string, string>(contactFullName,
+							string.Format("{0} works at", contactFullName, workPlace))));
 					}
 				}
-				finally
-				{
-					PictureWrapper contactPictureWrapper = new PictureWrapper(profilePictureURL);
-					PictureBox contactPic = contactPictureWrapper.PictureBox;
-					contactFullName = string.Format("{0} {1}", contactFirstName, contactLastName);
-					contactPic.Name = contactFullName;
-					contactPic.Click += new EventHandler(contactPic_Click);
-					flowLayoutPanelContactPhotos.Controls.Add(contactPic);
-					listBoxJobs.Items.Add(new ContactItem(new KeyValuePair<string, string>(contactFullName,
-						string.Format("{0} works at", contactFullName/*, currentContact.GetWorkPlace().Name)*/))));
-				}
+			}
+			catch(Exception ex)
+			{
+				MessageBox.Show(ex.Message);
 			}
 
 			listBoxJobs.SelectedIndexChanged += new EventHandler(contactInfo_Click);

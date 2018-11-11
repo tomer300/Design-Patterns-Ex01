@@ -65,7 +65,7 @@ namespace MyFacebookApp.Model
 			}
 			catch(Exception ex)
 			{
-				throw new ArgumentNullException("Couldn't fetch user relationship status.");
+				throw new Facebook.FacebookApiException(ex.Message);
 			}
 
 			return isSingle;
@@ -124,8 +124,10 @@ namespace MyFacebookApp.Model
 			}
 			catch (Exception ex)
 			{
-				return iswithinRange;
+				//since isUserWithinChosenAgeRange is being used within a foreach loop we chose that if someone has no birthday he just wont
+				//be included as a match option.
 			}
+
 			return iswithinRange;
 
 		}

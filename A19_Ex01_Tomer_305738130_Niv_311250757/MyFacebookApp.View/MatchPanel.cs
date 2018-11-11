@@ -35,42 +35,50 @@ namespace MyFacebookApp.View
 		{
 			if (checkedGenderPreference())
 			{
-				FacebookObjectCollection<AppUser> potentialMatches = m_AppEngine.FindAMatch(checkBoxGirls.Checked, checkBoxBoys.Checked,
-					comboBoxAgeRanges.Items[comboBoxAgeRanges.SelectedIndex].ToString());
+				FacebookObjectCollection<AppUser> potentialMatches;
 				bool hasShownMessageBox = false;
-
 				flowLayoutPanelMatchPictures.Controls.Clear();
 				panelUserDetails.Visible = false;
-				foreach (AppUser currentPotentialMatch in potentialMatches)
+				try
 				{
-					PictureWrapper matchPicWrapper;
-					string profilePictureURL = "";
-					try
+					potentialMatches = m_AppEngine.FindAMatch(checkBoxGirls.Checked, checkBoxBoys.Checked,
+						comboBoxAgeRanges.Items[comboBoxAgeRanges.SelectedIndex].ToString());
+					foreach (AppUser currentPotentialMatch in potentialMatches)
 					{
-						profilePictureURL = currentPotentialMatch.GetProfilePicture();
-					}
-					catch (Exception ex)
-					{
-						if (!hasShownMessageBox)
+						PictureWrapper matchPicWrapper;
+						string profilePictureURL = "";
+						try
 						{
-							MessageBox.Show(ex.Message);
-							hasShownMessageBox = true;
+							profilePictureURL = currentPotentialMatch.GetProfilePicture();
+						}
+						catch (Exception ex)
+						{
+							if (!hasShownMessageBox)
+							{
+								MessageBox.Show(ex.Message);
+								hasShownMessageBox = true;
+							}
+						}
+						finally
+						{
+							matchPicWrapper = new PictureWrapper(profilePictureURL);
+							PictureBox matchPic = matchPicWrapper.PictureBox;
+							matchPic.Cursor = Cursors.Hand;
+							matchPic.Click += (user, ex) => match_Click(currentPotentialMatch);
+							flowLayoutPanelMatchPictures.Controls.Add(matchPic);
 						}
 					}
-					finally
+
+					if (potentialMatches.Count == 0)
 					{
-						matchPicWrapper = new PictureWrapper(profilePictureURL);
-						PictureBox matchPic = matchPicWrapper.PictureBox;
-						matchPic.Cursor = Cursors.Hand;
-						matchPic.Click += (user, ex) => match_Click(currentPotentialMatch);
-						flowLayoutPanelMatchPictures.Controls.Add(matchPic);
+						MessageBox.Show("No love for you today :(");
 					}
 				}
-
-				if(potentialMatches.Count == 0)
+				catch(Exception ex)
 				{
-					MessageBox.Show("No love for you today :(");
+					MessageBox.Show(ex.Message);
 				}
+				
 			}
 			else
 			{

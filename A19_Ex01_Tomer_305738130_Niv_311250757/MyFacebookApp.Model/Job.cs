@@ -72,7 +72,7 @@ namespace MyFacebookApp.Model
 			}
 			catch(Exception ex)
 			{
-				throw new ArgumentNullException("Couldn't fetch work experience.");
+				throw new Facebook.FacebookApiException(ex.Message);
 			}
 
 			return doesAtPotentiallyHitechRelatedCompany;
@@ -93,7 +93,7 @@ namespace MyFacebookApp.Model
 			}
 			catch(Exception ex)
 			{
-				throw new ArgumentNullException("Couldn't fetch work experience.");
+				throw new Facebook.FacebookApiException("Couldn't fetch work experience."); 
 			}
 			return doesWorksAtKnownHitechCompany;
 		}

@@ -23,20 +23,47 @@ namespace MyFacebookApp.Model
 			try
 			{
 				pictureURL = m_LoggedInUser.PictureNormalURL;
-
-				if(pictureURL == null)
-				{
-					throw new ArgumentNullException("No profile picture.");
-				}
 			}
 			catch(Exception ex)
 			{
-				throw new Facebook.FacebookApiException("Couldn't fetch profile picture.");
+				throw new Facebook.FacebookApiException("Couldn't fetch user's profile picture.");
 			}
 
 			return pictureURL;
 			
         }
+
+		public string GetCity()
+		{
+			string cityName;
+
+			try
+			{
+				cityName = m_LoggedInUser.Location.Name;
+			}
+			catch (Exception ex)
+			{
+				throw new Facebook.FacebookApiException("Couldn't fetch user's city.");
+			}
+
+			return cityName;
+		}
+
+		public string GetBirthday()
+		{
+			string birthday;
+
+			try
+			{
+				birthday = m_LoggedInUser.Birthday;
+			}
+			catch (Exception ex)
+			{
+				throw new Facebook.FacebookApiException("Couldn't fetch user's birthday.");
+			}
+
+			return birthday;
+		}
 
 		public string GetFirstName()
         {
@@ -53,7 +80,7 @@ namespace MyFacebookApp.Model
 			}
 			catch (Exception ex)
 			{
-				throw new Facebook.FacebookApiException("Couldn't fetch first name.");
+				throw new Facebook.FacebookApiException("Couldn't fetch user's first name.");
 			}
 
             return firstName;
@@ -66,15 +93,10 @@ namespace MyFacebookApp.Model
 			try
 			{
 				lastName = m_LoggedInUser.LastName;
-
-				if (lastName == null)
-				{
-					throw new ArgumentNullException("No last name.");
-				}
 			}
 			catch (Exception ex)
 			{
-				throw new Facebook.FacebookApiException("Couldn't fetch last name.");
+				throw new Facebook.FacebookApiException("Couldn't fetch user's last name.");
 			}
 
 			return lastName;
@@ -90,7 +112,7 @@ namespace MyFacebookApp.Model
 			}
 			catch (Exception ex)
 			{
-				throw new Facebook.FacebookApiException("Couldn't fetch albums.");
+				throw new Facebook.FacebookApiException("Couldn't fetch user's albums.");
 			}
 
 			return albums;
@@ -106,7 +128,7 @@ namespace MyFacebookApp.Model
 			}
 			catch (Exception ex)
 			{
-				throw new Facebook.FacebookApiException("Couldn't fetch gender.");
+				throw new Facebook.FacebookApiException("Couldn't fetch user's gender.");
 			}
 
 			return m_LoggedInUser.Gender;
@@ -122,22 +144,44 @@ namespace MyFacebookApp.Model
 			}
 			catch (Exception ex)
 			{
-				throw new Facebook.FacebookApiException("Couldn't fetch events.");
+				throw new Facebook.FacebookApiException("Couldn't fetch user's events.");
 			}
 
 			return events;
 		}
 		internal FacebookObjectCollection<Post> GetPosts()
 		{
-			return m_LoggedInUser.Posts;
+			FacebookObjectCollection<Post> posts;
+
+			try
+			{
+				posts = m_LoggedInUser.Posts;
+			}
+			catch (Exception ex)
+			{
+				throw new Facebook.FacebookApiException("Couldn't fetch user's posts.");
+			}
+
+			return posts;
 		}
 		internal FacebookObjectCollection<AppUser> GetFriends()
 		{
 			FacebookObjectCollection<AppUser> friends = new FacebookObjectCollection<AppUser>();
-			foreach (User currentFriend in m_LoggedInUser.Friends)
+			FacebookObjectCollection<User> userFriends;
+
+			try
 			{
-				friends.Add(new AppUser(currentFriend));
+				userFriends = m_LoggedInUser.Friends;
+				foreach (User currentFriend in userFriends)
+				{
+					friends.Add(new AppUser(currentFriend));
+				}
 			}
+			catch(Exception ex)
+			{
+				throw new Facebook.FacebookApiException("Couldn't fetch user's friends.");
+			}
+		
 
 			return friends;
 		}
@@ -145,30 +189,41 @@ namespace MyFacebookApp.Model
 		public Page GetWorkPlace()
 		{
 			Page workPlace = null;
+			WorkExperience[] allWorks;
 
-			if (m_LoggedInUser.WorkExperiences != null)
+			try
 			{
-				if (m_LoggedInUser.WorkExperiences[m_LoggedInUser.WorkExperiences.Length - 1] != null)
+				allWorks = m_LoggedInUser.WorkExperiences;
+				if(allWorks!=null && allWorks.Length>0)
 				{
-					workPlace = m_LoggedInUser.WorkExperiences[m_LoggedInUser.WorkExperiences.Length - 1].Employer;
+					if(m_LoggedInUser.WorkExperiences[m_LoggedInUser.WorkExperiences.Length - 1]!= null)
+					{
+						workPlace = m_LoggedInUser.WorkExperiences[m_LoggedInUser.WorkExperiences.Length - 1].Employer;
+					}
 				}
 			}
+			catch (Exception ex)
+			{
+				throw new Facebook.FacebookApiException("Couldn't fetch user's work experience.");
+			}
+
+
 			return workPlace;
 		}
 
 		internal eRelationshipStatus? GetRelationshipStatus()
 		{
+			eRelationshipStatus? userRelationshipStatus;
+			try
+			{
+				userRelationshipStatus = m_LoggedInUser.RelationshipStatus;
+			}
+			catch (Exception ex)
+			{
+				throw new Facebook.FacebookApiException("Couldn't fetch user's relationship status.");
+			}
+
 			return m_LoggedInUser.RelationshipStatus;
-		}
-
-		public string GetCity()
-		{
-			return m_LoggedInUser.Location.Name;
-		}
-
-		public string GetBirthday()
-		{
-			return m_LoggedInUser.Birthday;
 		}
 	}
 }
