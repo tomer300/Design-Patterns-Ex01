@@ -24,7 +24,7 @@ namespace MyFacebookApp.Model
 			{
 				pictureURL = m_LoggedInUser.PictureNormalURL;
 			}
-			catch(Exception ex)
+			catch(Exception)
 			{
 				throw new Facebook.FacebookApiException("Couldn't fetch user's profile picture.");
 			}
@@ -41,7 +41,7 @@ namespace MyFacebookApp.Model
 			{
 				cityName = m_LoggedInUser.Location.Name;
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				throw new Facebook.FacebookApiException("Couldn't fetch user's city.");
 			}
@@ -57,7 +57,7 @@ namespace MyFacebookApp.Model
 			{
 				birthday = m_LoggedInUser.Birthday;
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				throw new Facebook.FacebookApiException("Couldn't fetch user's birthday.");
 			}
@@ -78,7 +78,7 @@ namespace MyFacebookApp.Model
 					throw new ArgumentNullException("No first name.");
 				}
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				throw new Facebook.FacebookApiException("Couldn't fetch user's first name.");
 			}
@@ -94,7 +94,7 @@ namespace MyFacebookApp.Model
 			{
 				lastName = m_LoggedInUser.LastName;
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				throw new Facebook.FacebookApiException("Couldn't fetch user's last name.");
 			}
@@ -110,7 +110,7 @@ namespace MyFacebookApp.Model
 			{
 				albums = m_LoggedInUser.Albums;
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				throw new Facebook.FacebookApiException("Couldn't fetch user's albums.");
 			}
@@ -126,7 +126,7 @@ namespace MyFacebookApp.Model
 			{
 				usersGender = m_LoggedInUser.Gender;
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				throw new Facebook.FacebookApiException("Couldn't fetch user's gender.");
 			}
@@ -142,7 +142,7 @@ namespace MyFacebookApp.Model
 			{
 				events = m_LoggedInUser.Events;
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				throw new Facebook.FacebookApiException("Couldn't fetch user's events.");
 			}
@@ -157,7 +157,7 @@ namespace MyFacebookApp.Model
 			{
 				posts = m_LoggedInUser.Posts;
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				throw new Facebook.FacebookApiException("Couldn't fetch user's posts.");
 			}
@@ -177,7 +177,7 @@ namespace MyFacebookApp.Model
 					friends.Add(new AppUser(currentFriend));
 				}
 			}
-			catch(Exception ex)
+			catch(Exception)
 			{
 				throw new Facebook.FacebookApiException("Couldn't fetch user's friends.");
 			}
@@ -202,7 +202,7 @@ namespace MyFacebookApp.Model
 					}
 				}
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				throw new Facebook.FacebookApiException("Couldn't fetch user's work experience.");
 			}
@@ -218,7 +218,7 @@ namespace MyFacebookApp.Model
 			{
 				userRelationshipStatus = m_LoggedInUser.RelationshipStatus;
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				throw new Facebook.FacebookApiException("Couldn't fetch user's relationship status.");
 			}

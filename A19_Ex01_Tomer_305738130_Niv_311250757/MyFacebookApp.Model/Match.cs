@@ -122,7 +122,7 @@ namespace MyFacebookApp.Model
 
 				}
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				//since isUserWithinChosenAgeRange is being used within a foreach loop we chose that if someone has no birthday he just wont
 				//be included as a match option.
@@ -151,9 +151,9 @@ namespace MyFacebookApp.Model
 						age--;
 					}
 				}
-				catch(Exception ex)
+				catch(Exception)
 				{
-					throw new Exception("Cannot parse in calculate age");
+					throw new Exception("Cannot parse inserted birthday in calculate age");
 				}
 			}
 			else

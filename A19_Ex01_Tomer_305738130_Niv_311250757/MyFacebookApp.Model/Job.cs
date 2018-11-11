@@ -91,7 +91,7 @@ namespace MyFacebookApp.Model
 					doesWorksAtKnownHitechCompany = true;
 				}
 			}
-			catch(Exception ex)
+			catch(Exception)
 			{
 				throw new Facebook.FacebookApiException("Couldn't fetch work experience."); 
 			}
