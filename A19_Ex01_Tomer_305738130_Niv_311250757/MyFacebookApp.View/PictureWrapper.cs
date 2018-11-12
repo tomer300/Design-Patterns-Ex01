@@ -16,7 +16,7 @@ namespace MyFacebookApp.View
 			PictureBox = new PictureBox();
 			PictureBox.Height = 100;
 			PictureBox.Width = 100;
-			if (i_PictureURL.Length > 0)
+			if (!string.IsNullOrEmpty(i_PictureURL))
 			{
 				PictureBox.LoadAsync(i_PictureURL);
 				PictureBox.SizeMode = PictureBoxSizeMode.StretchImage;

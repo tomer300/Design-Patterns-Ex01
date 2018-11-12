@@ -40,6 +40,7 @@
 			// 
 			// flowLayoutPanelMatchPictures
 			// 
+			this.flowLayoutPanelMatchPictures.AutoScroll = true;
 			this.flowLayoutPanelMatchPictures.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.flowLayoutPanelMatchPictures.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
 			this.flowLayoutPanelMatchPictures.Location = new System.Drawing.Point(14, 299);
@@ -52,7 +53,7 @@
 			this.labelBetweenAges.AutoSize = true;
 			this.labelBetweenAges.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.labelBetweenAges.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
-			this.labelBetweenAges.Location = new System.Drawing.Point(71, 161);
+			this.labelBetweenAges.Location = new System.Drawing.Point(71, 165);
 			this.labelBetweenAges.Name = "labelBetweenAges";
 			this.labelBetweenAges.Size = new System.Drawing.Size(157, 23);
 			this.labelBetweenAges.TabIndex = 12;
@@ -72,7 +73,7 @@
             "41-45",
             "46-50",
             "50+"});
-			this.comboBoxAgeRanges.Location = new System.Drawing.Point(75, 194);
+			this.comboBoxAgeRanges.Location = new System.Drawing.Point(75, 198);
 			this.comboBoxAgeRanges.Name = "comboBoxAgeRanges";
 			this.comboBoxAgeRanges.Size = new System.Drawing.Size(208, 31);
 			this.comboBoxAgeRanges.TabIndex = 11;
@@ -83,7 +84,7 @@
 			this.labelInterestedIn.AutoSize = true;
 			this.labelInterestedIn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.labelInterestedIn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
-			this.labelInterestedIn.Location = new System.Drawing.Point(71, 58);
+			this.labelInterestedIn.Location = new System.Drawing.Point(71, 62);
 			this.labelInterestedIn.Name = "labelInterestedIn";
 			this.labelInterestedIn.Size = new System.Drawing.Size(136, 23);
 			this.labelInterestedIn.TabIndex = 10;
@@ -94,7 +95,7 @@
 			this.checkBoxBoys.AutoSize = true;
 			this.checkBoxBoys.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.checkBoxBoys.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
-			this.checkBoxBoys.Location = new System.Drawing.Point(75, 126);
+			this.checkBoxBoys.Location = new System.Drawing.Point(75, 130);
 			this.checkBoxBoys.Name = "checkBoxBoys";
 			this.checkBoxBoys.Size = new System.Drawing.Size(75, 27);
 			this.checkBoxBoys.TabIndex = 9;
@@ -106,7 +107,7 @@
 			this.checkBoxGirls.AutoSize = true;
 			this.checkBoxGirls.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.checkBoxGirls.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
-			this.checkBoxGirls.Location = new System.Drawing.Point(75, 93);
+			this.checkBoxGirls.Location = new System.Drawing.Point(75, 97);
 			this.checkBoxGirls.Name = "checkBoxGirls";
 			this.checkBoxGirls.Size = new System.Drawing.Size(71, 27);
 			this.checkBoxGirls.TabIndex = 8;
@@ -115,7 +116,7 @@
 			// 
 			// panelUserDetails
 			// 
-			this.panelUserDetails.Location = new System.Drawing.Point(348, 41);
+			this.panelUserDetails.Location = new System.Drawing.Point(345, 45);
 			this.panelUserDetails.Name = "panelUserDetails";
 			this.panelUserDetails.Size = new System.Drawing.Size(548, 130);
 			this.panelUserDetails.TabIndex = 15;

@@ -52,7 +52,7 @@ namespace MyFacebookApp.Model
 				m_Job = new Job(m_LoggedUser.GetFriends());
 			}
 
-			return m_Job.FindHitechWorkerContacts();
+			return m_Job.FindHitechWorkersContacts();
 		}
 
 		public FacebookObjectCollection<Event> GetEvents()
@@ -89,3 +89,4 @@ namespace MyFacebookApp.Model
 		}
 	}
 }
+//fix catch insined forloop in math and job

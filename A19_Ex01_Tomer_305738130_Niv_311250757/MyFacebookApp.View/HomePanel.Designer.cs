@@ -30,7 +30,6 @@
 		{
 			this.flowLayoutPanelFriends = new System.Windows.Forms.FlowLayoutPanel();
 			this.tableLayoutPanelPosts = new System.Windows.Forms.TableLayoutPanel();
-			this.friendsButton = new MyFacebookApp.View.RoundedButton();
 			this.postsButton = new MyFacebookApp.View.RoundedButton();
 			this.eventsButton = new MyFacebookApp.View.RoundedButton();
 			this.albumsButton = new MyFacebookApp.View.RoundedButton();
@@ -39,6 +38,7 @@
 			this.panelHomePageTop = new System.Windows.Forms.Panel();
 			this.panelUserDetails = new MyFacebookApp.View.UserDetailsPanel();
 			this.flowLayoutPanelBorderPosts = new System.Windows.Forms.FlowLayoutPanel();
+			this.friendsButton = new MyFacebookApp.View.RoundedButton();
 			this.panelHomePageTop.SuspendLayout();
 			this.flowLayoutPanelBorderPosts.SuspendLayout();
 			this.SuspendLayout();
@@ -65,21 +65,8 @@
 			this.tableLayoutPanelPosts.Name = "tableLayoutPanelPosts";
 			this.tableLayoutPanelPosts.RowCount = 1;
 			this.tableLayoutPanelPosts.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanelPosts.Size = new System.Drawing.Size(450, 132);
+			this.tableLayoutPanelPosts.Size = new System.Drawing.Size(450, 133);
 			this.tableLayoutPanelPosts.TabIndex = 31;
-			// 
-			// friendsButton
-			// 
-			this.friendsButton.AutoSize = true;
-			this.friendsButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.friendsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
-			this.friendsButton.Location = new System.Drawing.Point(479, 143);
-			this.friendsButton.Name = "friendsButton";
-			this.friendsButton.Size = new System.Drawing.Size(130, 40);
-			this.friendsButton.TabIndex = 32;
-			this.friendsButton.Text = "Friends";
-			this.friendsButton.UseVisualStyleBackColor = true;
-			this.friendsButton.Click += new System.EventHandler(this.friendsButton_Click);
 			// 
 			// postsButton
 			// 
@@ -171,6 +158,19 @@
 			this.flowLayoutPanelBorderPosts.Size = new System.Drawing.Size(458, 140);
 			this.flowLayoutPanelBorderPosts.TabIndex = 27;
 			// 
+			// friendsButton
+			// 
+			this.friendsButton.AutoSize = true;
+			this.friendsButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.friendsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
+			this.friendsButton.Location = new System.Drawing.Point(479, 143);
+			this.friendsButton.Name = "friendsButton";
+			this.friendsButton.Size = new System.Drawing.Size(130, 40);
+			this.friendsButton.TabIndex = 32;
+			this.friendsButton.Text = "Friends";
+			this.friendsButton.UseVisualStyleBackColor = true;
+			this.friendsButton.Click += new System.EventHandler(this.friendsButton_Click);
+			// 
 			// HomePanel
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -198,7 +198,6 @@
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelFriends;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanelPosts;
 		private System.Windows.Forms.ListBox listBoxEvents;
-		private RoundedButton friendsButton;
 		private RoundedButton postsButton;
 		private RoundedButton eventsButton;
 		private RoundedButton albumsButton;
@@ -206,5 +205,6 @@
 		private System.Windows.Forms.Panel panelHomePageTop;
 		private UserDetailsPanel panelUserDetails;
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelBorderPosts;
+		private RoundedButton friendsButton;
 	}
 }

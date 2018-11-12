@@ -19,31 +19,43 @@ namespace MyFacebookApp.Model
 		internal FacebookObjectCollection<AppUser> FindAMatch(bool i_ChoseGirls, bool i_ChoseBoys, string i_AgeRange)
 		{
 			FacebookObjectCollection<AppUser> potentialMatches = new FacebookObjectCollection<AppUser>();
-
+			string exceptionMessage = "";
 			foreach (AppUser currentPotentialMatch in r_UserFriends)
 			{
-				if (isUserWithinChosenAgeRange(currentPotentialMatch, i_AgeRange) && isUserSingle(currentPotentialMatch))
+				try
 				{
-					if ((!i_ChoseBoys && !i_ChoseGirls) || (i_ChoseBoys && i_ChoseGirls))
+					if (isUserWithinChosenAgeRange(currentPotentialMatch, i_AgeRange)) //&& isUserSingle(currentPotentialMatch))
 					{
-						potentialMatches.Add(currentPotentialMatch);
-					}
-					else
-					{
-						eGender? userGender = currentPotentialMatch.GetGender();
-						if (userGender != null)
+						if ((!i_ChoseBoys && !i_ChoseGirls) || (i_ChoseBoys && i_ChoseGirls))
 						{
-							if (i_ChoseBoys && userGender == eGender.male)
+							potentialMatches.Add(currentPotentialMatch);
+						}
+						else
+						{
+							eGender? userGender = currentPotentialMatch.GetGender();
+							if (userGender != null)
 							{
-								potentialMatches.Add(currentPotentialMatch);
-							}
-							else if (i_ChoseGirls && userGender == eGender.female)
-							{
-								potentialMatches.Add(currentPotentialMatch);
+								if (i_ChoseBoys && userGender == eGender.male)
+								{
+									potentialMatches.Add(currentPotentialMatch);
+								}
+								else if (i_ChoseGirls && userGender == eGender.female)
+								{
+									potentialMatches.Add(currentPotentialMatch);
+								}
 							}
 						}
 					}
 				}
+				catch(Exception ex)
+				{
+					exceptionMessage = ex.Message; 
+				}
+			}
+
+			if(potentialMatches.Count==0 && !string.IsNullOrEmpty(exceptionMessage))
+			{
+				throw new Facebook.FacebookApiException(exceptionMessage);
 			}
 
 			return potentialMatches;
@@ -52,21 +64,17 @@ namespace MyFacebookApp.Model
 		private bool isUserSingle(AppUser i_CurrentPotentialMatch)
 		{
 			bool isSingle = false;
-			try
+
+			eRelationshipStatus? userRelationshipStatus = i_CurrentPotentialMatch.GetRelationshipStatus();
+			if (userRelationshipStatus != null)
 			{
-				eRelationshipStatus? userRelationshipStatus = i_CurrentPotentialMatch.GetRelationshipStatus();
-				if (userRelationshipStatus != null)
+				if (userIsReadyForRelationship(userRelationshipStatus))
 				{
-					if(userIsReadyForRelationship(userRelationshipStatus))
-					{
-						isSingle = true;
-					}
+					isSingle = true;
 				}
 			}
-			catch(Exception ex)
-			{
-				throw new Facebook.FacebookApiException(ex.Message);
-			}
+
+
 
 			return isSingle;
 		}
@@ -103,29 +111,23 @@ namespace MyFacebookApp.Model
 			string[] chosenRange = i_AgeRange.Split(RANGE_DELIMITER, ABOVE_DELIMITER);
 			bool iswithinRange = false;
 			int usersAge;
-			try {
-				usersAge = calculateAge(i_User.GetBirthday());
 
-				if (chosenRange.Length == SINGLE_BOUND)
-				{
-					if (usersAge > int.Parse(chosenRange[LOWER_BOUND]))
-					{
-						iswithinRange = true;
-					}
-				}
-				else
-				{
-					if (usersAge >= int.Parse(chosenRange[LOWER_BOUND]) && usersAge <= int.Parse(chosenRange[UPPER_BOUND]))
-					{
-						iswithinRange = true;
-					}
+			usersAge = calculateAge(i_User.GetBirthday());
 
+			if (chosenRange.Length == SINGLE_BOUND)
+			{
+				if (usersAge > int.Parse(chosenRange[LOWER_BOUND]))
+				{
+					iswithinRange = true;
 				}
 			}
-			catch (Exception)
+			else
 			{
-				//since isUserWithinChosenAgeRange is being used within a foreach loop we chose that if someone has no birthday he just wont
-				//be included as a match option.
+				if (usersAge >= int.Parse(chosenRange[LOWER_BOUND]) && usersAge <= int.Parse(chosenRange[UPPER_BOUND]))
+				{
+					iswithinRange = true;
+				}
+
 			}
 
 			return iswithinRange;

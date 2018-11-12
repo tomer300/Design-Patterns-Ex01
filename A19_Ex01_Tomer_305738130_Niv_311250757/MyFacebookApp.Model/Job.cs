@@ -40,16 +40,27 @@ namespace MyFacebookApp.Model
 			return setFromFile;
 		}
 
-		internal FacebookObjectCollection<AppUser> FindHitechWorkerContacts()
+		internal FacebookObjectCollection<AppUser> FindHitechWorkersContacts()
 		{
 			FacebookObjectCollection<AppUser> hitechWorkingContacts = new FacebookObjectCollection<AppUser>();
-
+			string exceptionMessage = "";
 			foreach (AppUser currentFriend in r_UserFriends)
 			{
-				if (worksAtKnownHitechCompany(currentFriend) || worksAtPotentiallyHitechRelatedCompany(currentFriend))
+				try
 				{
-					hitechWorkingContacts.Add(currentFriend);
+					if (worksAtKnownHitechCompany(currentFriend) || worksAtPotentiallyHitechRelatedCompany(currentFriend))
+					{
+						hitechWorkingContacts.Add(currentFriend);
+					}
 				}
+				catch (Exception ex)
+				{
+					exceptionMessage = ex.Message;
+				}
+			}
+			if(hitechWorkingContacts.Count==0 && !string.IsNullOrEmpty(exceptionMessage))
+			{
+				throw new Facebook.FacebookApiException(exceptionMessage);
 			}
 			return hitechWorkingContacts;
 		}
@@ -59,21 +70,20 @@ namespace MyFacebookApp.Model
 			Page workPlace;
 			bool doesAtPotentiallyHitechRelatedCompany = false;
 
-			try
+			workPlace = i_CurrentFriend.GetWorkPlace();
+			if(workPlace!=null)
 			{
-				workPlace = i_CurrentFriend.GetWorkPlace();
-				foreach (string wordInDescriptionOfWorkPlace in workPlace.Description.Split(' '))
+				foreach (string wordInDescriptionOfWorkPlace in workPlace.Description?.Split(' '))
 				{
 					if (r_HitechKeyWords.Contains(wordInDescriptionOfWorkPlace))
 					{
 						doesAtPotentiallyHitechRelatedCompany = true;
 					}
 				}
+
 			}
-			catch(Exception ex)
-			{
-				throw new Facebook.FacebookApiException(ex.Message);
-			}
+
+
 
 			return doesAtPotentiallyHitechRelatedCompany;
 		}
@@ -83,18 +93,14 @@ namespace MyFacebookApp.Model
 		{
 			bool doesWorksAtKnownHitechCompany = false;
 			string workPlace;
-			try
+
+			workPlace = i_CurrentFriend.GetWorkPlace()?.Name.ToLower();
+			if (r_HitechWorkPlaces.Contains(workPlace))
 			{
-				workPlace = i_CurrentFriend.GetWorkPlace().Name.ToLower();
-				if (r_HitechWorkPlaces.Contains(workPlace))
-				{
-					doesWorksAtKnownHitechCompany = true;
-				}
+				doesWorksAtKnownHitechCompany = true;
 			}
-			catch(Exception)
-			{
-				throw new Facebook.FacebookApiException("Couldn't fetch work experience."); 
-			}
+
+
 			return doesWorksAtKnownHitechCompany;
 		}
 

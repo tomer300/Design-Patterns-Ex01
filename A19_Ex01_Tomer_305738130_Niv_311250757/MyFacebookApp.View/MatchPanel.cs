@@ -43,38 +43,19 @@ namespace MyFacebookApp.View
 				{
 					potentialMatches = m_AppEngine.FindAMatch(checkBoxGirls.Checked, checkBoxBoys.Checked,
 						comboBoxAgeRanges.Items[comboBoxAgeRanges.SelectedIndex].ToString());
-					foreach (AppUser currentPotentialMatch in potentialMatches)
+					if (potentialMatches != null && potentialMatches.Count > 0)
 					{
-						PictureWrapper matchPicWrapper;
-						string profilePictureURL = "";
-						try
+						foreach (AppUser currentPotentialMatch in potentialMatches)
 						{
-							profilePictureURL = currentPotentialMatch.GetProfilePicture();
-						}
-						catch (Exception ex)
-						{
-							if (!hasShownMessageBox)
-							{
-								MessageBox.Show(ex.Message);
-								hasShownMessageBox = true;
-							}
-						}
-						finally
-						{
-							matchPicWrapper = new PictureWrapper(profilePictureURL);
-							PictureBox matchPic = matchPicWrapper.PictureBox;
-							matchPic.Cursor = Cursors.Hand;
-							matchPic.Click += (user, ex) => match_Click(currentPotentialMatch);
-							flowLayoutPanelMatchPictures.Controls.Add(matchPic);
+							addPotentialMatch(currentPotentialMatch, ref hasShownMessageBox);
 						}
 					}
-
-					if (potentialMatches.Count == 0)
+					else
 					{
 						MessageBox.Show("No love for you today :(");
 					}
 				}
-				catch(Exception ex)
+				catch (Exception ex)
 				{
 					MessageBox.Show(ex.Message);
 				}
@@ -83,6 +64,33 @@ namespace MyFacebookApp.View
 			else
 			{
 				MessageBox.Show("Please choose prefered gender.");
+			}
+		}
+
+		private void addPotentialMatch(AppUser i_CurrentPotentialMatch, ref bool io_HasShownMessageBox)
+		{
+			PictureWrapper matchPicWrapper;
+			string profilePictureURL = "";
+
+			try
+			{
+				profilePictureURL = i_CurrentPotentialMatch.GetProfilePicture();
+			}
+			catch (Exception ex)
+			{
+				if (!io_HasShownMessageBox)
+				{
+					MessageBox.Show(ex.Message);
+					io_HasShownMessageBox = true;
+				}
+			}
+			finally
+			{
+				matchPicWrapper = new PictureWrapper(profilePictureURL);
+				PictureBox matchPic = matchPicWrapper.PictureBox;
+				matchPic.Cursor = Cursors.Hand;
+				matchPic.Click += (user, ex) => match_Click(i_CurrentPotentialMatch);
+				flowLayoutPanelMatchPictures.Controls.Add(matchPic);
 			}
 		}
 

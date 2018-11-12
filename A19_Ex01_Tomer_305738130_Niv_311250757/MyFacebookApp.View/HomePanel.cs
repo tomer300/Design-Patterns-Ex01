@@ -40,7 +40,7 @@ namespace MyFacebookApp.View
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(string.Format("Error! could'nt fetch information - {0}.", ex.Message));
+				MessageBox.Show(ex.Message);
 			}
 		}
 
@@ -51,35 +51,9 @@ namespace MyFacebookApp.View
 			{
 				FacebookObjectCollection<AppUser> myFriends = m_AppEngine.GetFriends();
 				bool hasShownMessageBox = false;
-
 				foreach (AppUser friend in myFriends)
 				{
-					string profilePictureURL = "";
-
-					try
-					{
-						profilePictureURL = friend.GetProfilePicture();
-					}
-					catch (Exception ex)
-					{
-						if(!hasShownMessageBox)
-						{
-							MessageBox.Show(ex.Message);
-							hasShownMessageBox = true;
-						}
-					}
-					finally
-					{
-						PictureWrapper friendPictureWrapper = new PictureWrapper(profilePictureURL);
-						PictureBox friendPicture = friendPictureWrapper.PictureBox;
-
-						friendPicture.Paint += new PaintEventHandler((senderFriend, ePaint) =>
-						{
-							writeNameOnFriendPicture(senderFriend, ePaint, friend);
-						});
-
-						flowLayoutPanelFriends.Controls.Add(friendPicture);
-					}
+					showFriendProfilePicture(friend, ref hasShownMessageBox);
 				}
 			}
 			catch (Exception ex)
@@ -88,10 +62,39 @@ namespace MyFacebookApp.View
 			}
 		}
 
+		private void showFriendProfilePicture(AppUser i_Friend, ref bool io_HasShownMessageBox)
+		{
+			string profilePictureURL = "";
+
+			try
+			{
+				profilePictureURL = i_Friend.GetProfilePicture();
+			}
+			catch (Exception ex)
+			{
+				if (!io_HasShownMessageBox)
+				{
+					MessageBox.Show(ex.Message);
+					io_HasShownMessageBox = true;
+				}
+			}
+			finally
+			{
+				PictureWrapper friendPictureWrapper = new PictureWrapper(profilePictureURL);
+				PictureBox friendPicture = friendPictureWrapper.PictureBox;
+
+				friendPicture.Paint += new PaintEventHandler((senderFriend, ePaint) =>
+				{
+					writeNameOnFriendPicture(senderFriend, ePaint, i_Friend);
+				});
+
+				flowLayoutPanelFriends.Controls.Add(friendPicture);
+			}
+		}
+
 		private void writeNameOnFriendPicture(object senderFriend, PaintEventArgs ePaint, AppUser i_Friend)
 		{
 			PictureBox friendPicture = senderFriend as PictureBox;
-
 
 			if (friendPicture != null)
 			{
@@ -163,7 +166,7 @@ namespace MyFacebookApp.View
 				{
 					FacebookObjectCollection<Album> usersAlbums = m_AppEngine.GetAlbums();
 
-					if (usersAlbums != null)
+					if (usersAlbums != null && usersAlbums.Count > 0)
 					{
 						m_AlbumsManager = new AlbumsManger(m_AppEngine.GetAlbums(), flowLayoutPanelAlbums);
 						m_AlbumsManager.AlbumClicked += albumsButtonChangeDescription;
@@ -241,46 +244,48 @@ namespace MyFacebookApp.View
 			try
 			{
 				allPosts = m_AppEngine.GetPosts();
-
-				foreach (Post currentPost in allPosts)
-				{
-					bool isLegalPost = false;
-					Label postDetails = new Label();
-					postDetails.Text = string.Format("Posted at: {0}{1}Post Type: {2}{3}"
-						, currentPost.CreatedTime.ToString(), Environment.NewLine, currentPost.Type, Environment.NewLine);
-					postDetails.AutoSize = true;
-
-					if (currentPost.Message != null)
+				if (allPosts != null && allPosts.Count > 0)
+				{ foreach (Post currentPost in allPosts)
 					{
-						addPostData(currentPost.Message, ref isLegalPost);
-					}
-					if (currentPost.Caption != null)
-					{
-						addPostData(currentPost.Caption, ref isLegalPost);
-					}
+						bool isLegalPost = false;
+						Label postDetails = new Label();
+						postDetails.Text = string.Format("Posted at: {0}{1}Post Type: {2}{3}"
+							, currentPost.CreatedTime.ToString(), Environment.NewLine, currentPost.Type, Environment.NewLine);
+						postDetails.AutoSize = true;
 
-					if (currentPost.Type == Post.eType.photo)
-					{
-						PictureWrapper postPictureWrapper = new PictureWrapper(currentPost.PictureURL);
-						PictureBox postPicture = postPictureWrapper.PictureBox;
+						if (currentPost.Message != null)
+						{
+							addPostData(currentPost.Message, ref isLegalPost);
+						}
+						if (currentPost.Caption != null)
+						{
+							addPostData(currentPost.Caption, ref isLegalPost);
+						}
 
-						tableLayoutPanelPosts.Controls.Add(postPicture);
-						isLegalPost = true;
-					}
+						if (currentPost.Type == Post.eType.photo)
+						{
+							PictureWrapper postPictureWrapper = new PictureWrapper(currentPost.PictureURL);
+							PictureBox postPicture = postPictureWrapper.PictureBox;
 
-					if (isLegalPost == true)
-					{
-						tableLayoutPanelPosts.Controls.Add(postDetails);
-						Label seperator = new Label();
-						seperator.Text = " ";
-						seperator.AutoSize = true;
-						tableLayoutPanelPosts.Controls.Add(seperator);
+							tableLayoutPanelPosts.Controls.Add(postPicture);
+							isLegalPost = true;
+						}
 
+						if (isLegalPost == true)
+						{
+							tableLayoutPanelPosts.Controls.Add(postDetails);
+							Label seperator = new Label();
+							seperator.Text = " ";
+							seperator.AutoSize = true;
+							tableLayoutPanelPosts.Controls.Add(seperator);
+
+						}
 					}
-					if (allPosts.Count == 0)
-					{
-						MessageBox.Show("No Posts to retrieve :(");
-					}
+				}
+				else
+				{ 
+
+					MessageBox.Show("No Posts to retrieve :(");
 				}
 			}
 			catch (Exception ex)
@@ -317,8 +322,5 @@ namespace MyFacebookApp.View
 		{
 			panelHomePageTop.Controls.Add(i_LogoutButton);
 		}
-
-		
-		
 	}
 }

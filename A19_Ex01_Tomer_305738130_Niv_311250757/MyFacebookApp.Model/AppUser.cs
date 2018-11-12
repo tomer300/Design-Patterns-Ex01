@@ -9,7 +9,7 @@ namespace MyFacebookApp.Model
 {
     public class AppUser
     {
-        User m_LoggedInUser;
+        private User m_LoggedInUser;
 
 		internal AppUser(User i_LoggedInUser)
         {
@@ -72,11 +72,6 @@ namespace MyFacebookApp.Model
 			try
 			{
 				firstName = m_LoggedInUser.FirstName;
-
-				if (firstName == null)
-				{
-					throw new ArgumentNullException("No first name.");
-				}
 			}
 			catch (Exception)
 			{

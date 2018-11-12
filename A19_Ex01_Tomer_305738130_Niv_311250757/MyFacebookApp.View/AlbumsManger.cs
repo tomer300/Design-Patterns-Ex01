@@ -38,11 +38,12 @@ namespace MyFacebookApp.View
 					}
 					catch (Facebook.FacebookApiException ex)
 					{
-						if (!hasShownMessageBox)
+						/*if (!hasShownMessageBox)
 						{
 							MessageBox.Show(ex.Message);
-							hasShownMessageBox = true;
-						}
+							hasShownMessageBox=true;
+						}*/
+						//current album has no cover photo.
 					}
 					finally
 					{
