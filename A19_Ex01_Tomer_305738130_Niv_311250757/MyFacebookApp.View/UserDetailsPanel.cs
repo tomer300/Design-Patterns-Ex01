@@ -44,6 +44,7 @@ namespace MyFacebookApp.View
 			labelBirthdayInfo.Text = i_BirthdayDate;
 			labelBirthdayInfo.AutoSize = true;
 		}
+
 		public void SetAllUserDetails(string i_ProfilePictureURL, string i_FirstName, string i_LastName, string i_City, string i_Birthday)
 		{
 			SetProfilePicture(i_ProfilePictureURL);

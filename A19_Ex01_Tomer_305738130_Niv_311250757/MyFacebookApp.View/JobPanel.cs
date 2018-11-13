@@ -64,11 +64,11 @@ namespace MyFacebookApp.View
 
 		private void addContactToListBoxJobs(AppUser i_CurrentContact, ref bool io_HasShownMessageBox)
 		{
-			string contactFullName = "";
-			string profilePictureURL = "";
-			string contactFirstName = "";
-			string contactLastName = "";
-			string workPlace = "";
+			string contactFullName = string.Empty;
+			string profilePictureURL = string.Empty;
+			string contactFirstName = string.Empty;
+			string contactLastName = string.Empty;
+			string workPlace = string.Empty;
 			try
 			{
 				profilePictureURL = i_CurrentContact.GetProfilePicture();
@@ -92,8 +92,10 @@ namespace MyFacebookApp.View
 				contactPic.Name = contactFullName;
 				contactPic.Click += new EventHandler(contactPic_Click);
 				flowLayoutPanelContactPhotos.Controls.Add(contactPic);
-				listBoxJobs.Items.Add(new ContactItem(new KeyValuePair<string, string>(contactFullName,
-					string.Format("{0} works at", contactFullName, workPlace))));
+				listBoxJobs.Items.Add(
+					new ContactItem(new KeyValuePair<string, string>(
+						contactFullName, 
+						string.Format("{0} works at", contactFullName, workPlace))));
 			}
 		}
 
@@ -102,7 +104,7 @@ namespace MyFacebookApp.View
 			PictureBox lastChosenContactPhoto = flowLayoutPanelContactPhotos.Controls[m_LastChosenContactIndex] as PictureBox;
 			ContactItem contactClicked;
 			PictureBox contactPicture;
-			string contactName = "";
+			string contactName = string.Empty;
 
 			if (lastChosenContactPhoto != null)
 			{
@@ -156,10 +158,12 @@ namespace MyFacebookApp.View
 		private class ContactItem
 		{
 			public KeyValuePair<string, string> Contact { get; private set; }
+
 			public ContactItem(KeyValuePair<string, string> i_Contact)
 			{
 				Contact = i_Contact;
 			}
+
 			public override string ToString()
 			{
 				return Contact.Value;

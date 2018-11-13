@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace MyFacebookApp.View
 {
-	interface ILogoutable
+	public interface ILogoutable
 	{
 		void AddLogoutButton(Button i_LogoutButton);
 	}

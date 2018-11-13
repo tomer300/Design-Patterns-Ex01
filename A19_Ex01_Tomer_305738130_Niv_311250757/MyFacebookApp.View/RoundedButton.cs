@@ -35,8 +35,8 @@ namespace MyFacebookApp.View
 
 		private void RoundedButton_MouseLeave(object sender, EventArgs e)
 		{
-
 			RoundedButton hoveredButton = sender as RoundedButton;
+
 			if (hoveredButton != null)
 			{
 				hoveredButton.BackgroundImage = r_BasicImage;
@@ -45,7 +45,6 @@ namespace MyFacebookApp.View
 
 		private void RoundedButton_MouseEnter(object sender, EventArgs e)
 		{
-
 			RoundedButton hoveredButton = sender as RoundedButton;
 
 			if (hoveredButton != null)

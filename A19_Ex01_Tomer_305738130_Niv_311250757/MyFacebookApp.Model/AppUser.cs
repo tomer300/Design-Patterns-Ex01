@@ -1,20 +1,17 @@
-﻿using FacebookWrapper.ObjectModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
+using FacebookWrapper.ObjectModel;
 using static FacebookWrapper.ObjectModel.User;
 
 namespace MyFacebookApp.Model
 {
-    public class AppUser
-    {
-        private User m_LoggedInUser;
+	public class AppUser
+	{
+		private User m_LoggedInUser;
 
 		internal AppUser(User i_LoggedInUser)
-        {
-            m_LoggedInUser = i_LoggedInUser;
-        }
+		{
+			m_LoggedInUser = i_LoggedInUser;
+		}
 
 		public string GetProfilePicture()
 		{
@@ -24,14 +21,13 @@ namespace MyFacebookApp.Model
 			{
 				pictureURL = m_LoggedInUser.PictureNormalURL;
 			}
-			catch(Exception)
+			catch (Exception)
 			{
 				throw new Facebook.FacebookApiException("Couldn't fetch user's profile picture.");
 			}
 
 			return pictureURL;
-			
-        }
+		}
 
 		public string GetCity()
 		{
@@ -66,7 +62,7 @@ namespace MyFacebookApp.Model
 		}
 
 		public string GetFirstName()
-        {
+		{
 			string firstName;
 
 			try
@@ -78,8 +74,8 @@ namespace MyFacebookApp.Model
 				throw new Facebook.FacebookApiException("Couldn't fetch user's first name.");
 			}
 
-            return firstName;
-        }
+			return firstName;
+		}
 
 		public string GetLastName()
 		{
@@ -144,6 +140,7 @@ namespace MyFacebookApp.Model
 
 			return events;
 		}
+
 		internal FacebookObjectCollection<Post> GetPosts()
 		{
 			FacebookObjectCollection<Post> posts;
@@ -159,6 +156,7 @@ namespace MyFacebookApp.Model
 
 			return posts;
 		}
+
 		internal FacebookObjectCollection<AppUser> GetFriends()
 		{
 			FacebookObjectCollection<AppUser> friends = new FacebookObjectCollection<AppUser>();
@@ -172,11 +170,10 @@ namespace MyFacebookApp.Model
 					friends.Add(new AppUser(currentFriend));
 				}
 			}
-			catch(Exception)
+			catch (Exception)
 			{
 				throw new Facebook.FacebookApiException("Couldn't fetch user's friends.");
 			}
-		
 
 			return friends;
 		}
@@ -189,9 +186,9 @@ namespace MyFacebookApp.Model
 			try
 			{
 				allWorks = m_LoggedInUser.WorkExperiences;
-				if(allWorks!=null && allWorks.Length>0)
+				if (allWorks != null && allWorks.Length > 0)
 				{
-					if(m_LoggedInUser.WorkExperiences[m_LoggedInUser.WorkExperiences.Length - 1]!= null)
+					if (m_LoggedInUser.WorkExperiences[m_LoggedInUser.WorkExperiences.Length - 1] != null)
 					{
 						workPlace = m_LoggedInUser.WorkExperiences[m_LoggedInUser.WorkExperiences.Length - 1].Employer;
 					}
@@ -201,7 +198,6 @@ namespace MyFacebookApp.Model
 			{
 				throw new Facebook.FacebookApiException("Couldn't fetch user's work experience.");
 			}
-
 
 			return workPlace;
 		}

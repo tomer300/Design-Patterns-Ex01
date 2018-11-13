@@ -47,7 +47,6 @@ namespace MyFacebookApp.View
 				this.panelMain.Controls.Clear();
 				this.panelMain.Controls.Add(this.panelHomePage);
 				setAppButtonsEnabledStatus(true);
-				//Job stam = new Job();
 			}
 			catch (Exception exLogin)
 			{

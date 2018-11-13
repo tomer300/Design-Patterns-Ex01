@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using MyFacebookApp.Model;
-using System.Drawing.Drawing2D;
 
 namespace MyFacebookApp.View
 {
@@ -64,7 +58,7 @@ namespace MyFacebookApp.View
 
 		private void showFriendProfilePicture(AppUser i_Friend, ref bool io_HasShownMessageBox)
 		{
-			string profilePictureURL = "";
+			string profilePictureURL = string.Empty;
 
 			try
 			{
@@ -98,8 +92,8 @@ namespace MyFacebookApp.View
 
 			if (friendPicture != null)
 			{
-				string friendFirstName = "";
-				string friendLastName = "";
+				string friendFirstName = string.Empty;
+				string friendLastName = string.Empty;
 				try
 				{
 					friendFirstName = i_Friend.GetFirstName();
@@ -129,11 +123,11 @@ namespace MyFacebookApp.View
 
 		private void fetchInitialDetails()
 		{
-			string profilePictureURL = "";
-			string firstName = "";
-			string lastName = "";
-			string cityName = "";
-			string birthday = "";
+			string profilePictureURL = string.Empty;
+			string firstName = string.Empty;
+			string lastName = string.Empty;
+			string cityName = string.Empty;
+			string birthday = string.Empty;
 
 			try
 			{
@@ -157,9 +151,9 @@ namespace MyFacebookApp.View
 		{
 			displayAlbums();
 		}
+
 		private void displayAlbums()
 		{
-			
 			if (m_AlbumsManager == null)
 			{
 				try
@@ -169,14 +163,13 @@ namespace MyFacebookApp.View
 					if (usersAlbums != null && usersAlbums.Count > 0)
 					{
 						m_AlbumsManager = new AlbumsManger(m_AppEngine.GetAlbums(), flowLayoutPanelAlbums);
-						m_AlbumsManager.AlbumClicked += albumsButtonChangeDescription;
+						m_AlbumsManager.AlbumClickedAction += albumsButtonChangeDescription;
 						m_AlbumsManager.displayAlbums();
 					}
 					else
 					{
 						MessageBox.Show("User has no albums.");
 					}
-
 				}
 				catch (Exception ex)
 				{
@@ -193,7 +186,6 @@ namespace MyFacebookApp.View
 		private void albumsButtonChangeDescription()
 		{
 			albumsRoundedButton.Text = "Back To Albums";
-		//	albumsRoundedButton.AutoSize = true;
 		}
 
 		private void eventsButton_Click(object sender, EventArgs e)
@@ -206,7 +198,6 @@ namespace MyFacebookApp.View
 			{
 				MessageBox.Show(string.Format("Error! could'nt fetch events - {0}.", exEvents.Message));
 			}
-
 		}
 
 		private void fetchEvents()
@@ -216,7 +207,7 @@ namespace MyFacebookApp.View
 			try
 			{
 				allEvents = m_AppEngine.GetEvents();
-				if(allEvents!=null && allEvents.Count>0)
+				if (allEvents != null && allEvents.Count > 0)
 				{
 					listBoxEvents.DisplayMember = "Name";
 					foreach (Event fbEvent in allEvents)
@@ -227,10 +218,9 @@ namespace MyFacebookApp.View
 				else
 				{
 					MessageBox.Show("No Events to retrieve :(");
-
 				}
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
 				MessageBox.Show(ex.Message);
 			}
@@ -246,18 +236,24 @@ namespace MyFacebookApp.View
 			{
 				allPosts = m_AppEngine.GetPosts();
 				if (allPosts != null && allPosts.Count > 0)
-				{ foreach (Post currentPost in allPosts)
+				{
+					foreach (Post currentPost in allPosts)
 					{
 						bool isLegalPost = false;
 						Label postDetails = new Label();
-						postDetails.Text = string.Format("Posted at: {0}{1}Post Type: {2}{3}"
-							, currentPost.CreatedTime.ToString(), Environment.NewLine, currentPost.Type, Environment.NewLine);
+						postDetails.Text = string.Format(
+							"Posted at: {0}{1}Post Type: {2}{3}",
+							currentPost.CreatedTime.ToString(),
+							Environment.NewLine,
+							currentPost.Type,
+							Environment.NewLine);
 						postDetails.AutoSize = true;
 
 						if (currentPost.Message != null)
 						{
 							addPostData(currentPost.Message, ref isLegalPost);
 						}
+
 						if (currentPost.Caption != null)
 						{
 							addPostData(currentPost.Caption, ref isLegalPost);
@@ -279,13 +275,11 @@ namespace MyFacebookApp.View
 							seperator.Text = " ";
 							seperator.AutoSize = true;
 							tableLayoutPanelPosts.Controls.Add(seperator);
-
 						}
 					}
 				}
 				else
 				{ 
-
 					MessageBox.Show("No Posts to retrieve :(");
 				}
 			}

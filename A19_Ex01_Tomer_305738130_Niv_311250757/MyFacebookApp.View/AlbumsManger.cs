@@ -1,29 +1,24 @@
-﻿using FacebookWrapper.ObjectModel;
-using MyFacebookApp.Model;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Windows.Forms;
+using FacebookWrapper.ObjectModel;
 
 namespace MyFacebookApp.View
 {
-	public delegate void albumClickedNotifyDelegate();
 	internal class AlbumsManger
 	{
 		private FacebookObjectCollection<Album> m_AlbumsOfUser;
 		private Panel m_PanelToDisplayIn;
-		public event albumClickedNotifyDelegate AlbumClicked;
+		public Action AlbumClickedAction;
+
 		internal AlbumsManger(FacebookObjectCollection<Album> i_AlbumsOfUser, Panel i_PanelToDisplayIn)
 		{
 			m_AlbumsOfUser = i_AlbumsOfUser;
 			m_PanelToDisplayIn = i_PanelToDisplayIn;
 		}
+
 		internal void displayAlbums()
-		{
-			
-			string albumPictureURL = "";
+		{	
+			string albumPictureURL = string.Empty;
 			m_PanelToDisplayIn.Controls.Clear();
 			foreach (Album currentAlbum in m_AlbumsOfUser)
 			{
@@ -38,12 +33,7 @@ namespace MyFacebookApp.View
 					}
 					catch (Facebook.FacebookApiException)
 					{
-						/*if (!hasShownMessageBox)
-						{
-							MessageBox.Show(ex.Message);
-							hasShownMessageBox=true;
-						}*/
-						//current album has no cover photo.
+						// current album has no cover photo, we handle this within PictureWrapper in the form of empty url string.
 					}
 					finally
 					{
@@ -58,14 +48,17 @@ namespace MyFacebookApp.View
 				}
 			}
 		}
+
 		private void album_Leave(object sender, EventArgs e)
 		{
 			PictureBox albumLeft = sender as PictureBox;
+
 			if (albumLeft != null)
 			{
 				albumLeft.BorderStyle = BorderStyle.None;
 			}
 		}
+
 		private void album_Enter(object sender, EventArgs e)
 		{
 			PictureBox albumHovered = sender as PictureBox;
@@ -80,8 +73,9 @@ namespace MyFacebookApp.View
 			m_PanelToDisplayIn.Controls.Clear();
 			if(m_PanelToDisplayIn.Parent is HomePanel)
 			{
-				AlbumClicked.Invoke();
+				AlbumClickedAction.Invoke();
 			}
+
 			foreach (Photo currentPhoto in i_ClickedAlbum.Photos)
 			{
 				PictureWrapper currentPictureWrapper = new PictureWrapper(currentPhoto.PictureNormalURL);

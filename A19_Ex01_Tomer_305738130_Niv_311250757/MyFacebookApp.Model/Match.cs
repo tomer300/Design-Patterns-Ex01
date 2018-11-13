@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using FacebookWrapper.ObjectModel;
-using System.ComponentModel;
 using static FacebookWrapper.ObjectModel.User;
 
 namespace MyFacebookApp.Model
@@ -11,6 +7,7 @@ namespace MyFacebookApp.Model
 	public class Match
 	{
 		private readonly FacebookObjectCollection<AppUser> r_UserFriends;
+
 		public Match(FacebookObjectCollection<AppUser> i_UserFriends)
 		{
 			r_UserFriends = i_UserFriends;
@@ -19,7 +16,7 @@ namespace MyFacebookApp.Model
 		internal FacebookObjectCollection<AppUser> FindAMatch(bool i_ChoseGirls, bool i_ChoseBoys, string i_AgeRange)
 		{
 			FacebookObjectCollection<AppUser> potentialMatches = new FacebookObjectCollection<AppUser>();
-			string exceptionMessage = "";
+			string exceptionMessage = string.Empty;
 			foreach (AppUser currentPotentialMatch in r_UserFriends)
 			{
 				try
@@ -47,13 +44,13 @@ namespace MyFacebookApp.Model
 						}
 					}
 				}
-				catch(Exception ex)
+				catch (Exception ex)
 				{
-					exceptionMessage = ex.Message; 
+					exceptionMessage = ex.Message;
 				}
 			}
 
-			if(potentialMatches.Count==0 && !string.IsNullOrEmpty(exceptionMessage))
+			if (potentialMatches.Count == 0 && !string.IsNullOrEmpty(exceptionMessage))
 			{
 				throw new Facebook.FacebookApiException(exceptionMessage);
 			}
@@ -64,8 +61,8 @@ namespace MyFacebookApp.Model
 		private bool isUserSingle(AppUser i_CurrentPotentialMatch)
 		{
 			bool isSingle = false;
-
 			eRelationshipStatus? userRelationshipStatus = i_CurrentPotentialMatch.GetRelationshipStatus();
+
 			if (userRelationshipStatus != null)
 			{
 				if (userIsReadyForRelationship(userRelationshipStatus))
@@ -74,8 +71,6 @@ namespace MyFacebookApp.Model
 				}
 			}
 
-
-
 			return isSingle;
 		}
 
@@ -83,7 +78,7 @@ namespace MyFacebookApp.Model
 		{
 			bool isReadyForRelationship = false;
 
-			if(i_UserRelationshipStatus != eRelationshipStatus.InACivilUnion &&
+			if (i_UserRelationshipStatus != eRelationshipStatus.InACivilUnion &&
 				i_UserRelationshipStatus != eRelationshipStatus.InADomesticPartnership &&
 				i_UserRelationshipStatus != eRelationshipStatus.InARelationship &&
 				i_UserRelationshipStatus != eRelationshipStatus.Married)
@@ -127,11 +122,9 @@ namespace MyFacebookApp.Model
 				{
 					iswithinRange = true;
 				}
-
 			}
 
 			return iswithinRange;
-
 		}
 
 		private int calculateAge(string i_Birthday)
@@ -142,7 +135,7 @@ namespace MyFacebookApp.Model
 			string[] birthDateArray = i_Birthday.Split(DATE_DELIMITER);
 			DateTime birthDate;
 			DateTime today = DateTime.Today;
-			if(birthDateArray!=null)
+			if (birthDateArray != null)
 			{
 				try
 				{
@@ -153,7 +146,7 @@ namespace MyFacebookApp.Model
 						age--;
 					}
 				}
-				catch(Exception)
+				catch (Exception)
 				{
 					throw new Exception("Cannot parse inserted birthday in calculate age");
 				}
@@ -162,14 +155,8 @@ namespace MyFacebookApp.Model
 			{
 				throw new FormatException("Invalid formatted string in calculate age");
 			}
-			
-
 
 			return age;
 		}
-
 	}
 }
-
-	
-

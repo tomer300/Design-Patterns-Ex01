@@ -1,10 +1,8 @@
-﻿using FacebookWrapper.ObjectModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Xml.Serialization;
+using FacebookWrapper.ObjectModel;
 
 namespace MyFacebookApp.Model
 {
@@ -13,6 +11,7 @@ namespace MyFacebookApp.Model
 		private readonly HashSet<string> r_HitechWorkPlaces;
 		private readonly HashSet<string> r_HitechKeyWords;
 		private readonly FacebookObjectCollection<AppUser> r_UserFriends;
+
 		public Job(FacebookObjectCollection<AppUser> i_UserFriends)
 		{
 			User stam = new User();
@@ -21,6 +20,7 @@ namespace MyFacebookApp.Model
 			r_HitechKeyWords = buildSetFromXMLFile<HitechKeyWord>(MyFacebookApp.Model.Properties.Resources.hitechKeyWords);
 			r_UserFriends = i_UserFriends;
 		}
+
 		private HashSet<string> buildSetFromXMLFile<T>(string i_XMLFileContent)
 		{
 			HashSet<string> setFromFile = new HashSet<string>();
@@ -37,13 +37,14 @@ namespace MyFacebookApp.Model
 					}
 				}
 			}
+
 			return setFromFile;
 		}
 
 		internal FacebookObjectCollection<AppUser> FindHitechWorkersContacts()
 		{
 			FacebookObjectCollection<AppUser> hitechWorkingContacts = new FacebookObjectCollection<AppUser>();
-			string exceptionMessage = "";
+			string exceptionMessage = string.Empty;
 			foreach (AppUser currentFriend in r_UserFriends)
 			{
 				try
@@ -58,10 +59,12 @@ namespace MyFacebookApp.Model
 					exceptionMessage = ex.Message;
 				}
 			}
-			if(hitechWorkingContacts.Count==0 && !string.IsNullOrEmpty(exceptionMessage))
+
+			if (hitechWorkingContacts.Count == 0 && !string.IsNullOrEmpty(exceptionMessage))
 			{
 				throw new Facebook.FacebookApiException(exceptionMessage);
 			}
+
 			return hitechWorkingContacts;
 		}
 
@@ -71,7 +74,7 @@ namespace MyFacebookApp.Model
 			bool doesAtPotentiallyHitechRelatedCompany = false;
 
 			workPlace = i_CurrentFriend.GetWorkPlace();
-			if(workPlace!=null)
+			if (workPlace != null)
 			{
 				foreach (string wordInDescriptionOfWorkPlace in workPlace.Description?.Split(' '))
 				{
@@ -80,14 +83,10 @@ namespace MyFacebookApp.Model
 						doesAtPotentiallyHitechRelatedCompany = true;
 					}
 				}
-
 			}
-
-
 
 			return doesAtPotentiallyHitechRelatedCompany;
 		}
-
 
 		private bool worksAtKnownHitechCompany(AppUser i_CurrentFriend)
 		{
@@ -100,28 +99,27 @@ namespace MyFacebookApp.Model
 				doesWorksAtKnownHitechCompany = true;
 			}
 
-
 			return doesWorksAtKnownHitechCompany;
 		}
 
 		public class HitechKeyWord
 		{
 			public string m_KeyWord { get; set; }
+
 			public override string ToString()
 			{
 				return m_KeyWord.ToLower();
 			}
 		}
+
 		public class WorkPlace
 		{
 			public string m_Name { get; set; }
+
 			public override string ToString()
 			{
 				return m_Name.ToLower();
 			}
 		}
-
 	}
 }
-
-

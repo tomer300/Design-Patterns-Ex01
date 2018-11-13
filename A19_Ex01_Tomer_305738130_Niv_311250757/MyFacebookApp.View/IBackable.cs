@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace MyFacebookApp.View
 {
-	interface IBackable
+	public interface IBackable
 	{
 		void AddBackToHomeButton(Button i_BackToHomeButton);
 	}

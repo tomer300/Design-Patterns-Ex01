@@ -19,6 +19,7 @@ namespace MyFacebookApp.View
 			{
 				components.Dispose();
 			}
+
 			base.Dispose(disposing);
 		}
 

@@ -41,7 +41,9 @@ namespace MyFacebookApp.View
 				panelUserDetails.Visible = false;
 				try
 				{
-					potentialMatches = m_AppEngine.FindAMatch(checkBoxGirls.Checked, checkBoxBoys.Checked,
+					potentialMatches = m_AppEngine.FindAMatch(
+						checkBoxGirls.Checked,
+						checkBoxBoys.Checked,
 						comboBoxAgeRanges.Items[comboBoxAgeRanges.SelectedIndex].ToString());
 					if (potentialMatches != null && potentialMatches.Count > 0)
 					{
@@ -59,7 +61,6 @@ namespace MyFacebookApp.View
 				{
 					MessageBox.Show(ex.Message);
 				}
-				
 			}
 			else
 			{
@@ -70,7 +71,7 @@ namespace MyFacebookApp.View
 		private void addPotentialMatch(AppUser i_CurrentPotentialMatch, ref bool io_HasShownMessageBox)
 		{
 			PictureWrapper matchPicWrapper;
-			string profilePictureURL = "";
+			string profilePictureURL = string.Empty;
 
 			try
 			{
@@ -98,7 +99,7 @@ namespace MyFacebookApp.View
 		{
 			bool choseGender = false;
 
-			if(checkBoxBoys.Checked || checkBoxGirls.Checked)
+			if (checkBoxBoys.Checked || checkBoxGirls.Checked)
 			{
 				choseGender = true;
 			}
@@ -110,38 +111,41 @@ namespace MyFacebookApp.View
 		{
 			AlbumsManger matchAlbumsManager;
 			FacebookObjectCollection<Album> matchAlbums;
-			string profilePictureURL = "";
-			string potentialMatchFirstName = "";
-			string potentialMatchLastName = "";
-			string potentialMatchCity = "";
-			string potentialMatchBirthday = "";
+			string profilePictureURL = string.Empty;
+			string potentialMatchFirstName = string.Empty;
+			string potentialMatchLastName = string.Empty;
+			string potentialMatchCity = string.Empty;
+			string potentialMatchBirthday = string.Empty;
 
 			try
 			{
 				matchAlbums = i_PotentialMatch.GetAlbums();
-				if(matchAlbums!=null)
+				if (matchAlbums != null)
 				{
 					matchAlbumsManager = new AlbumsManger(matchAlbums, flowLayoutPanelMatchPictures);
 					matchAlbumsManager.displayAlbums();
-				}	
-				
+				}
+
 				profilePictureURL = i_PotentialMatch.GetProfilePicture();
 				potentialMatchFirstName = i_PotentialMatch.GetFirstName();
 				potentialMatchLastName = i_PotentialMatch.GetLastName();
 				potentialMatchCity = i_PotentialMatch.GetCity();
 				potentialMatchBirthday = i_PotentialMatch.GetBirthday();
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
 				MessageBox.Show(ex.Message);
 			}
 			finally
 			{
-				panelUserDetails.SetAllUserDetails(profilePictureURL, potentialMatchFirstName,
-				potentialMatchLastName, potentialMatchCity, potentialMatchBirthday);
+				panelUserDetails.SetAllUserDetails(
+					profilePictureURL,
+					potentialMatchFirstName,
+					potentialMatchLastName, 
+					potentialMatchCity,
+					potentialMatchBirthday);
 				panelUserDetails.Visible = true;
 			}
 		}
-
 	}
 }
