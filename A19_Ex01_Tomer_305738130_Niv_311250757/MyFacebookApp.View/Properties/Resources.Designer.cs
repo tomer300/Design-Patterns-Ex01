@@ -63,9 +63,39 @@ namespace MyFacebookApp.View.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap basicRoundedButtonIcon {
+            get {
+                object obj = ResourceManager.GetObject("basicRoundedButtonIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap clickRoundedButtonIcon {
+            get {
+                object obj = ResourceManager.GetObject("clickRoundedButtonIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap dateButtonIcon {
             get {
                 object obj = ResourceManager.GetObject("dateButtonIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hoverRoundedButtonIcon {
+            get {
+                object obj = ResourceManager.GetObject("hoverRoundedButtonIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

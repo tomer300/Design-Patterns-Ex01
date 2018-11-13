@@ -22,7 +22,7 @@ namespace MyFacebookApp.View
 		}
 		internal void displayAlbums()
 		{
-			bool hasShownMessageBox = false;
+			
 			string albumPictureURL = "";
 			m_PanelToDisplayIn.Controls.Clear();
 			foreach (Album currentAlbum in m_AlbumsOfUser)
@@ -36,7 +36,7 @@ namespace MyFacebookApp.View
 					{
 						albumPictureURL = currentAlbum.CoverPhoto.PictureNormalURL;
 					}
-					catch (Facebook.FacebookApiException ex)
+					catch (Facebook.FacebookApiException)
 					{
 						/*if (!hasShownMessageBox)
 						{

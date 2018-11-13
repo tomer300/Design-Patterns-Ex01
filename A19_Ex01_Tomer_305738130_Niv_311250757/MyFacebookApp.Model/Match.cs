@@ -24,7 +24,7 @@ namespace MyFacebookApp.Model
 			{
 				try
 				{
-					if (isUserWithinChosenAgeRange(currentPotentialMatch, i_AgeRange)) //&& isUserSingle(currentPotentialMatch))
+					if (isUserWithinChosenAgeRange(currentPotentialMatch, i_AgeRange) && isUserSingle(currentPotentialMatch))
 					{
 						if ((!i_ChoseBoys && !i_ChoseGirls) || (i_ChoseBoys && i_ChoseGirls))
 						{

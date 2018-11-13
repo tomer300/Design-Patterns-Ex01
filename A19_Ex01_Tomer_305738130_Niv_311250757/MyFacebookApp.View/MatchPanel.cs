@@ -63,7 +63,7 @@ namespace MyFacebookApp.View
 			}
 			else
 			{
-				MessageBox.Show("Please choose prefered gender.");
+				MessageBox.Show("Please choose preferred gender.");
 			}
 		}
 

@@ -8,38 +8,68 @@ using System.Windows.Forms;
 
 namespace MyFacebookApp.View
 {
-	class RoundedButton : Button
+	public class RoundedButton : Button
 	{
-		private GraphicsPath GetRoundPath(RectangleF i_Rectangle, int i_Radius)
+		private readonly Image r_BasicImage = Properties.Resources.basicRoundedButtonIcon as Image;
+		private readonly Image r_HoverImage = Properties.Resources.hoverRoundedButtonIcon as Image;
+		private readonly Image r_ClickImage = Properties.Resources.clickRoundedButtonIcon as Image;
+
+		public RoundedButton()
 		{
-			float r2 = i_Radius / 2f;
-			GraphicsPath GraphPath = new GraphicsPath();
-
-			GraphPath.AddArc(i_Rectangle.X, i_Rectangle.Y, i_Radius, i_Radius, 180, 90);
-			GraphPath.AddLine(i_Rectangle.X + r2, i_Rectangle.Y, i_Rectangle.Width - r2, i_Rectangle.Y);
-			GraphPath.AddArc(i_Rectangle.X + i_Rectangle.Width - i_Radius, i_Rectangle.Y, i_Radius, i_Radius, 270, 90);
-			GraphPath.AddLine(i_Rectangle.Width, i_Rectangle.Y + r2, i_Rectangle.Width, i_Rectangle.Height - r2);
-			GraphPath.AddArc(i_Rectangle.X + i_Rectangle.Width - i_Radius,
-							 i_Rectangle.Y + i_Rectangle.Height - i_Radius, i_Radius, i_Radius, 0, 90);
-			GraphPath.AddLine(i_Rectangle.Width - r2, i_Rectangle.Height, i_Rectangle.X + r2, i_Rectangle.Height);
-			GraphPath.AddArc(i_Rectangle.X, i_Rectangle.Y + i_Rectangle.Height - i_Radius, i_Radius, i_Radius, 90, 90);
-			GraphPath.AddLine(i_Rectangle.X, i_Rectangle.Height - r2, i_Rectangle.X, i_Rectangle.Y + r2);
-			GraphPath.CloseFigure();
-
-			return GraphPath;
+			this.Width = 130;
+			this.Height = 40;
+			this.BackColor = Color.Transparent;
+			this.BackgroundImage = Properties.Resources.basicRoundedButtonIcon;
+			this.BackgroundImageLayout = ImageLayout.Stretch;
+			this.FlatAppearance.BorderSize = 0;
+			this.FlatAppearance.MouseDownBackColor = Color.Transparent;
+			this.FlatAppearance.MouseOverBackColor = Color.Transparent;
+			this.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.MouseDown += RoundedButton_MouseDown;
+			this.MouseUp += RoundedButton_MouseUp;
+			this.MouseEnter += RoundedButton_MouseEnter;
+			this.MouseLeave += RoundedButton_MouseLeave;
+			this.Font = new Font("Century Gothic", 12);
+			this.ForeColor = Color.FromArgb(41, 34, 62);
 		}
 
-		protected override void OnPaint(PaintEventArgs e)
+		private void RoundedButton_MouseLeave(object sender, EventArgs e)
 		{
-			base.OnPaint(e);
-			RectangleF Rect = new RectangleF(0, 0, this.Width, this.Height);
-			GraphicsPath GraphPath = GetRoundPath(Rect, 50);
 
-			this.Region = new Region(GraphPath);
-			using (Pen pen = new Pen(Color.CadetBlue, 1.75f))
+			RoundedButton hoveredButton = sender as RoundedButton;
+			if (hoveredButton != null)
 			{
-				pen.Alignment = PenAlignment.Inset;
-				e.Graphics.DrawPath(pen, GraphPath);
+				hoveredButton.BackgroundImage = r_BasicImage;
+			}
+		}
+
+		private void RoundedButton_MouseEnter(object sender, EventArgs e)
+		{
+
+			RoundedButton hoveredButton = sender as RoundedButton;
+
+			if (hoveredButton != null)
+			{
+				hoveredButton.BackgroundImage = r_HoverImage;
+			}
+		}
+
+		private void RoundedButton_MouseUp(object sender, MouseEventArgs e)
+		{
+			RoundedButton clickedButton = sender as RoundedButton;
+
+			if (clickedButton != null)
+			{
+				clickedButton.BackgroundImage = r_BasicImage;
+			}
+		}
+
+		private void RoundedButton_MouseDown(object sender, MouseEventArgs e)
+		{
+			RoundedButton clickedButton = sender as RoundedButton;
+			if (clickedButton != null)
+			{
+				clickedButton.BackgroundImage = r_ClickImage;
 			}
 		}
 	}
