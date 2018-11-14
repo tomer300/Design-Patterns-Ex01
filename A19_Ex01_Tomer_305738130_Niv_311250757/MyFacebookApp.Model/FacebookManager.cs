@@ -3,9 +3,9 @@ using FacebookWrapper;
 
 namespace MyFacebookApp.Model
 {
-	public class FacebookManager
+	public static class FacebookManager
 	{
-		public AppEngine Login()
+		public static AppEngine Login()
 		{
 				LoginResult loginResult = FacebookService.Login(
 				"2246590548924227",
@@ -50,12 +50,12 @@ namespace MyFacebookApp.Model
 			}
 		}
 
-		public void Logout()
+		public static void Logout()
 		{
 			FacebookService.Logout(null);
 		}
 
-		public AppEngine AutoLogin()
+		public static AppEngine AutoLogin()
 		{
 			AppEngine appEngine = null;
 

@@ -13,7 +13,6 @@ namespace MyFacebookApp.View
 	public partial class FacebookView : Form
 	{
 		private AppEngine m_AppEngine;
-		private FacebookManager m_FacebookManager = new FacebookManager();
 
 		public FacebookView()
 		{
@@ -28,7 +27,7 @@ namespace MyFacebookApp.View
 
 			if (AppSettings.Settings.RememberUser)
 			{
-				m_AppEngine = m_FacebookManager.AutoLogin();
+				m_AppEngine = FacebookManager.AutoLogin();
 
 				if (m_AppEngine != null)
 				{
@@ -78,7 +77,7 @@ namespace MyFacebookApp.View
 		{
 			try
 			{
-				m_AppEngine = m_FacebookManager.Login();
+				m_AppEngine = FacebookManager.Login();
 				createHomePanel();
 			}
 			catch (Exception exLogin)
@@ -122,7 +121,7 @@ namespace MyFacebookApp.View
 		
 		private void logoutButton_Click(object sender, EventArgs e)
 		{
-			m_FacebookManager.Logout();
+			FacebookManager.Logout();
 			panelMain.Controls.Clear();
 			setAppButtonsEnabledStatus(false);
 		}

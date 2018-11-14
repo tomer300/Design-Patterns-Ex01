@@ -11,7 +11,7 @@ using MyFacebookApp.Model;
 
 namespace MyFacebookApp.View
 {
-	public partial class MatchPanel : UserControl, ILogoutable, IBackable
+	public partial class MatchPanel : UserControl
 	{
 		private AppEngine m_AppEngine;
 
@@ -141,7 +141,7 @@ namespace MyFacebookApp.View
 				panelUserDetails.SetAllUserDetails(
 					profilePictureURL,
 					potentialMatchFirstName,
-					potentialMatchLastName, 
+					potentialMatchLastName,
 					potentialMatchCity,
 					potentialMatchBirthday);
 				panelUserDetails.Visible = true;

@@ -11,7 +11,7 @@ using MyFacebookApp.Model;
 
 namespace MyFacebookApp.View
 {
-	public partial class JobPanel : UserControl, ILogoutable, IBackable
+	public partial class JobPanel : UserControl
 	{
 		private AppEngine m_AppEngine;
 		private int m_LastChosenContactIndex;
@@ -54,7 +54,7 @@ namespace MyFacebookApp.View
 					MessageBox.Show("Couldnt fetch work experience.");
 				}
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
 				MessageBox.Show(ex.Message);
 			}
@@ -94,7 +94,7 @@ namespace MyFacebookApp.View
 				flowLayoutPanelContactPhotos.Controls.Add(contactPic);
 				listBoxJobs.Items.Add(
 					new ContactItem(new KeyValuePair<string, string>(
-						contactFullName, 
+						contactFullName,
 						string.Format("{0} works at", contactFullName, workPlace))));
 			}
 		}
@@ -137,15 +137,15 @@ namespace MyFacebookApp.View
 			ContactItem currentContactInfo;
 			string contactName;
 
-			if(clickedContact != null)
+			if (clickedContact != null)
 			{
 				contactName = clickedContact.Name;
-				foreach(object currentItem in listBoxJobs.Items)
+				foreach (object currentItem in listBoxJobs.Items)
 				{
 					currentContactInfo = currentItem as ContactItem;
-					if(currentContactInfo != null)
+					if (currentContactInfo != null)
 					{
-						if(currentContactInfo.Contact.Key.Equals(contactName))
+						if (currentContactInfo.Contact.Key.Equals(contactName))
 						{
 							listBoxJobs.SetSelected(listBoxJobs.Items.IndexOf(currentItem), true);
 							break;

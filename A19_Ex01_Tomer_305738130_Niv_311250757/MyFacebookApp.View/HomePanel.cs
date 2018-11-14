@@ -6,7 +6,7 @@ using MyFacebookApp.Model;
 
 namespace MyFacebookApp.View
 {
-	public partial class HomePanel : UserControl, ILogoutable
+	public partial class HomePanel : UserControl
 	{
 		private AppEngine m_AppEngine;
 		private AlbumsManger m_AlbumsManager;
@@ -290,7 +290,7 @@ namespace MyFacebookApp.View
 					}
 				}
 				else
-				{ 
+				{
 					MessageBox.Show("No Posts to retrieve :(");
 				}
 			}
