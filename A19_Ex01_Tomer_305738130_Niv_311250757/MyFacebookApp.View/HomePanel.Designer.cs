@@ -37,12 +37,13 @@ namespace MyFacebookApp.View
 			this.listBoxEvents = new System.Windows.Forms.ListBox();
 			this.flowLayoutPanelAlbums = new System.Windows.Forms.FlowLayoutPanel();
 			this.panelHomePageTop = new System.Windows.Forms.Panel();
+			this.checkBoxRememberMe = new System.Windows.Forms.CheckBox();
+			this.panelUserDetails = new MyFacebookApp.View.UserDetailsPanel();
 			this.flowLayoutPanelBorderPosts = new System.Windows.Forms.FlowLayoutPanel();
 			this.eventsRoundedButton = new MyFacebookApp.View.RoundedButton();
 			this.albumsRoundedButton = new MyFacebookApp.View.RoundedButton();
 			this.friendsRoundedButton = new MyFacebookApp.View.RoundedButton();
 			this.postsRoundedButton = new MyFacebookApp.View.RoundedButton();
-			this.panelUserDetails = new MyFacebookApp.View.UserDetailsPanel();
 			this.panelHomePageTop.SuspendLayout();
 			this.flowLayoutPanelBorderPosts.SuspendLayout();
 			this.SuspendLayout();
@@ -99,12 +100,32 @@ namespace MyFacebookApp.View
 			// panelHomePageTop
 			// 
 			this.panelHomePageTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
+			this.panelHomePageTop.Controls.Add(this.checkBoxRememberMe);
 			this.panelHomePageTop.Controls.Add(this.panelUserDetails);
 			this.panelHomePageTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panelHomePageTop.Location = new System.Drawing.Point(0, 0);
 			this.panelHomePageTop.Name = "panelHomePageTop";
 			this.panelHomePageTop.Size = new System.Drawing.Size(936, 133);
 			this.panelHomePageTop.TabIndex = 24;
+			// 
+			// checkBoxRememberMe
+			// 
+			this.checkBoxRememberMe.AutoSize = true;
+			this.checkBoxRememberMe.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.checkBoxRememberMe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
+			this.checkBoxRememberMe.Location = new System.Drawing.Point(781, 60);
+			this.checkBoxRememberMe.Name = "checkBoxRememberMe";
+			this.checkBoxRememberMe.Size = new System.Drawing.Size(177, 27);
+			this.checkBoxRememberMe.TabIndex = 1;
+			this.checkBoxRememberMe.Text = "Remember Me";
+			this.checkBoxRememberMe.UseVisualStyleBackColor = true;
+			// 
+			// panelUserDetails
+			// 
+			this.panelUserDetails.Location = new System.Drawing.Point(0, 0);
+			this.panelUserDetails.Name = "panelUserDetails";
+			this.panelUserDetails.Size = new System.Drawing.Size(548, 130);
+			this.panelUserDetails.TabIndex = 0;
 			// 
 			// flowLayoutPanelBorderPosts
 			// 
@@ -192,13 +213,6 @@ namespace MyFacebookApp.View
 			this.postsRoundedButton.UseVisualStyleBackColor = false;
 			this.postsRoundedButton.Click += new System.EventHandler(this.postsButton_Click);
 			// 
-			// panelUserDetails
-			// 
-			this.panelUserDetails.Location = new System.Drawing.Point(0, 0);
-			this.panelUserDetails.Name = "panelUserDetails";
-			this.panelUserDetails.Size = new System.Drawing.Size(548, 130);
-			this.panelUserDetails.TabIndex = 0;
-			// 
 			// HomePanel
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -215,6 +229,7 @@ namespace MyFacebookApp.View
 			this.Name = "HomePanel";
 			this.Size = new System.Drawing.Size(936, 537);
 			this.panelHomePageTop.ResumeLayout(false);
+			this.panelHomePageTop.PerformLayout();
 			this.flowLayoutPanelBorderPosts.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -233,5 +248,6 @@ namespace MyFacebookApp.View
 		private RoundedButton friendsRoundedButton;
 		private RoundedButton albumsRoundedButton;
 		private RoundedButton eventsRoundedButton;
+		private CheckBox checkBoxRememberMe;
 	}
 }

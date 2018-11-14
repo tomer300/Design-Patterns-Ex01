@@ -20,6 +20,7 @@ namespace MyFacebookApp.View
 		{	
 			string albumPictureURL = string.Empty;
 			m_PanelToDisplayIn.Controls.Clear();
+			
 			foreach (Album currentAlbum in m_AlbumsOfUser)
 			{
 				if (currentAlbum.Count > 0)

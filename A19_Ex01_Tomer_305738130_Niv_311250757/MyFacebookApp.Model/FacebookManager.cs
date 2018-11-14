@@ -4,10 +4,10 @@ using FacebookWrapper;
 namespace MyFacebookApp.Model
 {
 	public class FacebookManager
-	{		
+	{
 		public AppEngine Login()
 		{
-			LoginResult result = FacebookService.Login(
+				LoginResult loginResult = FacebookService.Login(
 				"2246590548924227",
 				"public_profile",
 				"user_birthday",
@@ -39,19 +39,33 @@ namespace MyFacebookApp.Model
 			 
 			// https://developers.facebook.com/docs/facebook-login/permissions#reference
 
-			if (!string.IsNullOrEmpty(result.AccessToken))
+			if (!string.IsNullOrEmpty(loginResult.AccessToken))
 			{
-				return new AppEngine(new AppUser(result.LoggedInUser));
+				AppSettings.Settings.LastAccessToken = loginResult.AccessToken;
+				return new AppEngine(new AppUser(loginResult.LoggedInUser));
 			}
 			else
 			{
-				throw new Exception(result.ErrorMessage);
+				throw new Exception(loginResult.ErrorMessage);
 			}
 		}
 
 		public void Logout()
 		{
 			FacebookService.Logout(null);
+		}
+
+		public AppEngine AutoLogin()
+		{
+			AppEngine appEngine = null;
+
+			if(AppSettings.Settings.RememberUser && !string.IsNullOrEmpty(AppSettings.Settings.LastAccessToken))
+			{
+				LoginResult loginResult = FacebookService.Connect(AppSettings.Settings.LastAccessToken);
+				appEngine = new AppEngine(new AppUser(loginResult.LoggedInUser));
+			}
+
+			return appEngine;
 		}
 	}
 }

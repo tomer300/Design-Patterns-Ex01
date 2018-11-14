@@ -13,11 +13,49 @@ namespace MyFacebookApp.View
 	public partial class FacebookView : Form
 	{
 		private AppEngine m_AppEngine;
-		private FacebookManager m_FacebookManager;
+		private FacebookManager m_FacebookManager = new FacebookManager();
 
 		public FacebookView()
 		{
 			InitializeComponent();
+ 		}
+
+		protected override void OnShown(EventArgs e)
+		{
+			base.OnShown(e);
+
+			AppSettings.LoadAppSettings();
+
+			if (AppSettings.Settings.RememberUser)
+			{
+				m_AppEngine = m_FacebookManager.AutoLogin();
+
+				if (m_AppEngine != null)
+				{
+					createHomePanel();
+					loadSettings();
+				}
+			}
+		}
+
+		private void loadSettings()
+		{
+			this.Location = AppSettings.Settings.Location;
+			this.panelHomePage.RememberMeStatus = AppSettings.Settings.RememberUser;
+			panelHomePage.ShowAllDetails();
+		}
+
+		protected override void OnFormClosing(FormClosingEventArgs e)
+		{
+			base.OnFormClosing(e);
+			saveSettings();
+		}
+
+		private void saveSettings()
+		{
+			AppSettings.Settings.Location = this.Location;
+			AppSettings.Settings.RememberUser = panelHomePage.RememberMeStatus;
+			AppSettings.Settings.SaveAppSettings();
 		}
 
 		private void findJobButton_Click(object sender, EventArgs e)
@@ -40,18 +78,22 @@ namespace MyFacebookApp.View
 		{
 			try
 			{
-				m_FacebookManager = new FacebookManager();
 				m_AppEngine = m_FacebookManager.Login();
-				panelHomePage = new HomePanel(m_AppEngine);
-				panelHomePage.AddLogoutButton(logoutButton);
-				this.panelMain.Controls.Clear();
-				this.panelMain.Controls.Add(this.panelHomePage);
-				setAppButtonsEnabledStatus(true);
+				createHomePanel();
 			}
 			catch (Exception exLogin)
 			{
 				MessageBox.Show(string.Format("Error! could'nt login - {0}.", exLogin.Message));
 			}
+		}
+
+		private void createHomePanel()
+		{
+			panelHomePage = new HomePanel(m_AppEngine);
+			panelHomePage.AddLogoutButton(logoutButton);
+			this.panelMain.Controls.Clear();
+			this.panelMain.Controls.Add(this.panelHomePage);
+			setAppButtonsEnabledStatus(true);
 		}
 
 		private void setAppButtonsEnabledStatus(bool i_IsEnabled)

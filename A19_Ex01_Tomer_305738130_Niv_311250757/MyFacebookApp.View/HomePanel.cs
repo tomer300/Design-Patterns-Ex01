@@ -10,6 +10,17 @@ namespace MyFacebookApp.View
 	{
 		private AppEngine m_AppEngine;
 		private AlbumsManger m_AlbumsManager;
+		public bool RememberMeStatus
+		{
+			get
+			{
+				return checkBoxRememberMe.Checked;
+			}
+			set
+			{
+				checkBoxRememberMe.Checked = value;
+			}
+		}
 
 		public HomePanel(AppEngine i_AppEngine)
 		{
