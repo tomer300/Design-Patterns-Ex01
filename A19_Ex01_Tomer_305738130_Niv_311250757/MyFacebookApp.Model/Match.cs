@@ -21,7 +21,7 @@ namespace MyFacebookApp.Model
 			{
 				try
 				{
-					if (isUserWithinChosenAgeRange(currentPotentialMatch, i_AgeRange) && isUserSingle(currentPotentialMatch))
+					if (isUserSingle(currentPotentialMatch) && isUserWithinChosenAgeRange(currentPotentialMatch, i_AgeRange))
 					{
 						if ((!i_ChoseBoys && !i_ChoseGirls) || (i_ChoseBoys && i_ChoseGirls))
 						{
@@ -106,8 +106,9 @@ namespace MyFacebookApp.Model
 			string[] chosenRange = i_AgeRange.Split(RANGE_DELIMITER, ABOVE_DELIMITER);
 			bool iswithinRange = false;
 			int usersAge;
+			string matchFullName = string.Format("{0} {1}", i_User.GetFirstName(), i_User.GetLastName());
 
-			usersAge = calculateAge(i_User.GetBirthday());
+			usersAge = calculateAge(i_User.GetBirthday(), matchFullName);
 
 			if (chosenRange.Length == SINGLE_BOUND)
 			{
@@ -127,7 +128,7 @@ namespace MyFacebookApp.Model
 			return iswithinRange;
 		}
 
-		private int calculateAge(string i_Birthday)
+		private int calculateAge(string i_Birthday, string i_MatchFullName)
 		{
 			const int MONTH = 0, DAY = 1, YEAR = 2;
 			const char DATE_DELIMITER = '/';
@@ -148,7 +149,7 @@ namespace MyFacebookApp.Model
 				}
 				catch (Exception)
 				{
-					throw new Exception("Cannot parse inserted birthday in calculate age");
+					throw new Exception(string.Format("{0} has no birth year.", i_MatchFullName));
 				}
 			}
 			else

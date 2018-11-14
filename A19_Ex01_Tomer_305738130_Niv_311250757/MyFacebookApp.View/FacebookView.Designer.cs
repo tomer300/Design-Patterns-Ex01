@@ -30,8 +30,8 @@
 		private void InitializeComponent()
 		{
 			this.panelMain = new System.Windows.Forms.Panel();
-			this.logoutButton = new System.Windows.Forms.Button();
-			this.backToHomeButton = new System.Windows.Forms.Button();
+			this.logoutButton = new RoundedButton();
+			this.backToHomeButton = new RoundedButton();
 			this.findJobAppButton = new System.Windows.Forms.Button();
 			this.findAMatchAppButton = new System.Windows.Forms.Button();
 			this.loadDetailsAppButton = new System.Windows.Forms.Button();
@@ -218,8 +218,9 @@
 		private HomePanel panelHomePage;
 		private JobPanel panelJob;
 		private MatchPanel panelMatch;
+		private RoundedButton logoutButton;
+		private RoundedButton backToHomeButton;
 		private System.Windows.Forms.Panel panelMain;
-		private System.Windows.Forms.Button backToHomeButton;
 		private System.Windows.Forms.Button findJobAppButton;
 		private System.Windows.Forms.Button findAMatchAppButton;
 		private System.Windows.Forms.Button loadDetailsAppButton;
@@ -229,6 +230,5 @@
 		private System.Windows.Forms.Label labelAppName;
 		private System.Windows.Forms.Panel panelShadowColorLight;
 		private System.Windows.Forms.Panel panelShadowColorDark;
-		private System.Windows.Forms.Button logoutButton;
 	}
 }
