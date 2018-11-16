@@ -17,7 +17,35 @@ namespace MyFacebookApp.View
 		public FacebookView()
 		{
 			InitializeComponent();
+			createLogoutAndBackButtons();
  		}
+
+		private void createLogoutAndBackButtons()
+		{
+			this.logoutButton = new RoundedButton();
+			this.backToHomeButton = new RoundedButton();
+			// 
+			// logoutButton
+			// 
+			this.logoutButton.Enabled = false;
+			this.logoutButton.Location = new System.Drawing.Point(788, 10);
+			this.logoutButton.Name = "logoutButton";
+			this.logoutButton.Size = new System.Drawing.Size(135, 35);
+			this.logoutButton.TabIndex = 10;
+			this.logoutButton.Text = "Logout";
+			this.logoutButton.UseVisualStyleBackColor = true;
+			this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
+			// 
+			// backToHomeButton
+			// 
+			this.backToHomeButton.Location = new System.Drawing.Point(-1, 10);
+			this.backToHomeButton.Name = "backToHomeButton";
+			this.backToHomeButton.Size = new System.Drawing.Size(135, 35);
+			this.backToHomeButton.TabIndex = 2;
+			this.backToHomeButton.Text = "Back To Home";
+			this.backToHomeButton.UseVisualStyleBackColor = true;
+			this.backToHomeButton.Click += new System.EventHandler(this.backToHomePage);
+		}
 
 		protected override void OnShown(EventArgs e)
 		{

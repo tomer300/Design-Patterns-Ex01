@@ -30,8 +30,6 @@
 		private void InitializeComponent()
 		{
 			this.panelMain = new System.Windows.Forms.Panel();
-			this.logoutButton = new RoundedButton();
-			this.backToHomeButton = new RoundedButton();
 			this.findJobAppButton = new System.Windows.Forms.Button();
 			this.findAMatchAppButton = new System.Windows.Forms.Button();
 			this.loadDetailsAppButton = new System.Windows.Forms.Button();
@@ -52,27 +50,6 @@
 			this.panelMain.Name = "panelMain";
 			this.panelMain.Size = new System.Drawing.Size(936, 533);
 			this.panelMain.TabIndex = 1;
-			// 
-			// logoutButton
-			// 
-			this.logoutButton.Enabled = false;
-			this.logoutButton.Location = new System.Drawing.Point(788, 10);
-			this.logoutButton.Name = "logoutButton";
-			this.logoutButton.Size = new System.Drawing.Size(135, 35);
-			this.logoutButton.TabIndex = 10;
-			this.logoutButton.Text = "Logout";
-			this.logoutButton.UseVisualStyleBackColor = true;
-			this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
-			// 
-			// backToHomeButton
-			// 
-			this.backToHomeButton.Location = new System.Drawing.Point(-1, 10);
-			this.backToHomeButton.Name = "backToHomeButton";
-			this.backToHomeButton.Size = new System.Drawing.Size(135, 35);
-			this.backToHomeButton.TabIndex = 2;
-			this.backToHomeButton.Text = "Back To Home";
-			this.backToHomeButton.UseVisualStyleBackColor = true;
-			this.backToHomeButton.Click += new System.EventHandler(this.backToHomePage);
 			// 
 			// findJobAppButton
 			// 

@@ -39,7 +39,6 @@
     <Compile Include="AppEngine.cs" />
     <Compile Include="AppSettings.cs" />
     <Compile Include="AppUser.cs" />
-    <Compile Include="CheckClass.cs" />
     <Compile Include="Job.cs" />
     <Compile Include="FacebookManager.cs" />
     <Compile Include="Match.cs" />
@@ -71,7 +70,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Resources\hitechKeyWords.xml" />
   </ItemGroup>
   <ItemGroup>
