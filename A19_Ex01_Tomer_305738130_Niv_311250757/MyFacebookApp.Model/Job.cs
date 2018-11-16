@@ -14,8 +14,6 @@ namespace MyFacebookApp.Model
 
 		public Job(FacebookObjectCollection<AppUser> i_UserFriends)
 		{
-			User stam = new User();
-
 			r_HitechWorkPlaces = buildSetFromXMLFile<WorkPlace>(MyFacebookApp.Model.Properties.Resources.israeliHitechList);
 			r_HitechKeyWords = buildSetFromXMLFile<HitechKeyWord>(MyFacebookApp.Model.Properties.Resources.hitechKeyWords);
 			r_UserFriends = i_UserFriends;
