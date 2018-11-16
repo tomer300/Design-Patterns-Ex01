@@ -80,8 +80,12 @@ namespace MyFacebookApp.View
 
 		private void saveSettings()
 		{
+			if (panelHomePage != null)
+			{
+				AppSettings.Settings.RememberUser = panelHomePage.RememberMeStatus;
+			}
+
 			AppSettings.Settings.Location = this.Location;
-			AppSettings.Settings.RememberUser = panelHomePage.RememberMeStatus;
 			AppSettings.Settings.SaveAppSettings();
 		}
 

@@ -148,7 +148,7 @@ namespace MyFacebookApp.View
 			this.eventsRoundedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.eventsRoundedButton.Font = new System.Drawing.Font("Century Gothic", 12F);
 			this.eventsRoundedButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(34)))), ((int)(((byte)(62)))));
-			this.eventsRoundedButton.Location = new System.Drawing.Point(479, 339);
+			this.eventsRoundedButton.Location = new System.Drawing.Point(479, 336);
 			this.eventsRoundedButton.Name = "eventsRoundedButton";
 			this.eventsRoundedButton.Size = new System.Drawing.Size(142, 40);
 			this.eventsRoundedButton.TabIndex = 36;
@@ -167,7 +167,7 @@ namespace MyFacebookApp.View
 			this.albumsRoundedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.albumsRoundedButton.Font = new System.Drawing.Font("Century Gothic", 12F);
 			this.albumsRoundedButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(34)))), ((int)(((byte)(62)))));
-			this.albumsRoundedButton.Location = new System.Drawing.Point(6, 339);
+			this.albumsRoundedButton.Location = new System.Drawing.Point(6, 336);
 			this.albumsRoundedButton.Name = "albumsRoundedButton";
 			this.albumsRoundedButton.Size = new System.Drawing.Size(142, 40);
 			this.albumsRoundedButton.TabIndex = 35;
