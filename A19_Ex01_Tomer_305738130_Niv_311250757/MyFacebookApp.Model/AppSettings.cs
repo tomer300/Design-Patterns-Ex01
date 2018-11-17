@@ -13,7 +13,9 @@ namespace MyFacebookApp.Model
 	{
 		public static AppSettings Settings { get; private set; }
 
-		private AppSettings() { }
+		private AppSettings()
+		{
+		}
 
 		public Point Location { get; set; } = new Point(10, 10);
 
@@ -57,5 +59,4 @@ namespace MyFacebookApp.Model
 			}
 		}
 	}
-
 }

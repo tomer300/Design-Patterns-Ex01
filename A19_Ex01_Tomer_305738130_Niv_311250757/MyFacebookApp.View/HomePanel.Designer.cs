@@ -36,12 +36,12 @@
 			this.flowLayoutPanelAlbums = new System.Windows.Forms.FlowLayoutPanel();
 			this.panelHomePageTop = new System.Windows.Forms.Panel();
 			this.checkBoxRememberMe = new System.Windows.Forms.CheckBox();
-			this.panelUserDetails = new MyFacebookApp.View.UserDetailsPanel();
 			this.flowLayoutPanelBorderPosts = new System.Windows.Forms.FlowLayoutPanel();
 			this.eventsRoundedButton = new MyFacebookApp.View.RoundedButton();
 			this.albumsRoundedButton = new MyFacebookApp.View.RoundedButton();
 			this.friendsRoundedButton = new MyFacebookApp.View.RoundedButton();
 			this.postsRoundedButton = new MyFacebookApp.View.RoundedButton();
+			this.panelUserDetails = new MyFacebookApp.View.UserDetailsPanel();
 			this.panelHomePageTop.SuspendLayout();
 			this.flowLayoutPanelBorderPosts.SuspendLayout();
 			this.SuspendLayout();
@@ -111,19 +111,12 @@
 			this.checkBoxRememberMe.AutoSize = true;
 			this.checkBoxRememberMe.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.checkBoxRememberMe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
-			this.checkBoxRememberMe.Location = new System.Drawing.Point(781, 60);
+			this.checkBoxRememberMe.Location = new System.Drawing.Point(615, 16);
 			this.checkBoxRememberMe.Name = "checkBoxRememberMe";
 			this.checkBoxRememberMe.Size = new System.Drawing.Size(177, 27);
 			this.checkBoxRememberMe.TabIndex = 1;
 			this.checkBoxRememberMe.Text = "Remember Me";
 			this.checkBoxRememberMe.UseVisualStyleBackColor = true;
-			// 
-			// panelUserDetails
-			// 
-			this.panelUserDetails.Location = new System.Drawing.Point(0, 0);
-			this.panelUserDetails.Name = "panelUserDetails";
-			this.panelUserDetails.Size = new System.Drawing.Size(548, 130);
-			this.panelUserDetails.TabIndex = 0;
 			// 
 			// flowLayoutPanelBorderPosts
 			// 
@@ -210,6 +203,13 @@
 			this.postsRoundedButton.Text = "Posts";
 			this.postsRoundedButton.UseVisualStyleBackColor = false;
 			this.postsRoundedButton.Click += new System.EventHandler(this.postsButton_Click);
+			// 
+			// panelUserDetails
+			// 
+			this.panelUserDetails.Location = new System.Drawing.Point(0, 0);
+			this.panelUserDetails.Name = "panelUserDetails";
+			this.panelUserDetails.Size = new System.Drawing.Size(548, 130);
+			this.panelUserDetails.TabIndex = 0;
 			// 
 			// HomePanel
 			// 

@@ -18,7 +18,7 @@ namespace MyFacebookApp.View
 		{
 			this.logoutButton = new RoundedButton();
 			this.backToHomeButton = new RoundedButton();
-			// 
+			//
 			// logoutButton
 			// 
 			this.logoutButton.Enabled = false;

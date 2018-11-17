@@ -8,6 +8,9 @@ namespace MyFacebookApp.Model
 		public static AppEngine Login()
 		{
 				LoginResult loginResult = FacebookService.Login(
+				/*"user_relationships",
+				"user_relationship_details",
+				"user_work_history",*/
 				"2246590548924227",
 				"public_profile",
 				"user_birthday",
@@ -18,27 +21,10 @@ namespace MyFacebookApp.Model
 				"user_likes",
 				"user_location",
 				"user_photos",
-				"user_posts",
-				/*"user_about_me",
-				"user_relationships",
-				"user_relationship_details",
-				"user_work_history",*/
+				"user_posts");
 
-				//Check if neccessery
-				"read_page_mailboxes",
-				"manage_pages",
-				"publish_pages"
-				//"publish_actions",
-				//"user_managed_groups",
-				//"publish_actions",
-				// "rsvp_event"
-				);
-			// These are NOT the complete list of permissions. Other permissions for example:
-			// "user_birthday", "user_education_history", "user_hometown", "user_likes","user_location","user_relationships","user_relationship_details","user_religion_politics", "user_videos", "user_website", "user_work_history", "email","read_insights","rsvp_event","manage_pages"
-			// The documentation regarding facebook login and permissions can be found here:
-			 
+			// The documentation regarding facebook login and permissions can be found here:	 
 			// https://developers.facebook.com/docs/facebook-login/permissions#reference
-
 			if (!string.IsNullOrEmpty(loginResult.AccessToken))
 			{
 				AppSettings.Settings.LastAccessToken = loginResult.AccessToken;
