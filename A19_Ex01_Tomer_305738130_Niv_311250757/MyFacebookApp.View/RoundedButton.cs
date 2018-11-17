@@ -58,6 +58,7 @@
 		private void RoundedButton_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
 		{
 			RoundedButton clickedButton = sender as RoundedButton;
+
 			if (clickedButton != null)
 			{
 				clickedButton.BackgroundImage = r_ClickImage;

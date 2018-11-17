@@ -32,11 +32,13 @@ namespace MyFacebookApp.View
 			PictureBox.BackColor = System.Drawing.Color.Gray;
 			PictureBox.Paint += new PaintEventHandler((sender, e) =>
 			{
+				float	fontSize = 12;
+				string	noPictureMessage = "No Picture";
+				SizeF	noPictureMessageSize;
+				PointF	locationToDraw = new PointF();
+
 				e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-				float fontSize = 12;
-				string noPictureMessage = "No Picture";
-				SizeF noPictureMessageSize = e.Graphics.MeasureString(noPictureMessage, new Font("Franklin Gothic Heavy", fontSize));
-				PointF locationToDraw = new PointF();
+				noPictureMessageSize = e.Graphics.MeasureString(noPictureMessage, new Font("Franklin Gothic Heavy", fontSize));
 				locationToDraw.X = (PictureBox.Width / 2) - (noPictureMessageSize.Width / 2);
 				locationToDraw.Y = (PictureBox.Height / (float)1.4) - (noPictureMessageSize.Height / (float)2);
 				e.Graphics.DrawString(noPictureMessage, new Font("Franklin Gothic Heavy", fontSize), Brushes.White, locationToDraw);

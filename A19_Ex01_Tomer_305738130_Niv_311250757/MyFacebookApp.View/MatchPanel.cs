@@ -13,12 +13,12 @@ namespace MyFacebookApp.View
 {
 	public partial class MatchPanel : UserControl
 	{
-		private AppEngine m_AppEngine;
+		private readonly AppEngine r_AppEngine;
 
 		public MatchPanel(AppEngine i_AppEngine)
 		{
 			InitializeComponent();
-			m_AppEngine = i_AppEngine;
+			r_AppEngine = i_AppEngine;
 		}
 
 		public void AddBackToHomeButton(Button i_BackToHomeButton)
@@ -35,13 +35,14 @@ namespace MyFacebookApp.View
 		{
 			if (checkedGenderPreference())
 			{
-				FacebookObjectCollection<AppUser> potentialMatches;
-				bool hasShownMessageBox = false;
+				FacebookObjectCollection<AppUser>	potentialMatches;
+				bool								hasShownMessageBox = false;
+
 				flowLayoutPanelMatchPictures.Controls.Clear();
 				panelUserDetails.Visible = false;
 				try
 				{
-					potentialMatches = m_AppEngine.FindAMatch(
+					potentialMatches = r_AppEngine.FindAMatch(
 						checkBoxGirls.Checked,
 						checkBoxBoys.Checked,
 						comboBoxAgeRanges.Items[comboBoxAgeRanges.SelectedIndex].ToString());
@@ -70,8 +71,8 @@ namespace MyFacebookApp.View
 
 		private void addPotentialMatch(AppUser i_CurrentPotentialMatch, ref bool io_HasShownMessageBox)
 		{
-			PictureWrapper matchPicWrapper;
-			string profilePictureURL = string.Empty;
+			PictureWrapper	matchPicWrapper;
+			string			profilePictureURL = string.Empty;
 
 			try
 			{
@@ -87,8 +88,10 @@ namespace MyFacebookApp.View
 			}
 			finally
 			{
+				PictureBox matchPic;
+
 				matchPicWrapper = new PictureWrapper(profilePictureURL);
-				PictureBox matchPic = matchPicWrapper.PictureBox;
+				matchPic = matchPicWrapper.PictureBox;
 				matchPic.Cursor = Cursors.Hand;
 				matchPic.Click += (user, ex) => match_Click(i_CurrentPotentialMatch);
 				flowLayoutPanelMatchPictures.Controls.Add(matchPic);
@@ -109,13 +112,13 @@ namespace MyFacebookApp.View
 
 		private void match_Click(AppUser i_PotentialMatch)
 		{
-			AlbumsManger matchAlbumsManager;
+			AlbumsManger					matchAlbumsManager;
 			FacebookObjectCollection<Album> matchAlbums;
-			string profilePictureURL = string.Empty;
-			string potentialMatchFirstName = string.Empty;
-			string potentialMatchLastName = string.Empty;
-			string potentialMatchCity = string.Empty;
-			string potentialMatchBirthday = string.Empty;
+			string							profilePictureURL = string.Empty;
+			string							potentialMatchFirstName = string.Empty;
+			string							potentialMatchLastName = string.Empty;
+			string							potentialMatchCity = string.Empty;
+			string							potentialMatchBirthday = string.Empty;
 
 			try
 			{

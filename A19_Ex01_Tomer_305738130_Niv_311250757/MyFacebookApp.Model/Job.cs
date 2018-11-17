@@ -8,9 +8,9 @@ namespace MyFacebookApp.Model
 {
 	public class Job
 	{
-		private readonly HashSet<string> r_HitechWorkPlaces;
-		private readonly HashSet<string> r_HitechKeyWords;
-		private readonly FacebookObjectCollection<AppUser> r_UserFriends;
+		private readonly HashSet<string>					r_HitechWorkPlaces;
+		private readonly HashSet<string>					r_HitechKeyWords;
+		private readonly FacebookObjectCollection<AppUser>	r_UserFriends;
 
 		public Job(FacebookObjectCollection<AppUser> i_UserFriends)
 		{
@@ -22,6 +22,7 @@ namespace MyFacebookApp.Model
 		private HashSet<string> buildSetFromXMLFile<T>(string i_XMLFileContent)
 		{
 			HashSet<string> setFromFile = new HashSet<string>();
+
 			if (i_XMLFileContent.Length > 0)
 			{
 				using (TextReader reader = new StringReader(i_XMLFileContent))
@@ -41,8 +42,9 @@ namespace MyFacebookApp.Model
 
 		internal FacebookObjectCollection<AppUser> FindHitechWorkersContacts()
 		{
-			FacebookObjectCollection<AppUser> hitechWorkingContacts = new FacebookObjectCollection<AppUser>();
-			string exceptionMessage = string.Empty;
+			FacebookObjectCollection<AppUser>	hitechWorkingContacts = new FacebookObjectCollection<AppUser>();
+			string								exceptionMessage = string.Empty;
+
 			foreach (AppUser currentFriend in r_UserFriends)
 			{
 				try
@@ -88,8 +90,8 @@ namespace MyFacebookApp.Model
 
 		private bool worksAtKnownHitechCompany(AppUser i_CurrentFriend)
 		{
-			bool doesWorksAtKnownHitechCompany = false;
-			string workPlace;
+			bool	doesWorksAtKnownHitechCompany = false;
+			string	workPlace;
 
 			workPlace = i_CurrentFriend.GetWorkPlace()?.Name.ToLower();
 			if (r_HitechWorkPlaces.Contains(workPlace))

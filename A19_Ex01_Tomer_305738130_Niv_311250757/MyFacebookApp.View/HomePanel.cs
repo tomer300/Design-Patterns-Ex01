@@ -8,8 +8,15 @@ namespace MyFacebookApp.View
 {
 	public partial class HomePanel : UserControl
 	{
-		private AppEngine m_AppEngine;
-		private AlbumsManger m_AlbumsManager;
+		private readonly AppEngine	r_AppEngine;
+		private AlbumsManger		m_AlbumsManager;
+
+		public HomePanel(AppEngine i_AppEngine)
+		{
+			InitializeComponent();
+			r_AppEngine = i_AppEngine;
+			fetchInitialDetails();
+		}
 
 		public bool RememberMeStatus
 		{
@@ -22,13 +29,6 @@ namespace MyFacebookApp.View
 			{
 				checkBoxRememberMe.Checked = value;
 			}
-		}
-
-		public HomePanel(AppEngine i_AppEngine)
-		{
-			InitializeComponent();
-			m_AppEngine = i_AppEngine;
-			fetchInitialDetails();
 		}
 
 		private void friendsButton_Click(object sender, EventArgs e)
@@ -56,8 +56,9 @@ namespace MyFacebookApp.View
 			flowLayoutPanelFriends.Controls.Clear();
 			try
 			{
-				FacebookObjectCollection<AppUser> myFriends = m_AppEngine.GetFriends();
-				bool hasShownMessageBox = false;
+				FacebookObjectCollection<AppUser>	myFriends = r_AppEngine.GetFriends();
+				bool								hasShownMessageBox = false;
+
 				foreach (AppUser friend in myFriends)
 				{
 					showFriendProfilePicture(friend, ref hasShownMessageBox);
@@ -99,9 +100,9 @@ namespace MyFacebookApp.View
 			}
 		}
 
-		private void writeNameOnFriendPicture(object senderFriend, PaintEventArgs ePaint, AppUser i_Friend)
+		private void writeNameOnFriendPicture(object sender, PaintEventArgs ePaint, AppUser i_Friend)
 		{
-			PictureBox friendPicture = senderFriend as PictureBox;
+			PictureBox friendPicture = sender as PictureBox;
 
 			if (friendPicture != null)
 			{
@@ -144,11 +145,11 @@ namespace MyFacebookApp.View
 
 			try
 			{
-				profilePictureURL = m_AppEngine.GetProfilePicture();
-				firstName = m_AppEngine.GetFirstName();
-				lastName = m_AppEngine.GetLastName();
-				cityName = m_AppEngine.GetCity();
-				birthday = m_AppEngine.GetBirthday();
+				profilePictureURL = r_AppEngine.GetProfilePicture();
+				firstName = r_AppEngine.GetFirstName();
+				lastName = r_AppEngine.GetLastName();
+				cityName = r_AppEngine.GetCity();
+				birthday = r_AppEngine.GetBirthday();
 			}
 			catch (Exception ex)
 			{
@@ -171,11 +172,11 @@ namespace MyFacebookApp.View
 			{
 				try
 				{
-					FacebookObjectCollection<Album> usersAlbums = m_AppEngine.GetAlbums();
+					FacebookObjectCollection<Album> usersAlbums = r_AppEngine.GetAlbums();
 
 					if (usersAlbums != null && usersAlbums.Count > 0)
 					{
-						m_AlbumsManager = new AlbumsManger(m_AppEngine.GetAlbums(), flowLayoutPanelAlbums);
+						m_AlbumsManager = new AlbumsManger(r_AppEngine.GetAlbums(), flowLayoutPanelAlbums);
 						m_AlbumsManager.AlbumClickedAction += albumsButtonChangeDescription;
 						m_AlbumsManager.displayAlbums();
 					}
@@ -216,10 +217,11 @@ namespace MyFacebookApp.View
 		private void fetchEvents()
 		{
 			FacebookObjectCollection<Event> allEvents;
+
 			listBoxEvents.Items.Clear();
 			try
 			{
-				allEvents = m_AppEngine.GetEvents();
+				allEvents = r_AppEngine.GetEvents();
 				if (allEvents != null && allEvents.Count > 0)
 				{
 					listBoxEvents.DisplayMember = "Name";
@@ -247,13 +249,14 @@ namespace MyFacebookApp.View
 			tableLayoutPanelPosts.RowStyles.Clear();
 			try
 			{
-				allPosts = m_AppEngine.GetPosts();
+				allPosts = r_AppEngine.GetPosts();
 				if (allPosts != null && allPosts.Count > 0)
 				{
 					foreach (Post currentPost in allPosts)
 					{
-						bool isLegalPost = false;
-						Label postDetails = new Label();
+						bool	isLegalPost = false;
+						Label	postDetails = new Label();
+
 						postDetails.Text = string.Format(
 							"Posted at: {0}{1}Post Type: {2}{3}",
 							currentPost.CreatedTime.ToString(),
@@ -307,6 +310,7 @@ namespace MyFacebookApp.View
 			if (i_Content.Length > 0)
 			{
 				Label message = new Label();
+
 				message.Text = i_Content;
 				message.AutoSize = true;
 				tableLayoutPanelPosts.Controls.Add(message);

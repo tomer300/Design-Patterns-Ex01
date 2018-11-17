@@ -15,8 +15,9 @@ namespace MyFacebookApp.Model
 
 		internal FacebookObjectCollection<AppUser> FindAMatch(bool i_ChoseGirls, bool i_ChoseBoys, string i_AgeRange)
 		{
-			FacebookObjectCollection<AppUser> potentialMatches = new FacebookObjectCollection<AppUser>();
-			string exceptionMessage = string.Empty;
+			FacebookObjectCollection<AppUser>	potentialMatches = new FacebookObjectCollection<AppUser>();
+			string								exceptionMessage = string.Empty;
+
 			foreach (AppUser currentPotentialMatch in r_UserFriends)
 			{
 				try
@@ -60,8 +61,8 @@ namespace MyFacebookApp.Model
 
 		private bool isUserSingle(AppUser i_CurrentPotentialMatch)
 		{
-			bool isSingle = false;
-			eRelationshipStatus? userRelationshipStatus = i_CurrentPotentialMatch.GetRelationshipStatus();
+			bool					isSingle = false;
+			eRelationshipStatus?	userRelationshipStatus = i_CurrentPotentialMatch.GetRelationshipStatus();
 
 			if (userRelationshipStatus != null)
 			{
@@ -101,15 +102,14 @@ namespace MyFacebookApp.Model
 										46-50
 										50+
 			*/
-			const int SINGLE_BOUND = 1, LOWER_BOUND = 0, UPPER_BOUND = 1;
-			const char RANGE_DELIMITER = '-', ABOVE_DELIMITER = '+';
-			string[] chosenRange = i_AgeRange.Split(RANGE_DELIMITER, ABOVE_DELIMITER);
-			bool iswithinRange = false;
-			int usersAge;
-			string matchFullName = string.Format("{0} {1}", i_User.GetFirstName(), i_User.GetLastName());
+			const int	SINGLE_BOUND = 1, LOWER_BOUND = 0, UPPER_BOUND = 1;
+			const char	RANGE_DELIMITER = '-', ABOVE_DELIMITER = '+';
+			string[]	chosenRange = i_AgeRange.Split(RANGE_DELIMITER, ABOVE_DELIMITER);
+			bool		iswithinRange = false;
+			int			usersAge;
+			string		matchFullName = string.Format("{0} {1}", i_User.GetFirstName(), i_User.GetLastName());
 
 			usersAge = calculateAge(i_User.GetBirthday(), matchFullName);
-
 			if (chosenRange.Length == SINGLE_BOUND)
 			{
 				if (usersAge > int.Parse(chosenRange[LOWER_BOUND]))
@@ -130,12 +130,13 @@ namespace MyFacebookApp.Model
 
 		private int calculateAge(string i_Birthday, string i_MatchFullName)
 		{
-			const int MONTH = 0, DAY = 1, YEAR = 2;
-			const char DATE_DELIMITER = '/';
-			int age = 0;
-			string[] birthDateArray = i_Birthday.Split(DATE_DELIMITER);
-			DateTime birthDate;
-			DateTime today = DateTime.Today;
+			const int	MONTH = 0, DAY = 1, YEAR = 2;
+			const char	DATE_DELIMITER = '/';
+			int			age = 0;
+			string[]	birthDateArray = i_Birthday.Split(DATE_DELIMITER);
+			DateTime	birthDate;
+			DateTime	today = DateTime.Today;
+
 			if (birthDateArray != null)
 			{
 				try

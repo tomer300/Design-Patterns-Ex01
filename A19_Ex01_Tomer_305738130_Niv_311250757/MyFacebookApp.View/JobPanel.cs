@@ -13,13 +13,13 @@ namespace MyFacebookApp.View
 {
 	public partial class JobPanel : UserControl
 	{
-		private AppEngine m_AppEngine;
+		private readonly AppEngine r_AppEngine;
 		private int m_LastChosenContactIndex;
 
 		public JobPanel(AppEngine i_AppEngine)
 		{
 			InitializeComponent();
-			m_AppEngine = i_AppEngine;
+			r_AppEngine = i_AppEngine;
 		}
 
 		public void AddLogoutButton(Button i_LogoutButton)
@@ -34,14 +34,14 @@ namespace MyFacebookApp.View
 
 		private void findAJobButton_Click(object sender, EventArgs e)
 		{
-			FacebookObjectCollection<AppUser> hitechWorkerContacts;
-			bool hasShownMessageBox = false;
+			FacebookObjectCollection<AppUser>	hitechWorkerContacts;
+			bool								hasShownMessageBox = false;
 
 			listBoxJobs.Items.Clear();
 			flowLayoutPanelContactPhotos.Controls.Clear();
 			try
 			{
-				hitechWorkerContacts = m_AppEngine.FindHitechWorkersContacts();
+				hitechWorkerContacts = r_AppEngine.FindHitechWorkersContacts();
 				if (hitechWorkerContacts != null && hitechWorkerContacts.Count > 0)
 				{
 					foreach (AppUser currentContact in hitechWorkerContacts)
@@ -69,6 +69,7 @@ namespace MyFacebookApp.View
 			string contactFirstName = string.Empty;
 			string contactLastName = string.Empty;
 			string workPlace = string.Empty;
+
 			try
 			{
 				profilePictureURL = i_CurrentContact.GetProfilePicture();
@@ -86,8 +87,9 @@ namespace MyFacebookApp.View
 			}
 			finally
 			{
-				PictureWrapper contactPictureWrapper = new PictureWrapper(profilePictureURL);
-				PictureBox contactPic = contactPictureWrapper.PictureBox;
+				PictureWrapper	contactPictureWrapper = new PictureWrapper(profilePictureURL);
+				PictureBox		contactPic = contactPictureWrapper.PictureBox;
+
 				contactFullName = string.Format("{0} {1}", contactFirstName, contactLastName);
 				contactPic.Name = contactFullName;
 				contactPic.Click += new EventHandler(contactPic_Click);
@@ -101,10 +103,10 @@ namespace MyFacebookApp.View
 
 		private void contactInfo_Click(object sender, EventArgs e)
 		{
-			PictureBox lastChosenContactPhoto = flowLayoutPanelContactPhotos.Controls[m_LastChosenContactIndex] as PictureBox;
+			PictureBox	lastChosenContactPhoto = flowLayoutPanelContactPhotos.Controls[m_LastChosenContactIndex] as PictureBox;
 			ContactItem contactClicked;
-			PictureBox contactPicture;
-			string contactName = string.Empty;
+			PictureBox	contactPicture;
+			string		contactName = string.Empty;
 
 			if (lastChosenContactPhoto != null)
 			{
@@ -133,9 +135,9 @@ namespace MyFacebookApp.View
 
 		private void contactPic_Click(object sender, EventArgs e)
 		{
-			PictureBox clickedContact = sender as PictureBox;
+			PictureBox	clickedContact = sender as PictureBox;
 			ContactItem currentContactInfo;
-			string contactName;
+			string		contactName;
 
 			if (clickedContact != null)
 			{

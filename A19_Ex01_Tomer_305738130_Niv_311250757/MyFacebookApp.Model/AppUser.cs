@@ -6,11 +6,11 @@ namespace MyFacebookApp.Model
 {
 	public class AppUser
 	{
-		private User m_LoggedInUser;
+		private readonly User r_LoggedInUser;
 
 		internal AppUser(User i_LoggedInUser)
 		{
-			m_LoggedInUser = i_LoggedInUser;
+			r_LoggedInUser = i_LoggedInUser;
 		}
 
 		public string GetProfilePicture()
@@ -19,7 +19,7 @@ namespace MyFacebookApp.Model
 
 			try
 			{
-				pictureURL = m_LoggedInUser.PictureNormalURL;
+				pictureURL = r_LoggedInUser.PictureNormalURL;
 			}
 			catch (Exception)
 			{
@@ -35,7 +35,7 @@ namespace MyFacebookApp.Model
 
 			try
 			{
-				cityName = m_LoggedInUser.Location.Name;
+				cityName = r_LoggedInUser.Location.Name;
 			}
 			catch (Exception)
 			{
@@ -51,7 +51,7 @@ namespace MyFacebookApp.Model
 
 			try
 			{
-				birthday = m_LoggedInUser.Birthday;
+				birthday = r_LoggedInUser.Birthday;
 			}
 			catch (Exception)
 			{
@@ -67,7 +67,7 @@ namespace MyFacebookApp.Model
 
 			try
 			{
-				firstName = m_LoggedInUser.FirstName;
+				firstName = r_LoggedInUser.FirstName;
 			}
 			catch (Exception)
 			{
@@ -83,7 +83,7 @@ namespace MyFacebookApp.Model
 
 			try
 			{
-				lastName = m_LoggedInUser.LastName;
+				lastName = r_LoggedInUser.LastName;
 			}
 			catch (Exception)
 			{
@@ -99,7 +99,7 @@ namespace MyFacebookApp.Model
 
 			try
 			{
-				albums = m_LoggedInUser.Albums;
+				albums = r_LoggedInUser.Albums;
 			}
 			catch (Exception)
 			{
@@ -115,14 +115,14 @@ namespace MyFacebookApp.Model
 
 			try
 			{
-				usersGender = m_LoggedInUser.Gender;
+				usersGender = r_LoggedInUser.Gender;
 			}
 			catch (Exception)
 			{
 				throw new Facebook.FacebookApiException("Couldn't fetch user's gender.");
 			}
 
-			return m_LoggedInUser.Gender;
+			return r_LoggedInUser.Gender;
 		}
 
 		internal FacebookObjectCollection<Event> GetEvents()
@@ -131,7 +131,7 @@ namespace MyFacebookApp.Model
 
 			try
 			{
-				events = m_LoggedInUser.Events;
+				events = r_LoggedInUser.Events;
 			}
 			catch (Exception)
 			{
@@ -147,7 +147,7 @@ namespace MyFacebookApp.Model
 
 			try
 			{
-				posts = m_LoggedInUser.Posts;
+				posts = r_LoggedInUser.Posts;
 			}
 			catch (Exception)
 			{
@@ -159,12 +159,12 @@ namespace MyFacebookApp.Model
 
 		internal FacebookObjectCollection<AppUser> GetFriends()
 		{
-			FacebookObjectCollection<AppUser> friends = new FacebookObjectCollection<AppUser>();
-			FacebookObjectCollection<User> userFriends;
+			FacebookObjectCollection<AppUser>	friends = new FacebookObjectCollection<AppUser>();
+			FacebookObjectCollection<User>		userFriends;
 
 			try
 			{
-				userFriends = m_LoggedInUser.Friends;
+				userFriends = r_LoggedInUser.Friends;
 				foreach (User currentFriend in userFriends)
 				{
 					friends.Add(new AppUser(currentFriend));
@@ -180,17 +180,17 @@ namespace MyFacebookApp.Model
 
 		public Page GetWorkPlace()
 		{
-			Page workPlace = null;
-			WorkExperience[] allWorks;
+			WorkExperience[]	allWorks;
+			Page				workPlace = null;
 
 			try
 			{
-				allWorks = m_LoggedInUser.WorkExperiences;
+				allWorks = r_LoggedInUser.WorkExperiences;
 				if (allWorks != null && allWorks.Length > 0)
 				{
-					if (m_LoggedInUser.WorkExperiences[m_LoggedInUser.WorkExperiences.Length - 1] != null)
+					if (r_LoggedInUser.WorkExperiences[r_LoggedInUser.WorkExperiences.Length - 1] != null)
 					{
-						workPlace = m_LoggedInUser.WorkExperiences[m_LoggedInUser.WorkExperiences.Length - 1].Employer;
+						workPlace = r_LoggedInUser.WorkExperiences[r_LoggedInUser.WorkExperiences.Length - 1].Employer;
 					}
 				}
 			}
@@ -205,16 +205,17 @@ namespace MyFacebookApp.Model
 		internal eRelationshipStatus? GetRelationshipStatus()
 		{
 			eRelationshipStatus? userRelationshipStatus;
+
 			try
 			{
-				userRelationshipStatus = m_LoggedInUser.RelationshipStatus;
+				userRelationshipStatus = r_LoggedInUser.RelationshipStatus;
 			}
 			catch (Exception)
 			{
 				throw new Facebook.FacebookApiException("Couldn't fetch user's relationship status.");
 			}
 
-			return m_LoggedInUser.RelationshipStatus;
+			return r_LoggedInUser.RelationshipStatus;
 		}
 	}
 }

@@ -11,6 +11,8 @@ namespace MyFacebookApp.Model
 {
 	public class AppSettings
 	{
+		private const string k_FileName = "\\appSettings.xml";
+
 		public static AppSettings Settings { get; private set; }
 
 		private AppSettings()
@@ -27,9 +29,10 @@ namespace MyFacebookApp.Model
 		{
 			if (Settings == null)
 			{
-				Settings = new AppSettings();
 				string pathOfSettingsFile = Environment.CurrentDirectory;
-				pathOfSettingsFile += "\\appSettings.xml";
+
+				Settings = new AppSettings();
+				pathOfSettingsFile += k_FileName;
 				if (File.Exists(pathOfSettingsFile) && new FileInfo(pathOfSettingsFile).Length > 0)
 				{
 					using (Stream stream = new FileStream(pathOfSettingsFile, FileMode.Open))
@@ -43,9 +46,11 @@ namespace MyFacebookApp.Model
 
 		public void SaveAppSettings()
 		{
-			string pathOfSettingsFile = Environment.CurrentDirectory;
-			pathOfSettingsFile += "\\appSettings.xml";
-			FileMode fileMode = File.Exists(pathOfSettingsFile) ? FileMode.Truncate : FileMode.CreateNew;
+			FileMode	fileMode;
+			string		pathOfSettingsFile = Environment.CurrentDirectory;
+
+			pathOfSettingsFile += k_FileName;
+			fileMode = File.Exists(pathOfSettingsFile) ? FileMode.Truncate : FileMode.CreateNew;
 
 			if (!RememberUser)
 			{
