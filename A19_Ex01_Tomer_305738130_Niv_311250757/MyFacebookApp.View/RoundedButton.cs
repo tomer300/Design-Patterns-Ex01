@@ -1,6 +1,5 @@
 ﻿namespace MyFacebookApp.View
 {
-	using System;
 	public class RoundedButton : System.Windows.Forms.Button
 	{
 		private readonly System.Drawing.Image r_BasicImage = Properties.Resources.basicRoundedButtonIcon as System.Drawing.Image;
@@ -26,7 +25,7 @@
 			this.ForeColor = System.Drawing.Color.FromArgb(41, 34, 62);
 		}
 
-		private void RoundedButton_MouseLeave(object sender, EventArgs e)
+		private void RoundedButton_MouseLeave(object sender, System.EventArgs e)
 		{
 			RoundedButton hoveredButton = sender as RoundedButton;
 
@@ -36,7 +35,7 @@
 			}
 		}
 
-		private void RoundedButton_MouseEnter(object sender, EventArgs e)
+		private void RoundedButton_MouseEnter(object sender, System.EventArgs e)
 		{
 			RoundedButton hoveredButton = sender as RoundedButton;
 
