@@ -22,8 +22,8 @@ namespace MyFacebookApp.View
 
 		private void createLogoutAndBackButtons()
 		{
-			this.logoutButton = new Button();
-			this.backToHomeButton = new Button();
+			this.logoutButton = new RoundedButton();
+			this.backToHomeButton = new RoundedButton();
 			// 
 			// logoutButton
 			// 

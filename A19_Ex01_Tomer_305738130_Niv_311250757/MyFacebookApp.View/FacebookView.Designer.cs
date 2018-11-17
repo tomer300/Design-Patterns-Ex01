@@ -195,8 +195,8 @@
 		private HomePanel panelHomePage;
 		private JobPanel panelJob;
 		private MatchPanel panelMatch;
-		private System.Windows.Forms.Button logoutButton;
-		private System.Windows.Forms.Button backToHomeButton;
+		private RoundedButton logoutButton;
+		private RoundedButton backToHomeButton;
 		private System.Windows.Forms.Panel panelMain;
 		private System.Windows.Forms.Button findJobAppButton;
 		private System.Windows.Forms.Button findAMatchAppButton;
