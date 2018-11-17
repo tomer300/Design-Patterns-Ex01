@@ -110,6 +110,6 @@
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelContactPhotos;
 		private System.Windows.Forms.ListBox listBoxJobs;
 		private System.Windows.Forms.Label labelInformation;
-		private RoundedButton findAJobRoundedButton;
+		private MyFacebookApp.View.RoundedButton findAJobRoundedButton;
 	}
 }

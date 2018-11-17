@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace MyFacebookApp.View
+﻿namespace MyFacebookApp.View
 {
 	partial class HomePanel
 	{
@@ -242,12 +240,12 @@ namespace MyFacebookApp.View
 		private System.Windows.Forms.ListBox listBoxEvents;
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelAlbums;
 		private System.Windows.Forms.Panel panelHomePageTop;
-		private UserDetailsPanel panelUserDetails;
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelBorderPosts;
-		private RoundedButton postsRoundedButton;
-		private RoundedButton friendsRoundedButton;
-		private RoundedButton albumsRoundedButton;
-		private RoundedButton eventsRoundedButton;
-		private CheckBox checkBoxRememberMe;
+		private System.Windows.Forms.CheckBox checkBoxRememberMe;
+		private MyFacebookApp.View.UserDetailsPanel panelUserDetails;
+		private MyFacebookApp.View.RoundedButton postsRoundedButton;
+		private MyFacebookApp.View.RoundedButton friendsRoundedButton;
+		private MyFacebookApp.View.RoundedButton albumsRoundedButton;
+		private MyFacebookApp.View.RoundedButton eventsRoundedButton;
 	}
 }

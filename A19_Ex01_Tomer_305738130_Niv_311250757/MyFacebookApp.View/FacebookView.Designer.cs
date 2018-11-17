@@ -192,11 +192,6 @@
 		}
 
 		#endregion
-		private HomePanel panelHomePage;
-		private JobPanel panelJob;
-		private MatchPanel panelMatch;
-		private RoundedButton logoutButton;
-		private RoundedButton backToHomeButton;
 		private System.Windows.Forms.Panel panelMain;
 		private System.Windows.Forms.Button findJobAppButton;
 		private System.Windows.Forms.Button findAMatchAppButton;
@@ -207,5 +202,10 @@
 		private System.Windows.Forms.Label labelAppName;
 		private System.Windows.Forms.Panel panelShadowColorLight;
 		private System.Windows.Forms.Panel panelShadowColorDark;
+		private MyFacebookApp.View.HomePanel panelHomePage;
+		private MyFacebookApp.View.JobPanel panelJob;
+		private MyFacebookApp.View.MatchPanel panelMatch;
+		private MyFacebookApp.View.RoundedButton logoutButton;
+		private MyFacebookApp.View.RoundedButton backToHomeButton;
 	}
 }

@@ -164,13 +164,13 @@
 
 		#endregion
 
-		private UserDetailsPanel panelUserDetails;
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelMatchPictures;
 		private System.Windows.Forms.Label labelBetweenAges;
 		private System.Windows.Forms.ComboBox comboBoxAgeRanges;
 		private System.Windows.Forms.Label labelInterestedIn;
 		private System.Windows.Forms.CheckBox checkBoxBoys;
 		private System.Windows.Forms.CheckBox checkBoxGirls;
-		private RoundedButton findAMatchRoundedButton;
+		private MyFacebookApp.View.UserDetailsPanel panelUserDetails;
+		private MyFacebookApp.View.RoundedButton findAMatchRoundedButton;
 	}
 }

@@ -1,32 +1,29 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
-
-namespace MyFacebookApp.View
+﻿namespace MyFacebookApp.View
 {
-	public class RoundedButton : Button
+	using System;
+	public class RoundedButton : System.Windows.Forms.Button
 	{
-		private readonly Image r_BasicImage = Properties.Resources.basicRoundedButtonIcon as Image;
-		private readonly Image r_HoverImage = Properties.Resources.hoverRoundedButtonIcon as Image;
-		private readonly Image r_ClickImage = Properties.Resources.clickRoundedButtonIcon as Image;
+		private readonly System.Drawing.Image r_BasicImage = Properties.Resources.basicRoundedButtonIcon as System.Drawing.Image;
+		private readonly System.Drawing.Image r_HoverImage = Properties.Resources.hoverRoundedButtonIcon as System.Drawing.Image;
+		private readonly System.Drawing.Image r_ClickImage = Properties.Resources.clickRoundedButtonIcon as System.Drawing.Image;
 
 		public RoundedButton()
 		{
 			this.Width = 130;
 			this.Height = 40;
-			this.BackColor = Color.Transparent;
+			this.BackColor = System.Drawing.Color.Transparent;
 			this.BackgroundImage = Properties.Resources.basicRoundedButtonIcon;
-			this.BackgroundImageLayout = ImageLayout.Stretch;
+			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.FlatAppearance.BorderSize = 0;
-			this.FlatAppearance.MouseDownBackColor = Color.Transparent;
-			this.FlatAppearance.MouseOverBackColor = Color.Transparent;
+			this.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+			this.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
 			this.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.MouseDown += RoundedButton_MouseDown;
 			this.MouseUp += RoundedButton_MouseUp;
 			this.MouseEnter += RoundedButton_MouseEnter;
 			this.MouseLeave += RoundedButton_MouseLeave;
-			this.Font = new Font("Century Gothic", 12);
-			this.ForeColor = Color.FromArgb(41, 34, 62);
+			this.Font = new System.Drawing.Font("Century Gothic", 12);
+			this.ForeColor = System.Drawing.Color.FromArgb(41, 34, 62);
 		}
 
 		private void RoundedButton_MouseLeave(object sender, EventArgs e)
@@ -49,7 +46,7 @@ namespace MyFacebookApp.View
 			}
 		}
 
-		private void RoundedButton_MouseUp(object sender, MouseEventArgs e)
+		private void RoundedButton_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
 		{
 			RoundedButton clickedButton = sender as RoundedButton;
 
@@ -59,7 +56,7 @@ namespace MyFacebookApp.View
 			}
 		}
 
-		private void RoundedButton_MouseDown(object sender, MouseEventArgs e)
+		private void RoundedButton_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
 		{
 			RoundedButton clickedButton = sender as RoundedButton;
 			if (clickedButton != null)
