@@ -29,7 +29,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MatchPanel));
 			this.flowLayoutPanelMatchPictures = new System.Windows.Forms.FlowLayoutPanel();
 			this.labelBetweenAges = new System.Windows.Forms.Label();
 			this.comboBoxAgeRanges = new System.Windows.Forms.ComboBox();
@@ -37,7 +36,7 @@
 			this.checkBoxBoys = new System.Windows.Forms.CheckBox();
 			this.checkBoxGirls = new System.Windows.Forms.CheckBox();
 			this.panelUserDetails = new MyFacebookApp.View.UserDetailsPanel();
-			this.findAMatchRoundedButton = new MyFacebookApp.View.RoundedButton();
+			this.findAMatchButton = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// flowLayoutPanelMatchPictures
@@ -124,30 +123,21 @@
 			this.panelUserDetails.TabIndex = 15;
 			this.panelUserDetails.Visible = false;
 			// 
-			// findAMatchRoundedButton
+			// findAMatchButton
 			// 
-			this.findAMatchRoundedButton.BackColor = System.Drawing.Color.Transparent;
-			this.findAMatchRoundedButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("findAMatchRoundedButton.BackgroundImage")));
-			this.findAMatchRoundedButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.findAMatchRoundedButton.FlatAppearance.BorderSize = 0;
-			this.findAMatchRoundedButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-			this.findAMatchRoundedButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-			this.findAMatchRoundedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.findAMatchRoundedButton.Font = new System.Drawing.Font("Century Gothic", 12F);
-			this.findAMatchRoundedButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(34)))), ((int)(((byte)(62)))));
-			this.findAMatchRoundedButton.Location = new System.Drawing.Point(75, 246);
-			this.findAMatchRoundedButton.Name = "findAMatchRoundedButton";
-			this.findAMatchRoundedButton.Size = new System.Drawing.Size(201, 47);
-			this.findAMatchRoundedButton.TabIndex = 16;
-			this.findAMatchRoundedButton.Text = "Find me a match!";
-			this.findAMatchRoundedButton.UseVisualStyleBackColor = false;
-			this.findAMatchRoundedButton.Click += new System.EventHandler(this.findMeAMatchButton_Click);
+			this.findAMatchButton.Location = new System.Drawing.Point(61, 255);
+			this.findAMatchButton.Name = "findAMatchButton";
+			this.findAMatchButton.Size = new System.Drawing.Size(222, 38);
+			this.findAMatchButton.TabIndex = 16;
+			this.findAMatchButton.Text = "Find me a match!";
+			this.findAMatchButton.UseVisualStyleBackColor = true;
+			this.findAMatchButton.Click += new System.EventHandler(this.findMeAMatchButton_Click);
 			// 
 			// MatchPanel
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-			this.Controls.Add(this.findAMatchRoundedButton);
+			this.Controls.Add(this.findAMatchButton);
 			this.Controls.Add(this.panelUserDetails);
 			this.Controls.Add(this.flowLayoutPanelMatchPictures);
 			this.Controls.Add(this.labelBetweenAges);
@@ -171,6 +161,6 @@
 		private System.Windows.Forms.Label labelInterestedIn;
 		private System.Windows.Forms.CheckBox checkBoxBoys;
 		private System.Windows.Forms.CheckBox checkBoxGirls;
-		private RoundedButton findAMatchRoundedButton;
+		private System.Windows.Forms.Button findAMatchButton;
 	}
 }

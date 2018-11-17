@@ -189,14 +189,14 @@ namespace MyFacebookApp.View
 			}
 			else
 			{
-				albumsRoundedButton.Text = "Albums";
+				albumsButton.Text = "Albums";
 				m_AlbumsManager.displayAlbums();
 			}
 		}
 
 		private void albumsButtonChangeDescription()
 		{
-			albumsRoundedButton.Text = "Back To Albums";
+			albumsButton.Text = "Back To Albums";
 		}
 
 		private void eventsButton_Click(object sender, EventArgs e)

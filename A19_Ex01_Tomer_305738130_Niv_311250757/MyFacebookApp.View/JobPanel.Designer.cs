@@ -29,11 +29,10 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JobPanel));
 			this.flowLayoutPanelContactPhotos = new System.Windows.Forms.FlowLayoutPanel();
 			this.listBoxJobs = new System.Windows.Forms.ListBox();
 			this.labelInformation = new System.Windows.Forms.Label();
-			this.findAJobRoundedButton = new MyFacebookApp.View.RoundedButton();
+			this.findAJobButton = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// flowLayoutPanelContactPhotos
@@ -71,30 +70,21 @@
 			this.labelInformation.Text = "Find friends who can help you in your job - hunt in Hi-Tech!";
 			this.labelInformation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
-			// findAJobRoundedButton
+			// findAJobButton
 			// 
-			this.findAJobRoundedButton.BackColor = System.Drawing.Color.Transparent;
-			this.findAJobRoundedButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("findAJobRoundedButton.BackgroundImage")));
-			this.findAJobRoundedButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.findAJobRoundedButton.FlatAppearance.BorderSize = 0;
-			this.findAJobRoundedButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-			this.findAJobRoundedButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-			this.findAJobRoundedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.findAJobRoundedButton.Font = new System.Drawing.Font("Century Gothic", 12F);
-			this.findAJobRoundedButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(34)))), ((int)(((byte)(62)))));
-			this.findAJobRoundedButton.Location = new System.Drawing.Point(358, 121);
-			this.findAJobRoundedButton.Name = "findAJobRoundedButton";
-			this.findAJobRoundedButton.Size = new System.Drawing.Size(186, 45);
-			this.findAJobRoundedButton.TabIndex = 7;
-			this.findAJobRoundedButton.Text = "Find me a job!";
-			this.findAJobRoundedButton.UseVisualStyleBackColor = false;
-			this.findAJobRoundedButton.Click += new System.EventHandler(this.findAJobButton_Click);
+			this.findAJobButton.Location = new System.Drawing.Point(399, 137);
+			this.findAJobButton.Name = "findAJobButton";
+			this.findAJobButton.Size = new System.Drawing.Size(151, 40);
+			this.findAJobButton.TabIndex = 7;
+			this.findAJobButton.Text = "Find me a job!";
+			this.findAJobButton.UseVisualStyleBackColor = true;
+			this.findAJobButton.Click += new System.EventHandler(this.findAJobButton_Click);
 			// 
 			// JobPanel
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-			this.Controls.Add(this.findAJobRoundedButton);
+			this.Controls.Add(this.findAJobButton);
 			this.Controls.Add(this.labelInformation);
 			this.Controls.Add(this.flowLayoutPanelContactPhotos);
 			this.Controls.Add(this.listBoxJobs);
@@ -110,6 +100,6 @@
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelContactPhotos;
 		private System.Windows.Forms.ListBox listBoxJobs;
 		private System.Windows.Forms.Label labelInformation;
-		private RoundedButton findAJobRoundedButton;
+		private System.Windows.Forms.Button findAJobButton;
 	}
 }
