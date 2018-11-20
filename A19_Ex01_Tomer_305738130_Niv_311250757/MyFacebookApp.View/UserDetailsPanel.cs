@@ -18,7 +18,7 @@ namespace MyFacebookApp.View
 
 		public void SetProfilePicture(string i_ProfilePicURL)
 		{
-			PictureBoxUserProfile.LoadAsync(i_ProfilePicURL);
+			pictureBoxUserProfile.LoadAsync(i_ProfilePicURL);
 		}
 
 		public void SetFirstName(string i_FirstName)

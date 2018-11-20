@@ -38,9 +38,9 @@
 			this.labelBirthDay = new System.Windows.Forms.Label();
 			this.labelLastName = new System.Windows.Forms.Label();
 			this.labelFirstName = new System.Windows.Forms.Label();
-			this.PictureBoxUserProfile = new System.Windows.Forms.PictureBox();
+			this.pictureBoxUserProfile = new System.Windows.Forms.PictureBox();
 			this.panelUserDetails.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.PictureBoxUserProfile)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxUserProfile)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panelUserDetails
@@ -54,7 +54,7 @@
 			this.panelUserDetails.Controls.Add(this.labelBirthDay);
 			this.panelUserDetails.Controls.Add(this.labelLastName);
 			this.panelUserDetails.Controls.Add(this.labelFirstName);
-			this.panelUserDetails.Controls.Add(this.PictureBoxUserProfile);
+			this.panelUserDetails.Controls.Add(this.pictureBoxUserProfile);
 			this.panelUserDetails.Location = new System.Drawing.Point(0, 0);
 			this.panelUserDetails.Name = "panelUserDetails";
 			this.panelUserDetails.Size = new System.Drawing.Size(548, 130);
@@ -150,11 +150,11 @@
 			// 
 			// PictureBoxUserProfile
 			// 
-			this.PictureBoxUserProfile.Location = new System.Drawing.Point(26, 14);
-			this.PictureBoxUserProfile.Name = "PictureBoxUserProfile";
-			this.PictureBoxUserProfile.Size = new System.Drawing.Size(107, 95);
-			this.PictureBoxUserProfile.TabIndex = 19;
-			this.PictureBoxUserProfile.TabStop = false;
+			this.pictureBoxUserProfile.Location = new System.Drawing.Point(26, 14);
+			this.pictureBoxUserProfile.Name = "PictureBoxUserProfile";
+			this.pictureBoxUserProfile.Size = new System.Drawing.Size(107, 95);
+			this.pictureBoxUserProfile.TabIndex = 19;
+			this.pictureBoxUserProfile.TabStop = false;
 			// 
 			// UserDetailsPanel
 			// 
@@ -164,7 +164,7 @@
 			this.Size = new System.Drawing.Size(548, 130);
 			this.panelUserDetails.ResumeLayout(false);
 			this.panelUserDetails.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.PictureBoxUserProfile)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxUserProfile)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -180,6 +180,6 @@
 		private System.Windows.Forms.Label labelBirthDay;
 		private System.Windows.Forms.Label labelLastName;
 		private System.Windows.Forms.Label labelFirstName;
-		private System.Windows.Forms.PictureBox PictureBoxUserProfile;
+		private System.Windows.Forms.PictureBox pictureBoxUserProfile;
 	}
 }

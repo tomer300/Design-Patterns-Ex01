@@ -178,7 +178,7 @@ namespace MyFacebookApp.View
 					{
 						m_AlbumsManager = new AlbumsManger(r_AppEngine.GetAlbums(), flowLayoutPanelAlbums);
 						m_AlbumsManager.AlbumClickedAction += albumsButtonChangeDescription;
-						m_AlbumsManager.displayAlbums();
+						m_AlbumsManager.DisplayAlbums();
 					}
 					else
 					{
@@ -193,7 +193,7 @@ namespace MyFacebookApp.View
 			else
 			{
 				albumsRoundedButton.Text = "Albums";
-				m_AlbumsManager.displayAlbums();
+				m_AlbumsManager.DisplayAlbums();
 			}
 		}
 

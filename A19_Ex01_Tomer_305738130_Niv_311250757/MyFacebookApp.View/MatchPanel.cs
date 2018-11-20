@@ -126,7 +126,7 @@ namespace MyFacebookApp.View
 				if (matchAlbums != null)
 				{
 					matchAlbumsManager = new AlbumsManger(matchAlbums, flowLayoutPanelMatchPictures);
-					matchAlbumsManager.displayAlbums();
+					matchAlbumsManager.DisplayAlbums();
 				}
 
 				profilePictureURL = i_PotentialMatch.GetProfilePicture();

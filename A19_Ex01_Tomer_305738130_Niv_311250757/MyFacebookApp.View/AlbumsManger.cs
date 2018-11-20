@@ -16,7 +16,7 @@ namespace MyFacebookApp.View
 			r_PanelToDisplayIn = i_PanelToDisplayIn;
 		}
 
-		internal void displayAlbums()
+		internal void DisplayAlbums()
 		{	
 			string albumPictureURL = string.Empty;
 
