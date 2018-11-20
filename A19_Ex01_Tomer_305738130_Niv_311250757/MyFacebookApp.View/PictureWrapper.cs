@@ -11,15 +11,13 @@ namespace MyFacebookApp.View
 	{
 		public PictureBox PictureBox { get; private set; }
 
-		public PictureWrapper(string i_PictureURL)
+		public PictureWrapper(string i_PictureURL, int i_Width = 100, int i_Height= 100, PictureBoxSizeMode i_SizeMode = PictureBoxSizeMode.StretchImage)
 		{
-			PictureBox = new PictureBox();
-			PictureBox.Height = 100;
-			PictureBox.Width = 100;
+            PictureBox = new PictureBox { Width = i_Width, Height = i_Height };
 			if (!string.IsNullOrEmpty(i_PictureURL))
 			{
 				PictureBox.LoadAsync(i_PictureURL);
-				PictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+				PictureBox.SizeMode = i_SizeMode;
 			}
 			else
 			{

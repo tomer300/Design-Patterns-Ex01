@@ -255,15 +255,16 @@ namespace MyFacebookApp.View
 					foreach (Post currentPost in allPosts)
 					{
 						bool	isLegalPost = false;
-						Label	postDetails = new Label();
-
-						postDetails.Text = string.Format(
-							"Posted at: {0}{1}Post Type: {2}{3}",
-							currentPost.CreatedTime.ToString(),
-							Environment.NewLine,
-							currentPost.Type,
-							Environment.NewLine);
-						postDetails.AutoSize = true;
+						Label	postDetails = new Label
+                        {
+                            Text = string.Format(
+                            "Posted at: {0}{1}Post Type: {2}{3}",
+                            currentPost.CreatedTime.ToString(),
+                            Environment.NewLine,
+                            currentPost.Type,
+                            Environment.NewLine),
+                            AutoSize = true
+                        };                
 
 						if (currentPost.Message != null)
 						{
@@ -286,10 +287,9 @@ namespace MyFacebookApp.View
 
 						if (isLegalPost == true)
 						{
-							tableLayoutPanelPosts.Controls.Add(postDetails);
-							Label seperator = new Label();
-							seperator.Text = " ";
-							seperator.AutoSize = true;
+                            Label seperator = new Label {Text = " ", AutoSize = true };
+
+                            tableLayoutPanelPosts.Controls.Add(postDetails);
 							tableLayoutPanelPosts.Controls.Add(seperator);
 						}
 					}
@@ -309,10 +309,8 @@ namespace MyFacebookApp.View
 		{
 			if (i_Content.Length > 0)
 			{
-				Label message = new Label();
+                Label message = new Label { Text = i_Content, AutoSize = true };
 
-				message.Text = i_Content;
-				message.AutoSize = true;
 				tableLayoutPanelPosts.Controls.Add(message);
 				io_IsLegalPost = true;
 			}
